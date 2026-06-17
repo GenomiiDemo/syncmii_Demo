@@ -1671,245 +1671,117 @@ body::before {
 
 
 /* ═══════════════════════════════════════════════════════
-   RESULT PAGE v3 — NARRATIVE LAYOUT
-   Three clear sections: Who / How / Who You Click With
+   RESULT PAGE v4 — STORY LAYOUT
+   Feeling: a reveal, not a dashboard
 ═══════════════════════════════════════════════════════ */
 
 /* Wrapper */
 .rp-wrap {
   width: 100%;
-  max-width: 680px;
+  max-width: 660px;
   display: flex;
   flex-direction: column;
   gap: 0;
   padding-bottom: 60px;
 }
 
-/* Shared section shell */
-.rp-section {
-  width: 100%;
-  padding: 36px 0 32px;
+/* ── HERO BLOCK ───────────────────────────────────────── */
+.rp-hero {
+  padding: 12px 0 36px;
   border-bottom: 1px solid var(--ghost2);
 }
-.rp-section:last-of-type { border-bottom: none; }
-
-/* Section header (02 / 03) */
-.rp-section-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 22px;
-}
-.rp-section-num {
-  font-size: 11px;
-  letter-spacing: .18em;
-  color: var(--gold-dim);
-  margin-top: 4px;
-  flex-shrink: 0;
-}
-.rp-section-title {
-  font-size: clamp(18px, 3vw, 22px);
-  font-weight: 700;
-  color: var(--cream);
-  line-height: 1.2;
-  margin-bottom: 3px;
-}
-.rp-section-sub {
-  font-size: 10px;
-  letter-spacing: .12em;
-  color: var(--mist);
-  opacity: .55;
-}
-
-/* ── HERO (Section 1) ─────────────────────────────── */
-.rp-hero { padding-top: 8px; }
-
-.rp-hero-topbar {
+.rp-hero-meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .rp-axis-pill {
   font-size: 9px;
-  letter-spacing: .16em;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--mist);
-  opacity: .5;
+  opacity: .45;
+  font-family: 'DM Mono', monospace;
+}
+/* Rarity badge styled inline */
+.rarity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #B08EC8;
+  border: 1px solid rgba(176,142,200,.3);
+  padding: 4px 10px;
+}
+.rarity-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #B08EC8;
+  flex-shrink: 0;
 }
 
-/* Name */
+/* Big name */
 .rp-combo-name {
-  font-size: clamp(34px, 7vw, 58px);
+  font-size: clamp(36px, 8vw, 64px);
   font-weight: 900;
   line-height: 1.0;
   color: var(--cream);
-  margin-bottom: 6px;
-  letter-spacing: -.01em;
+  letter-spacing: -.02em;
+  margin-bottom: 4px;
 }
 .rp-combo-cn {
-  font-size: 13px;
-  letter-spacing: .08em;
+  font-size: 12px;
+  letter-spacing: .1em;
   color: var(--gold-dim);
-  margin-bottom: 18px;
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 22px;
 }
 
-/* Tagline */
+/* Tagline — the one sentence that hits */
 .rp-tagline {
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: clamp(15px, 2.2vw, 18px);
+  font-size: clamp(15px, 2.5vw, 19px);
   color: var(--cream2);
-  line-height: 1.6;
+  line-height: 1.65;
   border-left: 2px solid var(--gold);
-  padding-left: 16px;
-  margin: 0 0 28px 0;
+  padding-left: 18px;
+  margin: 0 0 30px 0;
 }
 
-/* Identity grid: power / flaw / celeb */
-.rp-identity-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-.rp-id-cell--wide {
-  grid-column: 1 / -1;
-}
-.rp-id-cell {
-  background: var(--ink2);
-  border: 1px solid var(--ghost2);
-  padding: 14px 16px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-.rp-id-icon {
-  font-size: 18px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.rp-id-icon--flaw { filter: grayscale(0.3); }
-.rp-id-label {
-  font-size: 9px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  margin-bottom: 5px;
-  display: block;
-}
-.rp-id-val {
-  font-size: 13px;
-  color: var(--mist);
-  line-height: 1.55;
-  font-weight: 300;
-}
-.rp-id-val--flaw { color: rgba(196,128,128,0.85); }
-.rp-celeb-text {
-  font-size: 12px;
-  color: var(--mist);
-  line-height: 1.6;
-}
-.rp-celeb-text strong { color: var(--cream); font-weight: 500; }
-
-/* Tension strip */
-.rp-tension-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  background: var(--ghost);
-  border: 1px solid var(--ghost2);
-  padding: 14px 18px;
-  flex-wrap: wrap;
-}
-.rp-tension-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  min-width: 200px;
-}
-.rp-tension-you, .rp-tension-opp {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  text-align: center;
-}
-.rp-tension-you .mono,
-.rp-tension-opp .mono {
-  font-size: 8px;
-  letter-spacing: .16em;
-  color: var(--mist);
-  opacity: .5;
-  text-transform: uppercase;
-}
-.rp-tension-arch {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--cream);
-}
-.rp-tension-arch--opp { color: var(--mist); opacity: .6; }
-.rp-tension-bar {
-  flex: 1;
-  height: 3px;
-  background: var(--ghost2);
-  border-radius: 2px;
-  overflow: hidden;
-  min-width: 60px;
-}
-.rp-tension-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--sage), var(--gold));
-  border-radius: 2px;
-  transition: width 1s cubic-bezier(.16,1,.3,1);
-}
-.rp-tension-badge-wrap { flex-shrink: 0; }
-.rp-tension-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .1em;
-  padding: 4px 10px;
-  border: 1px solid;
-  white-space: nowrap;
-}
-.rp-tension-badge--extreme { border-color: rgba(201,168,76,.5); color: var(--gold2); }
-.rp-tension-badge--balanced { border-color: rgba(184,202,188,.3); color: var(--mist); }
-.rp-tension-badge--normal { border-color: var(--ghost2); color: var(--mist); opacity: .6; }
-
-/* ── HOW YOU WORK (Section 2) ────────────────────── */
-
+/* Description prose */
 .rp-desc-text {
   font-size: 14px;
   color: var(--mist);
   line-height: 1.85;
   font-weight: 300;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
+/* Work style inline card */
 .rp-workstyle-card {
-  border-left: 2px solid var(--sage2);
-  padding: 10px 0 10px 16px;
-  margin-bottom: 22px;
+  background: var(--ghost);
+  border-left: 2px solid var(--sage);
+  padding: 12px 16px;
+  margin-bottom: 24px;
 }
 .rp-workstyle-label {
-  font-size: 9px;
-  letter-spacing: .2em;
+  font-size: 8px;
+  letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--sage-pale);
+  color: var(--sage);
   margin-bottom: 6px;
   display: block;
-  opacity: .7;
 }
 .rp-workstyle-text {
   font-size: 13px;
   color: var(--mist);
   line-height: 1.7;
   font-weight: 300;
-  font-style: italic;
 }
 
 /* Strengths + Blindspots */
@@ -1917,281 +1789,279 @@ body::before {
   display: grid;
   grid-template-columns: 1fr 1px 1fr;
   gap: 0 20px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
-@media (max-width: 520px) {
+@media(max-width:560px){
   .rp-sb-row { grid-template-columns: 1fr; }
   .rp-sb-divider { display: none; }
 }
 .rp-sb-divider { background: var(--ghost2); }
 .rp-sb-label {
   font-size: 9px;
-  letter-spacing: .2em;
+  letter-spacing: .18em;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
   display: block;
 }
-.rp-sb-col--str .rp-sb-label { color: var(--sage-pale); }
-.rp-sb-col--blind .rp-sb-label { color: rgba(196,128,128,0.7); }
 .rp-sb-list {
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 6px;
 }
 .rp-sb-list li {
-  font-size: 12.5px;
-  line-height: 1.55;
-  color: var(--sage-pale);
-  padding-left: 16px;
-  position: relative;
+  font-size: 13px;
+  color: var(--mist);
+  line-height: 1.6;
   font-weight: 300;
+  padding-left: 14px;
+  position: relative;
 }
 .rp-sb-list li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
+  content: '·';
+  position: absolute; left: 0;
   color: var(--sage);
-  font-size: 10px;
-  top: 2px;
 }
-.rp-sb-list--blind li { color: rgba(196,128,128,0.8); }
-.rp-sb-list--blind li::before { color: rgba(196,128,128,0.5); }
+.rp-sb-list--blind li::before { color: rgba(196,128,128,0.6); }
 
-/* Careers */
-.rp-careers-wrap { margin-bottom: 18px; }
-.rp-careers-label {
+/* Celebrity hook */
+.rp-celeb-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.rp-celeb-label {
   font-size: 9px;
-  letter-spacing: .2em;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+}
+.rp-celeb-text {
+  font-size: 12px;
+  color: var(--mist);
+  line-height: 1.6;
+}
+.rp-celeb-text strong { color: var(--cream); font-weight: 500; }
+
+/* Inner tension — a human sentence, not a bar */
+.rp-tension-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ghost);
+  border: 1px solid var(--ghost2);
+  padding: 12px 16px;
+  flex-wrap: wrap;
+}
+.rp-tension-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 180px;
+}
+.rp-tension-you, .rp-tension-opp {
+  display: flex; flex-direction: column; gap: 2px; text-align: center;
+}
+.rp-tension-you .mono, .rp-tension-opp .mono {
+  font-size: 8px; letter-spacing: .14em;
+  color: var(--mist); opacity: .45; text-transform: uppercase;
+}
+.rp-tension-arch {
+  font-size: 12px; font-weight: 700; color: var(--cream);
+}
+.rp-tension-arch--opp { color: var(--mist); opacity: .55; }
+.rp-tension-bar {
+  flex: 1; height: 2px; background: var(--ghost2);
+  border-radius: 2px; overflow: hidden; min-width: 50px;
+}
+.rp-tension-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sage), var(--gold));
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.rp-tension-badge-wrap { flex-shrink: 0; }
+.rp-tension-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: .12em;
+  border: 1px solid var(--ghost2);
+  padding: 3px 8px;
+  color: var(--mist);
+}
+.rp-tension-badge--extreme { border-color: rgba(201,168,76,.4); color: var(--gold2); }
+.rp-tension-badge--balanced { border-color: rgba(184,202,188,.3); color: var(--mist); }
+.rp-tension-badge--normal { opacity: .5; }
+
+/* ── CAREERS ──────────────────────────────────────────── */
+.rp-careers-wrap {
+  margin: 22px 0;
+}
+.rp-careers-label {
+  font-size: 9px; letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--gold-dim);
   margin-bottom: 10px;
   display: block;
+  font-family: 'DM Mono', monospace;
 }
 .rp-careers-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  display: flex; flex-wrap: wrap; gap: 6px;
 }
 .rp-career-chip {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: .06em;
-  padding: 5px 11px;
+  font-size: 11px;
+  color: var(--sage-pale);
   border: 1px solid var(--ghost2);
-  color: var(--mist);
-  background: var(--ghost);
-  transition: border-color .15s, color .15s;
+  padding: 5px 12px;
+  letter-spacing: .04em;
 }
-.rp-career-chip:hover { border-color: var(--gold-dim); color: var(--gold2); }
 
-/* DNA expand toggle */
+/* ── DNA TOGGLE ───────────────────────────────────────── */
 .rp-expand-btn {
-  background: none;
-  border: 1px solid var(--ghost2);
-  color: var(--mist);
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  padding: 9px 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: border-color .2s, color .2s;
-  width: 100%;
-  justify-content: space-between;
-}
-.rp-expand-btn:hover { border-color: var(--gold-dim); color: var(--gold2); }
-.rp-expand-arrow { transition: transform .3s; }
-.rp-expand-arrow.open { transform: rotate(180deg); }
-
-.rp-dna-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .5s cubic-bezier(.16,1,.3,1);
-}
-.rp-dna-panel.open { max-height: 500px; }
-.rp-dna-inner {
-  padding: 20px 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-/* ── COMPAT (Section 3) ──────────────────────────── */
-
-.rp-compat { }
-
-/* Radar row */
-.rp-radar-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-}
-.rp-radar-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.rp-radar-label {
-  font-size: 9px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--mist);
-  opacity: .55;
-  text-align: center;
-  min-height: 14px;
-  transition: opacity .3s;
-}
-.rp-radar-vs {
-  font-size: 13px;
-  color: var(--gold-dim);
-  opacity: .5;
-  letter-spacing: .12em;
-}
-
-/* Compat group */
-.rp-compat-group-label {
-  font-size: 9px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--mist);
-  opacity: .6;
-  margin-bottom: 12px;
-}
-.rp-compat-group-label--friction { color: rgba(196,128,128,0.6); }
-
-/* Match cards */
-.rp-match-cards {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.rp-match-card {
-  flex: 1;
-  min-width: 160px;
-  background: var(--ink2);
-  border: 1px solid var(--ghost2);
-  padding: 16px 16px 14px;
-  cursor: pointer;
-  transition: border-color .2s, transform .15s;
-  position: relative;
-}
-.rp-match-card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
-.rp-match-card.active { border-color: var(--gold); }
-.rp-match-card.active::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--sage), var(--gold));
-}
-.rp-match-card--friction { border-color: rgba(196,128,128,0.15); }
-.rp-match-card--friction:hover { border-color: rgba(196,128,128,0.45); }
-.rp-match-card--friction.active { border-color: rgba(196,128,128,0.6); }
-.rp-match-card--friction.active::before {
-  background: linear-gradient(90deg, rgba(196,128,128,0.6), rgba(196,128,128,0.3));
-}
-
-/* Card label (天配 / 有挑战 etc.) */
-.rp-match-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  margin-bottom: 7px;
-  display: block;
-}
-.rp-match-label--best     { color: var(--sage-pale); }
-.rp-match-label--friction { color: rgba(196,128,128,0.7); }
-
-.rp-match-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--cream);
-  margin-bottom: 5px;
-  line-height: 1.2;
-}
-.rp-match-why {
-  font-size: 11.5px;
-  color: var(--mist);
-  line-height: 1.55;
-  font-weight: 300;
+  background: none; border: 1px solid var(--ghost2);
+  color: var(--mist); width: 100%;
+  padding: 12px 16px;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: 12px; letter-spacing: .06em;
+  transition: border-color .2s;
   margin-bottom: 0;
 }
+.rp-expand-btn:hover { border-color: var(--gold-dim); }
+.rp-expand-arrow { transition: transform .3s; opacity: .5; }
+.rp-expand-arrow.open { transform: rotate(180deg); }
+.rp-dna-panel {
+  max-height: 0; overflow: hidden;
+  transition: max-height .5s cubic-bezier(.16,1,.3,1);
+}
+.rp-dna-panel.open { max-height: 400px; }
+.rp-dna-inner {
+  padding: 20px 0;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.star-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.star-chip {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: #4A7C59; border: 1px solid rgba(74,124,89,0.3);
+  padding: 4px 10px;
+}
+.star-chip.p1 { color: var(--cream); border-color: var(--ghost2); }
+.star-chip.rare { color: #B08EC8; border-color: rgba(176,142,200,0.3); }
+.star-chip.secondary-chip { border-style: dashed; }
 
-/* Friction detail (always shown) */
-.rp-friction-detail {
-  margin-top: 10px;
-  padding-top: 10px;
+/* ── COMPAT SECTION ───────────────────────────────────── */
+.rp-compat {
+  padding: 32px 0;
   border-top: 1px solid var(--ghost2);
+}
+.rp-compat-header {
+  margin-bottom: 22px;
+}
+.rp-compat-title {
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: 700; color: var(--cream); margin-bottom: 4px;
+}
+.rp-compat-sub {
+  font-size: 10px; letter-spacing: .12em;
+  color: var(--mist); opacity: .5;
+  font-family: 'DM Mono', monospace;
+}
+.rp-radar-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px; flex-wrap: wrap; justify-content: center;
+}
+.rp-radar-panel {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.rp-radar-label {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: .1em; color: var(--mist); opacity: .6;
+  text-align: center; max-width: 120px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.rp-radar-vs {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: var(--ghost2); align-self: center;
+}
+.rp-compat-group { margin-bottom: 20px; }
+.rp-compat-group-label {
+  font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold-dim);
+  margin-bottom: 10px; display: block;
+  font-family: 'DM Mono', monospace;
+}
+.rp-compat-group-label--friction { color: rgba(196,128,128,0.7); }
+.rp-match-cards { display: flex; flex-direction: column; gap: 8px; }
+.rp-match-card {
+  border: 1px solid var(--ghost2);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all .2s;
+  background: transparent;
+}
+.rp-match-card:hover { border-color: var(--gold-dim); background: rgba(201,168,76,.04); }
+.rp-match-card.active { border-color: var(--gold); background: rgba(201,168,76,.07); }
+.rp-match-card--friction { border-color: rgba(196,128,128,0.2); }
+.rp-match-card--friction:hover { border-color: rgba(196,128,128,0.4); }
+.rp-match-label {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--sage); display: block; margin-bottom: 4px;
+}
+.rp-match-label--friction { color: rgba(196,128,128,0.8); }
+.rp-match-name {
+  font-size: 14px; font-weight: 600; color: var(--cream); margin-bottom: 4px;
+}
+.rp-match-why { font-size: 12px; color: var(--mist); line-height: 1.6; }
+.rp-friction-detail {
+  display: none; margin-top: 10px;
+  padding-top: 10px; border-top: 1px solid var(--ghost2);
 }
 .rp-friction-source {
-  font-size: 11px;
-  color: rgba(196,128,128,0.75);
-  line-height: 1.6;
-  margin-bottom: 8px;
+  font-size: 12px; color: var(--mist); margin-bottom: 8px; line-height: 1.6;
 }
-.rp-friction-tips { display: flex; flex-direction: column; gap: 5px; }
+.rp-friction-tips { display: flex; flex-direction: column; gap: 4px; }
 .rp-friction-tip {
-  font-size: 11px;
-  color: var(--mist);
-  opacity: .75;
-  padding-left: 16px;
-  position: relative;
-  line-height: 1.5;
+  font-size: 11px; color: var(--sage-pale);
+  padding-left: 14px; position: relative; line-height: 1.5;
 }
-.rp-friction-tip::before {
-  position: absolute;
-  left: 0;
-  color: var(--sage);
-  font-size: 10px;
-}
-.rp-friction-tip:nth-child(1)::before { content: '①'; }
+.rp-friction-tip::before { content: '①'; position: absolute; left: 0; color: var(--sage); }
 .rp-friction-tip:nth-child(2)::before { content: '②'; }
 
-/* ── VIRAL + GROWTH ──────────────────────────────── */
+/* ── VIRAL + GROWTH ───────────────────────────────────── */
 .rp-viral-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  padding: 24px 0 0;
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 28px 0 0;
 }
-.rp-growth-wrap {
-  padding: 20px 0 0;
+.viral-badge {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: .14em; text-transform: uppercase;
+  border: 1px solid var(--ghost2); padding: 4px 10px;
+  color: var(--mist);
 }
+.viral-badge.rare-signal { border-color: rgba(176,142,200,.4); color: #B08EC8; }
+.viral-badge.multi { border-color: rgba(201,168,76,.3); color: var(--gold-dim); }
+
+.rp-growth-wrap { margin: 20px 0 28px; }
 .rp-growth-label {
-  font-size: 9px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--gold-dim);
-  margin-bottom: 8px;
-  display: block;
+  font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold-dim);
+  margin-bottom: 8px; display: block;
+  font-family: 'DM Mono', monospace;
 }
 .rp-growth-text {
-  font-size: 13px;
-  color: var(--mist);
-  line-height: 1.8;
-  font-weight: 300;
-  margin-bottom: 14px;
+  font-size: 13px; color: var(--mist);
+  line-height: 1.85; font-weight: 300; margin-bottom: 14px;
 }
 .rp-quote {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 13px;
-  color: var(--gold-dim);
-  text-align: center;
-  padding: 10px 0;
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 13px; color: var(--gold-dim);
+  text-align: center; padding: 10px 0;
   border-top: 1px solid var(--ghost2);
 }
+
 
 </style>
 </head>
@@ -2280,48 +2150,51 @@ body::before {
   <section class="screen" id="s-result">
     <div class="rp-wrap">
 
-      <!-- ══ SECTION 1: WHO YOU ARE ══════════════════════════ -->
-      <section class="rp-section rp-hero">
+      <!-- ══ HERO: WHO YOU ARE ══════════════════════════════ -->
+      <div class="rp-hero">
 
-        <!-- Top bar: rarity + axis label -->
-        <div class="rp-hero-topbar">
+        <!-- Meta bar: rarity + axis -->
+        <div class="rp-hero-meta">
           <div id="rarity-badge-container"></div>
           <div class="rp-axis-pill mono" id="rp-axis-pill"></div>
         </div>
 
-        <!-- The name -->
+        <!-- The name — big and proud -->
         <h1 class="rp-combo-name serif" id="result-name"></h1>
         <div class="rp-combo-cn mono" id="result-cn"></div>
 
-        <!-- Tagline — the one sentence -->
+        <!-- Tagline — one sentence that pins the character -->
         <blockquote class="rp-tagline" id="result-tagline"></blockquote>
 
-        <!-- Core identity: 3 punchy lines -->
-        <div class="rp-identity-grid" id="rp-identity-grid">
-          <div class="rp-id-cell" id="rp-id-power">
-            <span class="rp-id-icon">⚡</span>
-            <div>
-              <div class="rp-id-label mono" id="lbl-power"></div>
-              <div class="rp-id-val" id="rp-power-text"></div>
-            </div>
+        <!-- Description — who you are in prose -->
+        <p class="rp-desc-text" id="rp-desc-text"></p>
+
+        <!-- Work style accent -->
+        <div class="rp-workstyle-card" id="rp-workstyle-card">
+          <div class="rp-workstyle-label mono" id="lbl-ws"></div>
+          <p class="rp-workstyle-text" id="rp-ws-text"></p>
+        </div>
+
+        <!-- Strengths + Blindspots -->
+        <div class="rp-sb-row">
+          <div class="rp-sb-col">
+            <div class="rp-sb-label mono" id="lbl-strengths"></div>
+            <ul class="rp-sb-list" id="rp-strengths-list"></ul>
           </div>
-          <div class="rp-id-cell" id="rp-id-flaw">
-            <span class="rp-id-icon rp-id-icon--flaw">💀</span>
-            <div>
-              <div class="rp-id-label mono" id="lbl-flaw"></div>
-              <div class="rp-id-val rp-id-val--flaw" id="rp-flaw-text"></div>
-            </div>
-          </div>
-          <div class="rp-id-cell rp-id-cell--wide" id="rp-id-celeb">
-            <span class="rp-id-icon">👤</span>
-            <div>
-              <div class="rp-id-label mono" id="lbl-celeb"></div>
-              <div class="rp-id-val rp-celeb-text" id="rp-celeb-text"></div>
-            </div>
+          <div class="rp-sb-divider"></div>
+          <div class="rp-sb-col">
+            <div class="rp-sb-label mono" id="lbl-blindspots"></div>
+            <ul class="rp-sb-list rp-sb-list--blind" id="rp-blindspots-list"></ul>
           </div>
         </div>
 
-        <!-- Tension strip: inner opposite -->
+        <!-- Celebrity hook -->
+        <div class="rp-celeb-row" id="rp-id-celeb">
+          <span class="rp-celeb-label mono" id="lbl-celeb"></span>
+          <span class="rp-celeb-text" id="rp-celeb-text"></span>
+        </div>
+
+        <!-- Inner tension strip (simplified) -->
         <div class="rp-tension-strip" id="rp-tension-strip">
           <div class="rp-tension-left">
             <div class="rp-tension-you">
@@ -2337,41 +2210,7 @@ body::before {
             </div>
           </div>
           <div class="rp-tension-badge-wrap">
-            <span class="rp-tension-badge" id="rp-tension-badge"></span>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ══ SECTION 2: HOW YOU WORK ══════════════════════════ -->
-      <section class="rp-section rp-how">
-        <div class="rp-section-header">
-          <div class="rp-section-num mono">02</div>
-          <div>
-            <div class="rp-section-title serif" id="lbl-how-title"></div>
-            <div class="rp-section-sub mono" id="lbl-how-sub"></div>
-          </div>
-        </div>
-
-        <!-- Description paragraph -->
-        <p class="rp-desc-text" id="rp-desc-text"></p>
-
-        <!-- Work style sentence -->
-        <div class="rp-workstyle-card" id="rp-workstyle-card">
-          <div class="rp-workstyle-label mono" id="lbl-ws"></div>
-          <p class="rp-workstyle-text" id="rp-ws-text"></p>
-        </div>
-
-        <!-- Strengths + Blindspots side by side -->
-        <div class="rp-sb-row">
-          <div class="rp-sb-col rp-sb-col--str">
-            <div class="rp-sb-label mono" id="lbl-strengths"></div>
-            <ul class="rp-sb-list" id="rp-strengths-list"></ul>
-          </div>
-          <div class="rp-sb-divider"></div>
-          <div class="rp-sb-col rp-sb-col--blind">
-            <div class="rp-sb-label mono" id="lbl-blindspots"></div>
-            <ul class="rp-sb-list rp-sb-list--blind" id="rp-blindspots-list"></ul>
+            <span class="rp-tension-badge mono" id="rp-tension-badge"></span>
           </div>
         </div>
 
@@ -2381,59 +2220,56 @@ body::before {
           <div class="rp-careers-chips" id="rp-careers-chips"></div>
         </div>
 
-        <!-- Expand toggle for DNA chart -->
+        <!-- DNA toggle -->
         <button class="rp-expand-btn" id="rp-dna-toggle" onclick="toggleDNA()">
           <span id="lbl-dna-toggle"></span>
           <span class="rp-expand-arrow" id="rp-expand-arrow">↓</span>
         </button>
         <div class="rp-dna-panel" id="rp-dna-panel">
           <div class="rp-dna-inner">
-            <svg id="star-svg" viewBox="-150 -150 300 300" width="260" height="260"
+            <svg id="star-svg" viewBox="-150 -150 300 300" width="240" height="240"
               style="max-width:100%;height:auto;display:block;margin:0 auto"></svg>
             <div class="star-chips" id="star-chips"></div>
           </div>
         </div>
 
-      </section>
+      </div><!-- /rp-hero -->
 
-      <!-- ══ SECTION 3: WHO YOU CLICK WITH ════════════════════ -->
-      <section class="rp-section rp-compat">
-        <div class="rp-section-header">
-          <div class="rp-section-num mono">03</div>
-          <div>
-            <div class="rp-section-title serif" id="lbl-compat-title"></div>
-            <div class="rp-section-sub mono" id="lbl-compat-sub"></div>
-          </div>
+      <!-- ══ WHO YOU CLICK WITH ══════════════════════════════ -->
+      <div class="rp-compat">
+        <div class="rp-compat-header">
+          <div class="rp-compat-title serif" id="lbl-compat-title"></div>
+          <div class="rp-compat-sub mono" id="lbl-compat-sub"></div>
         </div>
 
         <!-- Dual radar -->
         <div class="rp-radar-row">
           <div class="rp-radar-panel">
             <div class="rp-radar-label mono" id="lbl-my-radar"></div>
-            <svg id="my-radar-svg" viewBox="-130 -130 260 260" width="220" height="220"
+            <svg id="my-radar-svg" viewBox="-130 -130 260 260" width="200" height="200"
               style="max-width:100%;display:block;margin:0 auto"></svg>
           </div>
           <div class="rp-radar-vs mono">vs</div>
           <div class="rp-radar-panel">
             <div class="rp-radar-label mono" id="lbl-partner-radar">—</div>
-            <svg id="partner-radar-svg" viewBox="-130 -130 260 260" width="220" height="220"
+            <svg id="partner-radar-svg" viewBox="-130 -130 260 260" width="200" height="200"
               style="max-width:100%;display:block;margin:0 auto"></svg>
           </div>
         </div>
 
-        <!-- Best match cards -->
+        <!-- Best matches -->
         <div class="rp-compat-group">
           <div class="rp-compat-group-label" id="lbl-best-matches"></div>
           <div class="rp-match-cards" id="rp-best-cards"></div>
         </div>
 
-        <!-- Friction cards -->
-        <div class="rp-compat-group" style="margin-top:24px">
+        <!-- Friction -->
+        <div class="rp-compat-group" style="margin-top:16px">
           <div class="rp-compat-group-label rp-compat-group-label--friction" id="lbl-friction"></div>
           <div class="rp-match-cards" id="rp-friction-cards"></div>
         </div>
 
-      </section>
+      </div><!-- /rp-compat -->
 
       <!-- ══ VIRAL + GROWTH ══════════════════════════════════ -->
       <div class="rp-viral-row" id="viral-row"></div>
@@ -2443,7 +2279,7 @@ body::before {
         <p class="rp-quote serif" id="result-quote"></p>
       </div>
 
-      <!-- ══ CTA ═════════════════════════════════════════════ -->
+      <!-- ══ CTA ════════════════════════════════════════════ -->
       <div class="unlock-cta-wrap">
         <button class="btn-primary" onclick="goToResumeEntry()"><span data-t="unlock_cta"></span></button>
         <p class="unlock-note" data-t="unlock_note"></p>
@@ -3322,65 +3158,83 @@ function renderResults(pcts){
   const sorted = ARCHETYPES.map(a=>({...a,pct:pcts[a.id]})).sort((a,b)=>b.pct-a.pct);
   S.sorted = sorted;
   const primary = sorted[0]; S.primary = primary;
-  const lang    = S.lang || 'en';
+  const lang = S.lang || 'en';
+  const isEn = lang === 'en';
 
-  // ── Compute dual type ──────────────────────────────────────────────
+  // ── Compute dual type ────────────────────────────────────────────────────
   const dual      = computeDualType(pcts);
   S.dual          = dual;
   const secArch   = ARCHETYPES.find(a => a.id === dual.secondaryId);
   const innerArch = ARCHETYPES.find(a => a.id === dual.innerOppositeId);
   const combo     = lookupCombo(dual.primaryId, dual.secondaryId);
 
-  // ── i18n helpers ──────────────────────────────────────────────────
-  const isEn = lang === 'en';
-  function setT(id, en, zh){ const el=document.getElementById(id); if(el) el.textContent = isEn?en:zh; }
-  function setH(id, en, zh){ const el=document.getElementById(id); if(el) el.innerHTML  = isEn?en:zh; }
+  // i18n helpers
+  function setT(id, en, zh){ const e=document.getElementById(id); if(e) e.textContent = isEn?en:zh; }
   function el(id){ return document.getElementById(id); }
 
-  // ═══════════════════════════════════════════════════════
-  // SECTION 1 — WHO YOU ARE
-  // ═══════════════════════════════════════════════════════
-
-  // Rarity badge
+  // ── RARITY BADGE ─────────────────────────────────────────────────────────
   const rbc = el('rarity-badge-container'); rbc.innerHTML = '';
   if(primary.tier==='rare'){
-    rbc.innerHTML = `<div class="rarity-badge mono"><span class="rarity-dot"></span>${primary.rarityLabel||'◆ Rare'} · ${T('rare_top')}</div>`;
+    rbc.innerHTML = `<div class="rarity-badge mono"><span class="rarity-dot"></span>${primary.rarityLabel||'◆ Rare'}</div>`;
   } else if(primary.tier==='scarce'){
-    rbc.innerHTML = `<div class="rarity-badge mono" style="border-color:var(--gold-dim);color:var(--gold-dim)"><span class="rarity-dot" style="background:var(--gold-dim)"></span>◇ ${isEn?'Scarce':'稀缺型'}</div>`;
+    rbc.innerHTML = `<div class="rarity-badge mono" style="color:var(--gold-dim);border-color:rgba(201,168,76,.3)"><span class="rarity-dot" style="background:var(--gold-dim)"></span>◇ ${isEn?'Scarce':'稀缺型'}</div>`;
   }
 
-  // Axis pill
+  // ── AXIS PILL ────────────────────────────────────────────────────────────
+  const axInfo = dual.axisInfo || {};
   const axisLabel = isEn
-    ? `${dual.axisInfo.tension_en||''} · Axis ${dual.axisInfo.num}`
-    : `第${dual.axisInfo.num}轴 · ${dual.axisInfo.tension_cn||''}`;
+    ? `${axInfo.tension_en||axInfo.en||''} · Axis ${axInfo.num||''}`
+    : `第${axInfo.num||''}轴 · ${axInfo.tension_cn||axInfo.cn||''}`;
   setT('rp-axis-pill', axisLabel, axisLabel);
 
-  // Name
-  el('result-name').textContent = dual.comboName;
-  el('result-cn').textContent   = isEn
-    ? (combo ? combo.name_cn : '')
+  // ── NAME ─────────────────────────────────────────────────────────────────
+  el('result-name').textContent = isEn
+    ? (combo ? combo.name_en : dual.comboName)
     : dual.comboName;
+  el('result-cn').textContent = combo ? combo.name_cn : '';
 
-  // Tagline
-  const taglineText = combo && combo.tagline_cn
-    ? combo.tagline_cn
-    : L(primary.tagline);
-  el('result-tagline').textContent = taglineText;
+  // ── TAGLINE ──────────────────────────────────────────────────────────────
+  const tagline = combo && combo.tagline_cn ? combo.tagline_cn : L(primary.tagline);
+  el('result-tagline').textContent = tagline;
 
-  // Identity cells
-  setT('lbl-power',     '⚡ Your Superpower',     '⚡ 超级能力');
-  setT('lbl-flaw',      '💀 Watch Out For',       '💀 致命盲点');
-  setT('lbl-celeb',     '👤 You Remind Us Of',    '👤 名人参照');
+  // ── DESCRIPTION ──────────────────────────────────────────────────────────
+  const descText = combo
+    ? (isEn && combo.description_en ? combo.description_en : (combo.description_cn || L(primary.def)))
+    : L(primary.def);
+  el('rp-desc-text').textContent = descText;
 
-  // Power: first sentence of primary.power
-  const powerFull = L(primary.power) || '';
-  const powerShort = powerFull.split('—')[0].split('–')[0].trim();
-  el('rp-power-text').textContent = powerShort;
+  // ── WORK STYLE ───────────────────────────────────────────────────────────
+  setT('lbl-ws', 'IN PRACTICE', '工作方式');
+  const wsText = combo
+    ? (isEn && combo.work_style_en ? combo.work_style_en : (combo.work_style_cn || ''))
+    : '';
+  if(wsText){
+    el('rp-ws-text').textContent = wsText;
+  } else {
+    const wsCard = el('rp-workstyle-card');
+    if(wsCard) wsCard.style.display = 'none';
+  }
 
-  // Flaw
-  el('rp-flaw-text').textContent = L(primary.flaw) || '';
+  // ── STRENGTHS ────────────────────────────────────────────────────────────
+  setT('lbl-strengths', 'Strengths', '核心优势');
+  const strengths = combo && combo.strengths_cn && combo.strengths_cn.length
+    ? combo.strengths_cn : [];
+  const strEl = el('rp-strengths-list');
+  strEl.innerHTML = strengths.length
+    ? strengths.map(s=>`<li>${s}</li>`).join('')
+    : (primary.value ? `<li>${L(primary.value)}</li>` : '');
 
-  // Celebrity (from combo JSON, language-switched)
+  // ── BLINDSPOTS ───────────────────────────────────────────────────────────
+  setT('lbl-blindspots', 'Watch Out', '盲点');
+  const blindspots = combo && combo.blindspots_cn && combo.blindspots_cn.length
+    ? combo.blindspots_cn : [];
+  const blindEl = el('rp-blindspots-list');
+  blindEl.innerHTML = blindspots.length
+    ? blindspots.map(b=>`<li>${b}</li>`).join('')
+    : (primary.flaw ? `<li>${L(primary.flaw)}</li>` : '');
+
+  // ── CELEBRITY ────────────────────────────────────────────────────────────
+  setT('lbl-celeb', 'You remind us of', '名人参照');
   let celebText = '';
   if(combo && combo.celebrity_hook){
     celebText = isEn
@@ -3389,100 +3243,54 @@ function renderResults(pcts){
     celebText = celebText || combo.celebrity_hook.en || '';
   }
   if(celebText){
-    // Bold the name before the dash
     const parts = celebText.split('——');
     if(parts.length >= 2){
       el('rp-celeb-text').innerHTML =
         `<strong>${parts[0].trim()}</strong> — ${parts.slice(1).join('——').trim()}`;
     } else {
-      el('rp-celeb-text').textContent = celebText;
+      // try the | separator too
+      const pparts = celebText.split(' | ');
+      el('rp-celeb-text').textContent = pparts[0].trim();
     }
   } else {
-    el('rp-id-celeb').style.display = 'none';
+    const cr = el('rp-id-celeb');
+    if(cr) cr.style.display = 'none';
   }
 
-  // Tension strip
+  // ── TENSION STRIP ────────────────────────────────────────────────────────
   const biasW = dual.axisBias;
   el('rp-tension-fill').style.width = biasW + '%';
-  el('rp-tension-you-name').textContent  = L(primary.name).replace(/^The\s+/i,'');
-  el('rp-tension-opp-name').textContent  = innerArch ? L(innerArch.name).replace(/^The\s+/i,'') : '';
-  setT('rp-tension-you-label', 'YOU',     '你');
-  setT('rp-tension-opp-label', 'SHADOW',  '内在对立');
+  el('rp-tension-you-name').textContent = L(primary.name).replace(/^The\s+/i,'');
+  el('rp-tension-opp-name').textContent = innerArch ? L(innerArch.name).replace(/^The\s+/i,'') : '';
+  setT('rp-tension-you-label', 'YOU', '你');
+  setT('rp-tension-opp-label', 'SHADOW', '内在对立');
 
   const badge = el('rp-tension-badge');
   if(biasW >= 75){
     badge.textContent = isEn ? '⚡ Extreme Focus' : '⚡ 极端纯粹';
-    badge.className   = 'rp-tension-badge rp-tension-badge--extreme';
+    badge.className = 'rp-tension-badge mono rp-tension-badge--extreme';
   } else if(biasW <= 55){
     badge.textContent = isEn ? '⚖️ Inner Tension' : '⚖️ 轴内平衡';
-    badge.className   = 'rp-tension-badge rp-tension-badge--balanced';
+    badge.className = 'rp-tension-badge mono rp-tension-badge--balanced';
   } else {
-    badge.textContent = biasW + '% ' + (isEn ? 'lean' : '倾斜');
-    badge.className   = 'rp-tension-badge rp-tension-badge--normal';
+    badge.textContent = biasW + '%';
+    badge.className = 'rp-tension-badge mono rp-tension-badge--normal';
   }
 
-  // ═══════════════════════════════════════════════════════
-  // SECTION 2 — HOW YOU WORK
-  // ═══════════════════════════════════════════════════════
-
-  setT('rp-section-num-2', '02', '02'); // no-op if doesn't exist
-
-  // Section header labels
-  const secTitle2 = el('lbl-how-title');
-  const secSub2   = el('lbl-how-sub');
-  if(secTitle2) secTitle2.textContent = isEn ? 'How You Work' : '你怎么工作';
-  if(secSub2)   secSub2.textContent   = isEn ? 'Your patterns & blind spots' : '你的行为模式与盲点';
-
-  // Description
-  const descText = combo && combo.description_cn ? combo.description_cn : L(primary.def);
-  el('rp-desc-text').textContent = descText;
-
-  // Work style
-  setT('lbl-ws', 'IN PRACTICE', '工作方式');
-  const wsText = combo && combo.work_style_cn ? combo.work_style_cn : '';
-  if(wsText){
-    el('rp-ws-text').textContent = wsText;
-  } else {
-    const wsCard = el('rp-workstyle-card');
-    if(wsCard) wsCard.style.display = 'none';
-  }
-
-  // Strengths
-  setT('lbl-strengths',  'Strengths', '核心优势');
-  const strengths = combo && combo.strengths_cn && combo.strengths_cn.length
-    ? combo.strengths_cn
-    : [];
-  const strEl = el('rp-strengths-list');
-  strEl.innerHTML = strengths.length
-    ? strengths.map(s=>`<li>${s}</li>`).join('')
-    : (primary.value ? `<li>${L(primary.value)}</li>` : '');
-
-  // Blindspots
-  setT('lbl-blindspots', 'Watch Out', '盲点警告');
-  const blindspots = combo && combo.blindspots_cn && combo.blindspots_cn.length
-    ? combo.blindspots_cn
-    : [];
-  const blindEl = el('rp-blindspots-list');
-  blindEl.innerHTML = blindspots.length
-    ? blindspots.map(b=>`<li>${b}</li>`).join('')
-    : (primary.flaw ? `<li>${L(primary.flaw)}</li>` : '');
-
-  // Careers
-  setT('lbl-careers', 'Where You Thrive', '适合的职业方向');
+  // ── CAREERS ──────────────────────────────────────────────────────────────
+  setT('lbl-careers', 'Where You Thrive', '适合的方向');
   const careers = combo && combo.careers_cn && combo.careers_cn.length
-    ? combo.careers_cn
-    : [];
+    ? combo.careers_cn : [];
   const careersEl = el('rp-careers-chips');
   careersEl.innerHTML = careers.map(c=>`<span class="rp-career-chip">${c}</span>`).join('');
-  if(!careers.length) el('rp-careers-wrap').style.display = 'none';
+  if(!careers.length){ const cw = el('rp-careers-wrap'); if(cw) cw.style.display='none'; }
 
-  // DNA toggle label
+  // ── DNA TOGGLE LABEL ─────────────────────────────────────────────────────
   setT('lbl-dna-toggle', 'See your 12-dimension DNA chart', '查看12维职场基因图');
 
   // Build star chart (hidden until expanded)
   buildStarChart('star-svg', pcts, 108);
-  const chipsEl = el('star-chips');
-  chipsEl.innerHTML = '';
+  const chipsEl = el('star-chips'); chipsEl.innerHTML = '';
   sorted.slice(0,5).forEach((a,rank)=>{
     const isRare = a.tier==='rare';
     const isSec  = a.id === dual.secondaryId;
@@ -3490,23 +3298,20 @@ function renderResults(pcts){
     chipsEl.innerHTML += `<span class="star-chip ${cls}${isSec?' secondary-chip':''}">${isRare?'◆ ':''}${a.name.en.replace('The ','')} ${Math.round(a.pct)}%${isSec?' ✦':''}</span>`;
   });
 
-  // ═══════════════════════════════════════════════════════
-  // SECTION 3 — WHO YOU CLICK WITH
-  // ═══════════════════════════════════════════════════════
+  // ── COMPAT SECTION ───────────────────────────────────────────────────────
+  const compatTitle = el('lbl-compat-title');
+  const compatSub   = el('lbl-compat-sub');
+  if(compatTitle) compatTitle.textContent = isEn ? 'Who You Work Best With' : '你和谁最合';
+  if(compatSub)   compatSub.textContent   = isEn ? 'Click a card to compare radars' : '点击卡片对比雷达图';
 
-  // Section labels
-  const secTitle3 = el('lbl-compat-title');
-  const secSub3   = el('lbl-compat-sub');
-  if(secTitle3) secTitle3.textContent = isEn ? 'Who You Click With' : '你和谁最合';
-  if(secSub3)   secSub3.textContent   = isEn ? 'Click a card to compare radars' : '点击卡片对比雷达图';
+  setT('lbl-my-radar', 'You', '你');
+  setT('lbl-best-matches', isEn ? '⚡ Best Matches' : '⚡ 最佳搭档',
+                            isEn ? '⚡ Best Matches' : '⚡ 最佳搭档');
+  setT('lbl-friction',
+    isEn ? '🔥 High Tension — but growth potential' : '🔥 张力高——但成长潜力也高',
+    isEn ? '🔥 High Tension — but growth potential' : '🔥 张力高——但成长潜力也高');
 
-  setT('lbl-my-radar',    'You',        '你');
-  setT('lbl-best-matches', isEn?'⚡ Best Matches':'⚡ 最佳搭档',
-                            isEn?'⚡ Best Matches':'⚡ 最佳搭档');
-  setT('lbl-friction',    isEn?'🔥 Most Friction':'🔥 最容易产生摩擦',
-                            isEn?'🔥 Most Friction':'🔥 最容易产生摩擦');
-
-  // Build my radar
+  // Build user radar
   buildRadarChart('my-radar-svg', pcts, dual.primaryId, 100, false);
 
   // Compute compat scores
@@ -3520,39 +3325,33 @@ function renderResults(pcts){
   scored.sort((a,b) => b.score - a.score);
 
   const best3    = scored.slice(0, 3);
-  const friction2= scored.slice(-2).reverse();
+  const friction2 = scored.slice(-2).reverse();
 
-  // Best match labels
-  const MATCH_LABELS = {
-    best: isEn ? ['天配', '强搭配', '好搭配'] : ['天配', '强搭配', '好搭配'],
-    en:   ['Perfect match', 'Strong pair', 'Good pair'],
-  };
+  const SCORE_LABELS = ['天配', '强搭配', '好搭配'];
+  const SCORE_EN = ['Perfect match', 'Strong pair', 'Good pair'];
 
   // Render best cards
-  const bestEl = el('rp-best-cards');
-  bestEl.innerHTML = '';
+  const bestEl = el('rp-best-cards'); bestEl.innerHTML = '';
   best3.forEach((item, i) => {
     const c    = item.combo;
     const name = isEn ? c.name_en : c.name_cn;
-    const tag  = isEn ? MATCH_LABELS.en[i] : MATCH_LABELS.best[i];
+    const tag  = isEn ? SCORE_EN[i] : SCORE_LABELS[i];
     const why  = getBestWhy(dual.primaryId, c.primary_id, item.score, isEn);
     const card = document.createElement('div');
     card.className = 'rp-match-card' + (i===0?' active':'');
     card.innerHTML = `
-      <span class="rp-match-label rp-match-label--best">${tag}${item.isHighTension?' 🔥':''}</span>
+      <span class="rp-match-label rp-match-label--best">${tag} · ${item.score}${item.isHighTension?' 🔥':''}</span>
       <div class="rp-match-name">${name}</div>
       <div class="rp-match-why">${why}</div>`;
     card.addEventListener('click', () => {
-      document.querySelectorAll('.rp-match-card').forEach(el=>el.classList.remove('active'));
+      document.querySelectorAll('.rp-match-card').forEach(e=>e.classList.remove('active'));
       card.classList.add('active');
-      const pp = RADAR_PROFILES[c.primary_id] || {};
-      buildRadarChart('partner-radar-svg', pp, c.primary_id, 100, true);
-      const lbl = el('lbl-partner-radar');
+      buildRadarChart('partner-radar-svg', RADAR_PROFILES[c.primary_id]||{}, c.primary_id, 100, true);
+      const lbl = document.getElementById('lbl-partner-radar');
       if(lbl) lbl.textContent = name;
     });
     if(i===0){
-      const pp = RADAR_PROFILES[c.primary_id] || {};
-      buildRadarChart('partner-radar-svg', pp, c.primary_id, 100, true);
+      buildRadarChart('partner-radar-svg', RADAR_PROFILES[c.primary_id]||{}, c.primary_id, 100, true);
       const lbl = document.getElementById('lbl-partner-radar');
       if(lbl) lbl.textContent = name;
     }
@@ -3560,8 +3359,7 @@ function renderResults(pcts){
   });
 
   // Render friction cards
-  const frictionEl = el('rp-friction-cards');
-  frictionEl.innerHTML = '';
+  const frictionEl = el('rp-friction-cards'); frictionEl.innerHTML = '';
   friction2.forEach(item => {
     const c   = item.combo;
     const name = isEn ? c.name_en : c.name_cn;
@@ -3571,7 +3369,7 @@ function renderResults(pcts){
     card.innerHTML = `
       <span class="rp-match-label rp-match-label--friction">${isEn?'Needs effort':'需要刻意沟通'}</span>
       <div class="rp-match-name">${name}</div>
-      <div class="rp-match-why">${isEn?'High natural tension — but high growth potential':'天然张力高，但成长潜力也高'}</div>
+      <div class="rp-match-why">${isEn?'Natural tension high — high growth potential too':'天然张力高，成长潜力也高'}</div>
       <div class="rp-friction-detail">
         <div class="rp-friction-source">${fd.source||''}</div>
         <div class="rp-friction-tips">
@@ -3579,30 +3377,28 @@ function renderResults(pcts){
         </div>
       </div>`;
     card.addEventListener('click', () => {
-      document.querySelectorAll('.rp-match-card').forEach(el=>el.classList.remove('active'));
+      document.querySelectorAll('.rp-match-card').forEach(e=>e.classList.remove('active'));
       card.classList.add('active');
-      const pp = RADAR_PROFILES[c.primary_id] || {};
-      buildRadarChart('partner-radar-svg', pp, c.primary_id, 100, true);
+      const detail = card.querySelector('.rp-friction-detail');
+      if(detail) detail.classList.toggle('open');
+      buildRadarChart('partner-radar-svg', RADAR_PROFILES[c.primary_id]||{}, c.primary_id, 100, true);
       const lbl = document.getElementById('lbl-partner-radar');
       if(lbl) lbl.textContent = name;
     });
     frictionEl.appendChild(card);
   });
 
-  // ═══════════════════════════════════════════════════════
-  // VIRAL BADGES
-  // ═══════════════════════════════════════════════════════
-  const viralRow = el('viral-row');
-  viralRow.innerHTML = '';
-  if(dual.axisBias>=75) viralRow.innerHTML += `<span class="viral-badge">${isEn?'⚡ Extremely clear':'⚡ 轴内极度清晰'}</span>`;
-  if(dual.axisBias<=55) viralRow.innerHTML += `<span class="viral-badge">${isEn?'⚖️ Living the contradiction':'⚖️ 活在矛盾里'}</span>`;
+  // ── VIRAL BADGES ─────────────────────────────────────────────────────────
+  const viralRow = el('viral-row'); viralRow.innerHTML = '';
+  if(dual.axisBias >= 75) viralRow.innerHTML += `<span class="viral-badge">${isEn?'⚡ Extremely clear':'⚡ 极度清晰'}</span>`;
+  if(dual.axisBias <= 55) viralRow.innerHTML += `<span class="viral-badge">${isEn?'⚖️ Living the tension':'⚖️ 活在张力里'}</span>`;
   if(primary.tier==='rare') viralRow.innerHTML += `<span class="viral-badge rare-signal">◆ ${L(primary.name).replace('The ','')} · Top ${primary.id==='SOV'?'3':'4'}%</span>`;
-  if(primary.tier==='scarce') viralRow.innerHTML += `<span class="viral-badge rare-signal" style="border-color:rgba(201,168,76,.4);color:var(--gold2)">◇ ${isEn?'Scarce':'稀缺人格'}</span>`;
+  if(primary.tier==='scarce') viralRow.innerHTML += `<span class="viral-badge rare-signal" style="border-color:rgba(201,168,76,.3);color:var(--gold-dim)">◇ ${isEn?'Scarce':'稀缺'}</span>`;
   const topFour = sorted.slice(0,4).filter(x=>x.pct>=12);
   if(topFour.length>=4) viralRow.innerHTML += `<span class="viral-badge multi">${T('viral_multi')}</span>`;
-  if(AXIS_MAP[dual.primaryId]===sorted[1].id) viralRow.innerHTML += `<span class="viral-badge rare-signal">${isEn?'🔥 High-tension paradox':'🔥 高张力悖论型'}</span>`;
+  if(AXIS_MAP[dual.primaryId]===sorted[1].id) viralRow.innerHTML += `<span class="viral-badge rare-signal">${isEn?'🔥 High-tension paradox':'🔥 高张力悖论'}</span>`;
 
-  // Growth + Quote
+  // ── GROWTH + QUOTE ────────────────────────────────────────────────────────
   el('result-growth').textContent = L(primary.growth);
   el('result-quote').textContent  = L(primary.quote);
   const gl = document.querySelector('[data-t="growth_lbl"]');
