@@ -1442,6 +1442,757 @@ body::before {
 }
 /* ─────────────────────────────────────────────── */
 
+
+/* ═══════════════════════════════════════════════
+   RESULT PAGE — PRD v3.0 LAYOUT
+═══════════════════════════════════════════════ */
+
+/* Two-column report layout */
+.report-columns {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  width: 100%;
+  max-width: 960px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+@media (max-width: 680px) {
+  .report-columns { grid-template-columns: 1fr; }
+  .report-right { order: -1; }
+}
+.report-left { display: flex; flex-direction: column; gap: 14px; }
+.report-right { display: flex; flex-direction: column; gap: 14px; }
+
+/* Report blocks (description, workstyle, strengths etc.) */
+.report-block {
+  background: var(--ink2);
+  border: 1px solid var(--ghost2);
+  padding: 18px 20px;
+  position: relative;
+}
+.report-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--sage2), var(--gold-dim));
+}
+.report-block-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+.report-block-text {
+  font-size: 13px;
+  color: var(--mist);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* Strengths / Blindspots grid */
+.sb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 480px) { .sb-grid { grid-template-columns: 1fr; } }
+.sb-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.sb-list li {
+  font-size: 12px;
+  color: var(--sage-pale);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.sb-list li::before { content: '▸'; position: absolute; left: 0; color: var(--sage); }
+.sb-list.flaw-list li { color: rgba(196,128,128,0.85); }
+.sb-list.flaw-list li::before { color: rgba(196,128,128,0.6); }
+
+/* Career chips */
+.careers-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.career-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .07em;
+  padding: 4px 10px;
+  border: 1px solid var(--ghost2);
+  color: var(--mist);
+  background: var(--ghost);
+}
+
+/* Celebrity card */
+.celeb-card {
+  background: var(--ghost);
+  border-left: 2px solid var(--gold-dim);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--mist);
+  line-height: 1.7;
+}
+.celeb-name {
+  font-weight: 600;
+  color: var(--cream);
+  font-size: 13px;
+}
+
+/* ── COMPATIBILITY SECTION ───────────────────────────── */
+.compat-section {
+  width: 100%;
+  max-width: 960px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--ghost2);
+}
+.compat-header { margin-bottom: 22px; }
+.compat-title {
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+.compat-sub {
+  font-size: 10px;
+  letter-spacing: .1em;
+  color: var(--mist);
+  opacity: .6;
+}
+
+/* Dual radar */
+.dual-radar-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.radar-panel { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.radar-panel-label {
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+.radar-vs {
+  font-size: 16px;
+  color: var(--gold-dim);
+  letter-spacing: .1em;
+}
+
+/* Compat group label */
+.compat-group-label {
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: 12px;
+}
+
+/* Compat cards row */
+.compat-cards-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Compat card */
+.compat-card {
+  flex: 1;
+  min-width: 180px;
+  max-width: 300px;
+  background: var(--ink2);
+  border: 1px solid var(--ghost2);
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color .2s, transform .15s;
+  position: relative;
+}
+.compat-card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
+.compat-card.active { border-color: var(--gold); background: rgba(201,168,76,0.07); }
+.compat-card.friction-card { border-color: rgba(196,128,128,0.2); }
+.compat-card.friction-card:hover { border-color: rgba(196,128,128,0.5); }
+.compat-score {
+  font-family: 'DM Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold2);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.compat-score.friction-score { color: rgba(196,128,128,0.85); }
+.compat-card-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+.compat-card-why {
+  font-size: 11px;
+  color: var(--mist);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.compat-friction-detail { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--ghost2); }
+.compat-friction-detail.open { display: block; }
+.friction-source {
+  font-size: 11px;
+  color: rgba(196,128,128,0.8);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.friction-tips { display: flex; flex-direction: column; gap: 4px; }
+.friction-tip {
+  font-size: 11px;
+  color: var(--mist);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+.friction-tip::before { content: '①②③'[0]; position: absolute; left: 0; color: var(--sage); }
+.friction-tip:nth-child(2)::before { content: '②'; }
+.tension-badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: .1em;
+  padding: 2px 7px;
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--gold2);
+  margin-top: 4px;
+}
+/* ─────────────────────────────────────────────── */
+
+
+/* ═══════════════════════════════════════════════════════
+   RESULT PAGE v3 — NARRATIVE LAYOUT
+   Three clear sections: Who / How / Who You Click With
+═══════════════════════════════════════════════════════ */
+
+/* Wrapper */
+.rp-wrap {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-bottom: 60px;
+}
+
+/* Shared section shell */
+.rp-section {
+  width: 100%;
+  padding: 36px 0 32px;
+  border-bottom: 1px solid var(--ghost2);
+}
+.rp-section:last-of-type { border-bottom: none; }
+
+/* Section header (02 / 03) */
+.rp-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.rp-section-num {
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--gold-dim);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.rp-section-title {
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.rp-section-sub {
+  font-size: 10px;
+  letter-spacing: .12em;
+  color: var(--mist);
+  opacity: .55;
+}
+
+/* ── HERO (Section 1) ─────────────────────────────── */
+.rp-hero { padding-top: 8px; }
+
+.rp-hero-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.rp-axis-pill {
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--mist);
+  opacity: .5;
+}
+
+/* Name */
+.rp-combo-name {
+  font-size: clamp(34px, 7vw, 58px);
+  font-weight: 900;
+  line-height: 1.0;
+  color: var(--cream);
+  margin-bottom: 6px;
+  letter-spacing: -.01em;
+}
+.rp-combo-cn {
+  font-size: 13px;
+  letter-spacing: .08em;
+  color: var(--gold-dim);
+  margin-bottom: 18px;
+}
+
+/* Tagline */
+.rp-tagline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(15px, 2.2vw, 18px);
+  color: var(--cream2);
+  line-height: 1.6;
+  border-left: 2px solid var(--gold);
+  padding-left: 16px;
+  margin: 0 0 28px 0;
+}
+
+/* Identity grid: power / flaw / celeb */
+.rp-identity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.rp-id-cell--wide {
+  grid-column: 1 / -1;
+}
+.rp-id-cell {
+  background: var(--ink2);
+  border: 1px solid var(--ghost2);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.rp-id-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.rp-id-icon--flaw { filter: grayscale(0.3); }
+.rp-id-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 5px;
+  display: block;
+}
+.rp-id-val {
+  font-size: 13px;
+  color: var(--mist);
+  line-height: 1.55;
+  font-weight: 300;
+}
+.rp-id-val--flaw { color: rgba(196,128,128,0.85); }
+.rp-celeb-text {
+  font-size: 12px;
+  color: var(--mist);
+  line-height: 1.6;
+}
+.rp-celeb-text strong { color: var(--cream); font-weight: 500; }
+
+/* Tension strip */
+.rp-tension-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--ghost);
+  border: 1px solid var(--ghost2);
+  padding: 14px 18px;
+  flex-wrap: wrap;
+}
+.rp-tension-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 200px;
+}
+.rp-tension-you, .rp-tension-opp {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+.rp-tension-you .mono,
+.rp-tension-opp .mono {
+  font-size: 8px;
+  letter-spacing: .16em;
+  color: var(--mist);
+  opacity: .5;
+  text-transform: uppercase;
+}
+.rp-tension-arch {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cream);
+}
+.rp-tension-arch--opp { color: var(--mist); opacity: .6; }
+.rp-tension-bar {
+  flex: 1;
+  height: 3px;
+  background: var(--ghost2);
+  border-radius: 2px;
+  overflow: hidden;
+  min-width: 60px;
+}
+.rp-tension-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sage), var(--gold));
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(.16,1,.3,1);
+}
+.rp-tension-badge-wrap { flex-shrink: 0; }
+.rp-tension-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .1em;
+  padding: 4px 10px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.rp-tension-badge--extreme { border-color: rgba(201,168,76,.5); color: var(--gold2); }
+.rp-tension-badge--balanced { border-color: rgba(184,202,188,.3); color: var(--mist); }
+.rp-tension-badge--normal { border-color: var(--ghost2); color: var(--mist); opacity: .6; }
+
+/* ── HOW YOU WORK (Section 2) ────────────────────── */
+
+.rp-desc-text {
+  font-size: 14px;
+  color: var(--mist);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.rp-workstyle-card {
+  border-left: 2px solid var(--sage2);
+  padding: 10px 0 10px 16px;
+  margin-bottom: 22px;
+}
+.rp-workstyle-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--sage-pale);
+  margin-bottom: 6px;
+  display: block;
+  opacity: .7;
+}
+.rp-workstyle-text {
+  font-size: 13px;
+  color: var(--mist);
+  line-height: 1.7;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Strengths + Blindspots */
+.rp-sb-row {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0 20px;
+  margin-bottom: 22px;
+}
+@media (max-width: 520px) {
+  .rp-sb-row { grid-template-columns: 1fr; }
+  .rp-sb-divider { display: none; }
+}
+.rp-sb-divider { background: var(--ghost2); }
+.rp-sb-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+.rp-sb-col--str .rp-sb-label { color: var(--sage-pale); }
+.rp-sb-col--blind .rp-sb-label { color: rgba(196,128,128,0.7); }
+.rp-sb-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rp-sb-list li {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--sage-pale);
+  padding-left: 16px;
+  position: relative;
+  font-weight: 300;
+}
+.rp-sb-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--sage);
+  font-size: 10px;
+  top: 2px;
+}
+.rp-sb-list--blind li { color: rgba(196,128,128,0.8); }
+.rp-sb-list--blind li::before { color: rgba(196,128,128,0.5); }
+
+/* Careers */
+.rp-careers-wrap { margin-bottom: 18px; }
+.rp-careers-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+  display: block;
+}
+.rp-careers-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.rp-career-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .06em;
+  padding: 5px 11px;
+  border: 1px solid var(--ghost2);
+  color: var(--mist);
+  background: var(--ghost);
+  transition: border-color .15s, color .15s;
+}
+.rp-career-chip:hover { border-color: var(--gold-dim); color: var(--gold2); }
+
+/* DNA expand toggle */
+.rp-expand-btn {
+  background: none;
+  border: 1px solid var(--ghost2);
+  color: var(--mist);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color .2s, color .2s;
+  width: 100%;
+  justify-content: space-between;
+}
+.rp-expand-btn:hover { border-color: var(--gold-dim); color: var(--gold2); }
+.rp-expand-arrow { transition: transform .3s; }
+.rp-expand-arrow.open { transform: rotate(180deg); }
+
+.rp-dna-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s cubic-bezier(.16,1,.3,1);
+}
+.rp-dna-panel.open { max-height: 500px; }
+.rp-dna-inner {
+  padding: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── COMPAT (Section 3) ──────────────────────────── */
+
+.rp-compat { }
+
+/* Radar row */
+.rp-radar-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.rp-radar-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.rp-radar-label {
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--mist);
+  opacity: .55;
+  text-align: center;
+  min-height: 14px;
+  transition: opacity .3s;
+}
+.rp-radar-vs {
+  font-size: 13px;
+  color: var(--gold-dim);
+  opacity: .5;
+  letter-spacing: .12em;
+}
+
+/* Compat group */
+.rp-compat-group-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--mist);
+  opacity: .6;
+  margin-bottom: 12px;
+}
+.rp-compat-group-label--friction { color: rgba(196,128,128,0.6); }
+
+/* Match cards */
+.rp-match-cards {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.rp-match-card {
+  flex: 1;
+  min-width: 160px;
+  background: var(--ink2);
+  border: 1px solid var(--ghost2);
+  padding: 16px 16px 14px;
+  cursor: pointer;
+  transition: border-color .2s, transform .15s;
+  position: relative;
+}
+.rp-match-card:hover { border-color: var(--gold-dim); transform: translateY(-2px); }
+.rp-match-card.active { border-color: var(--gold); }
+.rp-match-card.active::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--sage), var(--gold));
+}
+.rp-match-card--friction { border-color: rgba(196,128,128,0.15); }
+.rp-match-card--friction:hover { border-color: rgba(196,128,128,0.45); }
+.rp-match-card--friction.active { border-color: rgba(196,128,128,0.6); }
+.rp-match-card--friction.active::before {
+  background: linear-gradient(90deg, rgba(196,128,128,0.6), rgba(196,128,128,0.3));
+}
+
+/* Card label (天配 / 有挑战 etc.) */
+.rp-match-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  display: block;
+}
+.rp-match-label--best     { color: var(--sage-pale); }
+.rp-match-label--friction { color: rgba(196,128,128,0.7); }
+
+.rp-match-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+.rp-match-why {
+  font-size: 11.5px;
+  color: var(--mist);
+  line-height: 1.55;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+/* Friction detail (always shown) */
+.rp-friction-detail {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ghost2);
+}
+.rp-friction-source {
+  font-size: 11px;
+  color: rgba(196,128,128,0.75);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.rp-friction-tips { display: flex; flex-direction: column; gap: 5px; }
+.rp-friction-tip {
+  font-size: 11px;
+  color: var(--mist);
+  opacity: .75;
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.rp-friction-tip::before {
+  position: absolute;
+  left: 0;
+  color: var(--sage);
+  font-size: 10px;
+}
+.rp-friction-tip:nth-child(1)::before { content: '①'; }
+.rp-friction-tip:nth-child(2)::before { content: '②'; }
+
+/* ── VIRAL + GROWTH ──────────────────────────────── */
+.rp-viral-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 24px 0 0;
+}
+.rp-growth-wrap {
+  padding: 20px 0 0;
+}
+.rp-growth-label {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
+  display: block;
+}
+.rp-growth-text {
+  font-size: 13px;
+  color: var(--mist);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+.rp-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold-dim);
+  text-align: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--ghost2);
+}
+
 </style>
 </head>
 <body>
@@ -1527,45 +2278,186 @@ body::before {
 
   <!-- ⑤ RESULT ───────────────────────────────────────── -->
   <section class="screen" id="s-result">
-    <div class="result-body">
-      <div class="result-header">
-        <div id="rarity-badge-container"></div>
-        <div class="result-eyebrow" data-t="res_eyebrow"></div>
-        <h1 class="primary-archetype-name serif" id="result-name"></h1>
-        <div class="primary-archetype-cn mono" id="result-cn"></div>
-        <p class="primary-tagline" id="result-tagline"></p>
+    <div class="rp-wrap">
+
+      <!-- ══ SECTION 1: WHO YOU ARE ══════════════════════════ -->
+      <section class="rp-section rp-hero">
+
+        <!-- Top bar: rarity + axis label -->
+        <div class="rp-hero-topbar">
+          <div id="rarity-badge-container"></div>
+          <div class="rp-axis-pill mono" id="rp-axis-pill"></div>
+        </div>
+
+        <!-- The name -->
+        <h1 class="rp-combo-name serif" id="result-name"></h1>
+        <div class="rp-combo-cn mono" id="result-cn"></div>
+
+        <!-- Tagline — the one sentence -->
+        <blockquote class="rp-tagline" id="result-tagline"></blockquote>
+
+        <!-- Core identity: 3 punchy lines -->
+        <div class="rp-identity-grid" id="rp-identity-grid">
+          <div class="rp-id-cell" id="rp-id-power">
+            <span class="rp-id-icon">⚡</span>
+            <div>
+              <div class="rp-id-label mono" id="lbl-power"></div>
+              <div class="rp-id-val" id="rp-power-text"></div>
+            </div>
+          </div>
+          <div class="rp-id-cell" id="rp-id-flaw">
+            <span class="rp-id-icon rp-id-icon--flaw">💀</span>
+            <div>
+              <div class="rp-id-label mono" id="lbl-flaw"></div>
+              <div class="rp-id-val rp-id-val--flaw" id="rp-flaw-text"></div>
+            </div>
+          </div>
+          <div class="rp-id-cell rp-id-cell--wide" id="rp-id-celeb">
+            <span class="rp-id-icon">👤</span>
+            <div>
+              <div class="rp-id-label mono" id="lbl-celeb"></div>
+              <div class="rp-id-val rp-celeb-text" id="rp-celeb-text"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tension strip: inner opposite -->
+        <div class="rp-tension-strip" id="rp-tension-strip">
+          <div class="rp-tension-left">
+            <div class="rp-tension-you">
+              <span class="mono" id="rp-tension-you-label"></span>
+              <span class="rp-tension-arch serif" id="rp-tension-you-name"></span>
+            </div>
+            <div class="rp-tension-bar">
+              <div class="rp-tension-fill" id="rp-tension-fill"></div>
+            </div>
+            <div class="rp-tension-opp">
+              <span class="rp-tension-arch serif rp-tension-arch--opp" id="rp-tension-opp-name"></span>
+              <span class="mono" id="rp-tension-opp-label"></span>
+            </div>
+          </div>
+          <div class="rp-tension-badge-wrap">
+            <span class="rp-tension-badge" id="rp-tension-badge"></span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ══ SECTION 2: HOW YOU WORK ══════════════════════════ -->
+      <section class="rp-section rp-how">
+        <div class="rp-section-header">
+          <div class="rp-section-num mono">02</div>
+          <div>
+            <div class="rp-section-title serif" id="lbl-how-title"></div>
+            <div class="rp-section-sub mono" id="lbl-how-sub"></div>
+          </div>
+        </div>
+
+        <!-- Description paragraph -->
+        <p class="rp-desc-text" id="rp-desc-text"></p>
+
+        <!-- Work style sentence -->
+        <div class="rp-workstyle-card" id="rp-workstyle-card">
+          <div class="rp-workstyle-label mono" id="lbl-ws"></div>
+          <p class="rp-workstyle-text" id="rp-ws-text"></p>
+        </div>
+
+        <!-- Strengths + Blindspots side by side -->
+        <div class="rp-sb-row">
+          <div class="rp-sb-col rp-sb-col--str">
+            <div class="rp-sb-label mono" id="lbl-strengths"></div>
+            <ul class="rp-sb-list" id="rp-strengths-list"></ul>
+          </div>
+          <div class="rp-sb-divider"></div>
+          <div class="rp-sb-col rp-sb-col--blind">
+            <div class="rp-sb-label mono" id="lbl-blindspots"></div>
+            <ul class="rp-sb-list rp-sb-list--blind" id="rp-blindspots-list"></ul>
+          </div>
+        </div>
+
+        <!-- Careers -->
+        <div class="rp-careers-wrap" id="rp-careers-wrap">
+          <div class="rp-careers-label mono" id="lbl-careers"></div>
+          <div class="rp-careers-chips" id="rp-careers-chips"></div>
+        </div>
+
+        <!-- Expand toggle for DNA chart -->
+        <button class="rp-expand-btn" id="rp-dna-toggle" onclick="toggleDNA()">
+          <span id="lbl-dna-toggle"></span>
+          <span class="rp-expand-arrow" id="rp-expand-arrow">↓</span>
+        </button>
+        <div class="rp-dna-panel" id="rp-dna-panel">
+          <div class="rp-dna-inner">
+            <svg id="star-svg" viewBox="-150 -150 300 300" width="260" height="260"
+              style="max-width:100%;height:auto;display:block;margin:0 auto"></svg>
+            <div class="star-chips" id="star-chips"></div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ══ SECTION 3: WHO YOU CLICK WITH ════════════════════ -->
+      <section class="rp-section rp-compat">
+        <div class="rp-section-header">
+          <div class="rp-section-num mono">03</div>
+          <div>
+            <div class="rp-section-title serif" id="lbl-compat-title"></div>
+            <div class="rp-section-sub mono" id="lbl-compat-sub"></div>
+          </div>
+        </div>
+
+        <!-- Dual radar -->
+        <div class="rp-radar-row">
+          <div class="rp-radar-panel">
+            <div class="rp-radar-label mono" id="lbl-my-radar"></div>
+            <svg id="my-radar-svg" viewBox="-130 -130 260 260" width="220" height="220"
+              style="max-width:100%;display:block;margin:0 auto"></svg>
+          </div>
+          <div class="rp-radar-vs mono">vs</div>
+          <div class="rp-radar-panel">
+            <div class="rp-radar-label mono" id="lbl-partner-radar">—</div>
+            <svg id="partner-radar-svg" viewBox="-130 -130 260 260" width="220" height="220"
+              style="max-width:100%;display:block;margin:0 auto"></svg>
+          </div>
+        </div>
+
+        <!-- Best match cards -->
+        <div class="rp-compat-group">
+          <div class="rp-compat-group-label" id="lbl-best-matches"></div>
+          <div class="rp-match-cards" id="rp-best-cards"></div>
+        </div>
+
+        <!-- Friction cards -->
+        <div class="rp-compat-group" style="margin-top:24px">
+          <div class="rp-compat-group-label rp-compat-group-label--friction" id="lbl-friction"></div>
+          <div class="rp-match-cards" id="rp-friction-cards"></div>
+        </div>
+
+      </section>
+
+      <!-- ══ VIRAL + GROWTH ══════════════════════════════════ -->
+      <div class="rp-viral-row" id="viral-row"></div>
+      <div class="rp-growth-wrap">
+        <div class="rp-growth-label mono" data-t="growth_lbl"></div>
+        <p class="rp-growth-text" id="result-growth"></p>
+        <p class="rp-quote serif" id="result-quote"></p>
       </div>
 
-      <div id="primary-card-wrap"></div>
-
-      <div class="star-card">
-        <div class="star-card-label mono" data-t="dna_label"></div>
-        <svg id="star-svg" viewBox="-150 -150 300 300" width="300" height="300" style="max-width:100%;height:auto;display:block;margin:0 auto"></svg>
-        <div class="star-chips" id="star-chips"></div>
-      </div>
-
-      <div class="growth-section">
-        <div class="growth-label mono" data-t="growth_lbl"></div>
-        <p class="growth-text" id="result-growth"></p>
-        <p class="quote-line serif" id="result-quote"></p>
-      </div>
-
-      <div class="viral-row" id="viral-row"></div>
-
+      <!-- ══ CTA ═════════════════════════════════════════════ -->
       <div class="unlock-cta-wrap">
         <button class="btn-primary" onclick="goToResumeEntry()"><span data-t="unlock_cta"></span></button>
         <p class="unlock-note" data-t="unlock_note"></p>
       </div>
-
       <div class="result-footer">
         <button class="btn-secondary" id="btn-copy" onclick="copyResult()" data-t="copy_btn"></button>
         <button class="btn-secondary" onclick="shareResult()" data-t="share_btn"></button>
         <button class="btn-retake" onclick="retake()" data-t="retake_btn"></button>
       </div>
-    </div>
+
+    </div><!-- /rp-wrap -->
   </section>
 
-  <!-- ⑥ RESUME ENTRY ─────────────────────────────────── -->
+  <!-- ⑥ RESUME ENTRY  <!-- ⑥ RESUME ENTRY ─────────────────────────────────── -->
   <section class="screen" id="s-resume-entry">
     <div class="wide-wrap">
       <div class="scr-eyebrow" data-t="entry_eyebrow"></div>
@@ -2270,6 +3162,18 @@ function prevQ(){ if(S.currentQ>0){ S.currentQ--; renderQuestion(); } }
 // DUAL ARCHETYPE SYSTEM  v3.0
 // ═══════════════════════════════════════════════════════════════════════
 
+
+// ═══════════════════════════════════════════════════════════════════
+// PRD v3.0 DATA LAYER
+// ═══════════════════════════════════════════════════════════════════
+const COMBO_MAP = {"ARC_DIS": {"id": 1, "name_cn": "破界·建构者", "name_en": "The Avant-garde Architect", "tagline_cn": "你是那个在规划终局的同时，亲手埋下颠覆引线的秩序玩家。", "description_cn": "这类人在职场中极其罕见，他们拥有极强的宏观架构能力，却绝不迷信现有框架。他们一边搭建组织或产品的底层基座，一边用副轴的破坏力不断测试系统的极限，属于“边建边拆”的激进进化者", "work_style_cn": "习惯于高透明度的信息流，在项目初期极其克制，一旦出手便是颠覆性的系统重构", "strengths_cn": ["具备创造全新技术栈或商业范式的能力", "对系统性风险有天然的免疫力"], "blindspots_cn": ["容易因为频繁自我迭代而导致团队执行断层，让下属产生“朝令夕改”的无所适从感"], "careers_cn": ["AI 基础架构首席科学家", "硬科技独角兽 Founder", "技术合伙人"], "celebrity_hook": {"en": "Elon Musk (Tesla/SpaceX) |", "zh": "张一鸣 (字节跳动)", "tw": "张一鸣 (字节跳动)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "DIS", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_GUA": {"id": 2, "name_cn": "稳健·建构者", "name_en": "The Blueprint Guardian", "tagline_cn": "你是那个用铁血秩序和防御性架构，筑起企业最后一道防线的防波堤。", "description_cn": "极度追求安全感与高可用性的架构者。他们做规划的第一前提是“绝对不崩”。比起激进的业务突破，他们更倾向于通过完美的标准作业程序（SOP）和风险合规模型来确保组织的长治久安", "work_style_cn": "强流程驱动，所有交付物必须通过严苛的白盒测试与合规审查，极度排斥无准备的“灰度发布”", "strengths_cn": ["交付质量稳如磐石", "能够把高并发、高风险的业务治理得井井有条"], "blindspots_cn": ["在市场心跳骤变、需要公司全速掉头时，可能因过度迷信现有防御架构而错失战机"], "careers_cn": ["金融科技架构师", "高可用系统运维总监", "首席合规官（CCO）"], "celebrity_hook": {"en": "Tim Cook (Apple CEO) |", "zh": "曾振宇 (大型金融机构风控架构师 / 经典稳健派高管)", "tw": "曾振宇 (大型金融机构风控架构师 / 经典稳健派高管)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "GUA", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_PIO": {"id": 3, "name_cn": "先锋·建构者", "name_en": "The Expeditionary Planner", "tagline_cn": "你是那个带着全套测绘工具，冲进无主之地插下第一面旗帜的拓荒领主。", "description_cn": "这类人兼具战略宏图与航海家的冒险精神。他们不喜欢在成熟的蛋糕上雕花，而是专注于从 0 到 1 的新业务线、新海外市场的底层建设。他们是在迷雾中一边看罗盘一边造船的狠角色", "work_style_cn": "敏捷构建（MVP）与长期愿景的完美结合，习惯在信息极度不对称的业务前线进行模块化布阵", "strengths_cn": ["强大的新大陆开拓能力，能在毫无参照物的荒原上迅速搭建出可跑通的业务闭环"], "blindspots_cn": ["业务一旦进入从 10 到 100 的精细化运营期，他们就会丧失兴趣，甚至开始挑起不必要的折腾"], "careers_cn": ["全球化出海负责人（Head of Global Expansion）", "新业务孵化器 GM", "前沿产品架构师"], "celebrity_hook": {"en": "Jeff Bezos (Amazon 早期的出海与云业务开拓期) |", "zh": "蒋凡 (阿里海外业务/拼多多出海的核心破局高管)", "tw": "蒋凡 (阿里海外业务/拼多多出海的核心破局高管)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "PIO", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_OPR": {"id": 4, "name_cn": "实战·建构者", "name_en": "The Engineering Maestro", "tagline_cn": "你是那个既能手绘摩天大楼蓝图，又能自己下工地拧紧最后一颗螺丝的硬核总师。", "description_cn": "行动导向型技术官僚。他们对形而上学的务虚毫无兴趣，认为所有的战略如果不能拆解为日历上的交付单元，就毫无价值。他们凭借超强的主轴建构力做全盘规划，又靠副轴的执行力把细节控到极致", "work_style_cn": "甘特图（Gantt Chart）狂热爱好者，通过极度密集的里程碑（Milestones）和代码审计来推进项目", "strengths_cn": ["极高的战略落地率", "能够以极低的工程损耗完成超大规模、超长周期的复杂交付"], "blindspots_cn": ["极易陷入“微观管理（Micromanagement）”，因为对执行细节过于挑剔而导致中层管理失去弹性"], "careers_cn": ["首席运营官（COO）", "超级项目总指挥", "大厂平台架构总监"], "celebrity_hook": {"en": "Andy Jassy (Amazon Web Services 奠基人兼 CEO) |", "zh": "雷军 (小米集团创始人 - 典型的工程师兼大厂解构者)", "tw": "雷军 (小米集团创始人 - 典型的工程师兼大厂解构者)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "OPR", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_WEA": {"id": 5, "name_cn": "跨界·建构者", "name_en": "The Ecosystem Architect", "tagline_cn": "你是那个在看似毫不相关的行业之间，搭建数据与商业立交桥的造局者。", "description_cn": "典型的生态矩阵思维。他们不满足于单点产品，而是醉心于把硬件、软件、供应链、内容甚至外部生态通过精妙的协议互联起来。他们是职场里的织网大师，擅长用最轻的资产控制最庞大的利益网络", "work_style_cn": "极度依赖开放 API 逻辑与战略联盟，善于通过谈判和系统性利益分配设计来借力打力", "strengths_cn": ["极强的生态护城河设计能力", "能通过跨界穿透发现非线性的业务增长点（Flywheel 效应）"], "blindspots_cn": ["蓝图往往过于庞大复杂，如果底层节点有一处断裂，可能引发全盘的生态级多米诺骨牌溃败"], "careers_cn": ["战略生态副总裁", "开放平台负责人", "跨国集团首席技术战略官（CTO）"], "celebrity_hook": {"en": "Reed Hastings (Netflix 生态与技术网络重构者) |", "zh": "王兴 (美团创始人 - 无边界生态的搭建者)", "tw": "王兴 (美团创始人 - 无边界生态的搭建者)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "WEA", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_ANL": {"id": 6, "name_cn": "深析·建构者", "name_en": "The Algorithm Sovereign", "tagline_cn": "你是那个冷酷地将现实世界解构为数学模型，并用数据洪流重新编码的数字上帝。", "description_cn": "极智、理性的化身。他们拒绝相信任何人的直觉或情绪感召，只对第一性原理和底层指标（如留存率、LTV/CAC 曲线）低头。他们的建构是基于严密的数据洞察和推演，不带有一丝情感波动的精算师", "work_style_cn": "依靠详尽的数据埋点、AB 测试和量化回归模型做出所有战略定位与架构裁剪", "strengths_cn": ["极其精准的市场与技术趋势预测", "能在纷繁的噪音中直接切中底层因果链条"], "blindspots_cn": ["容易出现“数据隧道视野（Data Tunnel Vision）”，忽视无法被量化的团队士气、用户情绪或品牌审美"], "careers_cn": ["量化投研总监", "AI 算法架构总监", "首席数据官（CDO）"], "celebrity_hook": {"en": "Jensen Huang (NVIDIA 创始人 - 坚定的计算物理第一性原理建构者) |", "zh": "宿华 (快手联合创始人 - 算法与系统建构的典型代表)", "tw": "宿华 (快手联合创始人 - 算法与系统建构的典型代表)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "ANL", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_CAT": {"id": 7, "name_cn": "燃动·建构者", "name_en": "The Messianic Architect", "tagline_cn": "你是那个用宗教般的热情描述系统蓝图，让所有人甘愿为虚无理想搬砖的布道总师。", "description_cn": "这类人解决了技术精英通常不会讲故事的痛点。他们既拥有宏大架构的理性，又具备极强的点燃与感召能量。他们能够把枯燥的技术指标包装成“改变世界”的史诗任务，是极具杀伤力的领袖型架构师", "work_style_cn": "演讲台与架构白板的无缝切换，善于利用高管宣讲、全员大会和高感染力的营销文案为死板的技术项目注入灵魂", "strengths_cn": ["极强的组织向心力拉动能力", "能靠愿景大幅溢价融到资金或吸引顶级人才降薪加盟"], "blindspots_cn": ["当业务底层数据不达预期时，容易用持续的“画大饼”来掩盖系统性缺陷，导致信任崩盘"], "careers_cn": ["科技巨头高调 Founder", "首席产品布道师（Chief Evangelist）", "核心业务合伙人"], "celebrity_hook": {"en": "Steve Jobs (Apple 创始人 - 完美的现实扭曲场与软硬件系统建构) |", "zh": "雷军 (在发布会舞台上具备极强感召力的产品建构者)", "tw": "雷军 (在发布会舞台上具备极强感召力的产品建构者)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "CAT", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_DIP": {"id": 8, "name_cn": "融通·建构者", "name_en": "The Diplomatic Architect", "tagline_cn": "你是那个在利益错综复杂的利益集团中，悄无声息铺设公共基础设施的共识大师。", "description_cn": "润物细无声的架构者。在大型跨国组织或多方合资的修罗场里，他们从不搞强权压制，而是通过副轴的斡旋技巧，把各个利益方的诉求转化为系统架构里的功能模块，在各方满意的笑声中完成了底层的集权", "work_style_cn": "饭桌、私密会议与蓝图设计的完美闭环，花大量时间做利益干系人（Stakeholder）对齐", "strengths_cn": ["极高的大型组织变革通过率", "能在利益高度冲突的环境下顺利推动基础架构的升级"], "blindspots_cn": ["为了追求最大公约数的共识，有时会在底层设计上做出不该做的妥协，导致系统带有冗余的臃肿"], "careers_cn": ["大厂政企大客户技术 VP", "复杂联盟链架构师", "组织架构变革专家"], "celebrity_hook": {"en": "Satya Nadella (Microsoft CEO - 靠外交手腕与云转型重塑微软生态) |", "zh": "陆奇 (奇绩创坛创始人 - 华人在硅谷及国内兼具顶级架构与极高融通口碑的公约数)", "tw": "陆奇 (奇绩创坛创始人 - 华人在硅谷及国内兼具顶级架构与极高融通口碑的公约数)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "DIP", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_SOV": {"id": 9, "name_cn": "掌控·建构者", "name_en": "The Imperial Architect", "tagline_cn": "你是那个视整个企业为精密沙盘，不允许任何一个模块脱离绝对统治的铁血君王。", "description_cn": "带有强悍统治欲的系统规划者。他们建立系统的唯一目的就是建立中央集权的控制网络。无论是数据流、资金链还是人事任免，都必须在他们设计的“Dashboard”上实时显现，任何自下而上的无序创新都会被他们视作对系统的背叛", "work_style_cn": "绝对的自上而下决策（Top-down），通过高度集权的管理软件和军律般的汇报线钳制组织", "strengths_cn": ["在危机时期具备恐怖的组织执行力与步调一致性", "能以最快速度完成战略重组"], "blindspots_cn": ["彻底扼杀基层的创新活力，导致中高层沦为机械的执行工具，企业缺乏生态抗脆弱性"], "careers_cn": ["集团董事会主席", "铁腕重组专家", "国防级核心系统总指挥"], "celebrity_hook": {"en": "Larry Ellison (Oracle 创始人 - 极度强势的软件帝国统治者) |", "zh": "任正非 (华为创始人 - 带有强烈军事化统御与系统防线建构色彩)", "tw": "任正非 (华为创始人 - 带有强烈军事化统御与系统防线建构色彩)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "SOV", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "ARC_CUR": {"id": 10, "name_cn": "精准·建构者", "name_en": "The High-Fidelity Architect", "tagline_cn": "你是那个对平庸容忍度为零，在显微镜下雕刻完美数字圣殿的极简主义者。", "description_cn": "完美主义的终极形态。主轴给他们宏大的战略视野，而副轴的甄别与挑剔让他们对系统中的任何一丝冗余、垃圾代码或平庸的产品设计产生强烈的生理不适。他们不追求大而全，只追求少而精、直击本质", "work_style_cn": "极度克制的功能迭代，实行严苛的准入机制，宁可延期交付也绝不放过任何未达极致的细节", "strengths_cn": ["能创造出具备艺术品级品质的产品或技术框架", "品牌与技术声誉的行业标杆"], "blindspots_cn": ["容易在非核心细节上陷入“无休止的打磨”，导致错失抢占先机的最佳时间窗口"], "careers_cn": ["顶级奢侈品/高端硬件产品 VP", "核心算法评审委员会主席", "基础科学研究领头人。\n\n矩阵 2：以【破局者 DIS】为主型（10种组合）主轴核心：颠覆", "打破常规", "逆向思维", "非线性突破。当他们借助其他轴发力"], "celebrity_hook": {"en": "Jonathan Ive (前 Apple 首席设计官) |", "zh": "张小龙 (微信创始人 - 带有强烈极简与精细化筛选逻辑的产品教父)", "tw": "张小龙 (微信创始人 - 带有强烈极简与精细化筛选逻辑的产品教父)"}, "tier": "common", "primary_id": "ARC", "secondary_id": "CUR", "inner_opposite_id": "DIS", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_ARC": {"id": 11, "name_cn": "构筑·破局者", "name_en": "The Reconstructionist", "tagline_cn": "你是那个在废墟上直接克隆出未来都市的硬核颠覆者。", "description_cn": "与普通的“只拆不建”的愤青不同，这类破局者是真正危险的玩家。他们打破旧规的手段，是直接拿出一套更先进、更降维打击的完整新系统。他们通过副轴的建构力，让每一次颠覆都变成一场蓄谋已久的降维替代", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["Web3 协议创始人", "颠覆性 AI 硬件发明人", "破坏性创新中心 GM"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "ARC", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_GUA": {"id": 12, "name_cn": "稳健·破局者", "name_en": "The Calculated Rebel", "tagline_cn": "你是那个兜里揣着退路、穿着防弹衣去引爆炸药库的精准逆袭者。", "description_cn": "极其克制、甚至带有一丝狡黠的颠覆者。他们绝不打无准备之仗。在发起反叛、推出颠覆性产品或清洗旧业务线之前，他们已经通过副轴的守护者特质，把自己的资产、核心团队和法律退路安排得滴水不漏", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["激进型危机公关专家", "反垄断诉讼首席律师", "红蓝对抗黑客大统领"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "GUA", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_PIO": {"id": 13, "name_cn": "先锋·破局者", "name_en": "The Wild West Raider", "tagline_cn": "你是那个不带任何补给，提着刀直接杀进无人区抢占水源的职业悍匪。", "description_cn": "破坏力与探索欲叠加的极限状态。他们是老牌巨头的噩梦，也是行业里最不安分的鲶鱼。他们专门寻找防守松懈的边缘市场，用极度不讲理的价格战、公关战或新物种直接完成闪电战奇袭", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["流量黑客（Growth Hacker）", "冷启动阶段产品 VP", "高风险投资人"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "PIO", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_OPR": {"id": 14, "name_cn": "实战·破局者", "name_en": "The Guerrilla Operative", "tagline_cn": "你是那个不跟你谈战略ppt，直接用纯熟的刺杀技巧干掉竞争对手的泥腿子刺客。", "description_cn": "战术层面的核武器。他们对宏大的愿景嗤之以鼻，只关注如何用最狠、最直接的刺杀动作解决眼前的阻碍。在组织内，他们是专门用来啃硬骨头、清洗冗余部门的“无情执行官”；在市场中，他们是战壕里的贴身肉搏之王", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["特殊项目突击队长", "企业恶意收购清洗官", "高增长业务线肉搏战负责人"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "OPR", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_WEA": {"id": 15, "name_cn": "跨界·破局者", "name_en": "The Parasitic Disrupter", "tagline_cn": "你是那个借助别人的网络和供应链，悄悄孵化出自己绞杀武器的寄生虫之王。", "description_cn": "极其聪明的借力破局者。他们不自己砸钱建渠道，而是通过副轴的织网能力，渗透进现有的巨头生态网络中，寻找寄生和跨界套利的机会，最终在巨头反应过来之前，直接反客为主切断巨头的命脉", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["开放生态套利专家", "跨国流量操盘手", "Web3 商业闭环架构师"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "WEA", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_ANL": {"id": 16, "name_cn": "深析·破局者", "name_en": "The Logic Assassin", "tagline_cn": "你是那个在精算了几百个技术指标后，一枪打中行业核心死穴的致命刺客。", "description_cn": "纯理性的颠覆者。他们的每一次反叛都不是出于情绪，而是基于对行业报表和代码库的深度拆解，发现了无法修补的系统性死穴。他们用极其冷静的数据逻辑撰写做空报告，或者用降维的算法直接干掉传统人工行业", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["顶级做空机构合伙人", "反垄断经济学家", "AI 自动化替代架构师"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "ANL", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_CAT": {"id": 17, "name_cn": "燃动·破局者", "name_en": "The Ideological Insurgent", "tagline_cn": "你是那个一句话就能煽动底层员工起义、或者让全网用户对传统大厂发起圣战的狂热旗手。", "description_cn": "极具煽动力的颠覆领袖。他们善于将行业内的旧势力塑造为“邪恶、落后”的代表，将自己的新产品或新路线包装为“打倒恶龙”的圣战。他们擅长利用舆论和用户情绪，发起自下而上的职场或市场革命", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["颠覆性品牌创始人", "危机公关战总指挥", "极端社区意见领袖（KOL）"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "CAT", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_DIP": {"id": 18, "name_cn": "融通·破局者", "name_en": "The Velvet Revolutionary", "tagline_cn": "你是那个面带微笑、在优雅的举杯碰撞中悄然完成政变的丝绒杀手。", "description_cn": "这类人将“破局”包装得极为温柔。他们擅长在极其复杂的官僚体系或多方势力中做利益合纵连横，表面上跟谁都是朋友，却在私下悄悄达成了将旧利益集团连根拔起的最终共识", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["企业合规与重组顾问", "多方跨境破产清算专家", "组织变革温和推进者"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "DIP", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_SOV": {"id": 19, "name_cn": "掌控·破局者", "name_en": "The Dictatorial Rebel", "tagline_cn": "你是那个打着解放旗号砸碎旧神座，却在当天下午为自己建立更宏大王座的暴君。", "description_cn": "极度危险且稀缺的独裁破局者。他们发起颠覆的终极动力是为了获取至高无上的主权。在推翻旧的部门老大或行业巨头后，他们会以最快速度建立起一套更加严密、更加不容挑战的个人权力矩阵", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["激进维权基金管理人（Hostile Takeover Artist）", "风投机构清理门户的合伙人"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "SOV", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "DIS_CUR": {"id": 20, "name_cn": "精准·破局者", "name_en": "The Surgical Sniper", "tagline_cn": "你是那个嫌弃满街垃圾，只用一刀就精准切除行业毒瘤的手术刀医生。", "description_cn": "高冷、克制、极简的颠覆者。他们不搞大面积的行业轰炸，而是对现有的丑陋、冗余设计产生厌恶。他们只会挑准行业最核心的一个痛点，做一个极致干净、没有任何废话的产品，直接让复杂的竞品相形见绌", "work_style_cn": "", "strengths_cn": [], "blindspots_cn": [], "careers_cn": ["独立精品 App 创始人", "前沿美学设计总监", "流程诊断专家。\n\n矩阵 3：以【守护者 GUA】为主型（10种组合）\n主轴核心： 稳定", "高可用性", "防御性架构", "合规合流。\n\n系统张力： 【守护者 GUA】天然追求系统的安全边际与零故障。当副轴介入时"], "celebrity_hook": {"en": "", "zh": "", "tw": ""}, "tier": "rare", "primary_id": "DIS", "secondary_id": "CUR", "inner_opposite_id": "ARC", "axis_num": 1, "axis_cn": "变革轴", "axis_en": "Transformation Axis", "axis_tension_cn": "建设 vs 颠覆", "axis_tension_en": "Build vs Disrupt"}, "GUA_ARC": {"id": 21, "name_cn": "蓝图·守护者", "name_en": "The Industrial Standardizer", "tagline_cn": "你是那个用冰冷的工业级标准，为行业强行套上安全枷锁的终极判官。", "description_cn": "典型的“制度狂热者”。主轴的防守欲与副轴的建构力结合，使他们极其擅长将抽象的安全、合规要求转化为一套具象、可无限复制的行业标准。他们不关心单一项目的死活，他们要的是整个产业生态都在他们的安全蓝图下运转", "work_style_cn": "依赖极其庞大的标准白皮书、质量控制体系（如 6Sigma、ISO）以及底层技术协议的强制约束", "strengths_cn": ["具备制定行业标准（Protocol-level）的宏观视野", "能将高风险业务彻底规范化"], "blindspots_cn": ["容易因为标准过于僵化，扼杀中小业务线在初期的敏捷度，沦为阻碍技术微调的官僚机器"], "careers_cn": ["首席质量官（CQO）", "国家级基础建设总工程师", "行业标准评审委员会主席"], "celebrity_hook": {"en": "W. Edwards Deming（戴明，质量管理大师）", "zh": "国家电网/中国中铁的核心总工程师", "tw": "国家电网/中国中铁的核心总工程师"}, "tier": "common", "primary_id": "GUA", "secondary_id": "ARC", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_DIS": {"id": 22, "name_cn": "逆向·守护者", "name_en": "The Red-Team Defended", "tagline_cn": "为了打造绝对不崩的防线，你每天都在脑海里将自己的公司毁灭一千次。", "description_cn": "“以攻为守”的硬核防御者。他们深知最好的防守就是主动寻找自己的漏洞。副轴的破局特质让他们具备顶级黑客的逆向思维。他们不信任任何静态的安稳，只相信通过不断自我攻击、压力测试后存活下来的系统", "work_style_cn": "频繁发动红蓝对抗演练、混沌工程（Chaos Engineering）测试、主动爆破现有业务流程来验证健壮性", "strengths_cn": ["对未知风险和黑天鹅事件具备全盘抗脆弱性（Antifragile）", "永远走在潜在威胁的前面"], "blindspots_cn": ["这种高频的内部自我折腾容易让不理解技术底层的运营和销售团队产生群体焦虑"], "careers_cn": ["首席信息安全官（CISO）", "混沌工程总监", "企业破局压力测试专家"], "celebrity_hook": {"en": "Adrian Cockcroft（Netflix 混沌工程混沌猴子 Chaos Monkey 的主导者）", "zh": "头部科技大厂重组期的核心安全架构师", "tw": "头部科技大厂重组期的核心安全架构师"}, "tier": "common", "primary_id": "GUA", "secondary_id": "DIS", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_PIO": {"id": 23, "name_cn": "拓荒·守护者", "name_en": "The Forward Sentry", "tagline_cn": "你是那个把防线直接推进到敌方前沿、在无主之地修筑防波堤的铁血前哨。", "description_cn": "攻防一体的边界拓荒者。一般的守护者坐镇后方，而他们则喜欢跟着探险队冲向第一线。副轴的先行者特质让他们自愿进入高风险、高不确定性的新大陆（如海外新市场、AI 监管盲区），在荒原上迅速圈定公司的合规安全边界", "work_style_cn": "敏捷防守。在新业务冷启动的早期，同步建立最低限度可用（MVP）的安全与法务防线", "strengths_cn": ["让新业务在蒙眼狂奔时不至于跌入政策或安全的深渊", "极强的境外生存与扎根能力"], "blindspots_cn": ["如果前线业务撤退，他们修筑的坚固前哨容易变成高成本的坏账和沉没资产"], "careers_cn": ["出海合规与政府关系 VP", "高风险跨国并购法律顾问", "前沿业务风险探路人"], "celebrity_hook": {"en": "Donie O'Sullivan（战地合规与风险评估专家）", "zh": "头部出海企业（如 TikTok/Temu）在海外迎战国会听证与合规封锁的法务前线总指挥", "tw": "头部出海企业（如 TikTok/Temu）在海外迎战国会听证与合规封锁的法务前线总指挥"}, "tier": "common", "primary_id": "GUA", "secondary_id": "PIO", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_OPR": {"id": 24, "name_cn": "铁血·守护者", "name_en": "The Precision Factory Master", "tagline_cn": "在你的字典里没有‘尽力而为’，只有‘零容错’的卡尺和绝对服从的数字。", "description_cn": "极致的现场控制狂。主轴追求的高可用与副轴的硬核执行力完美叠加。他们把工作场所视作精密的流水线，对精益生产、工时损耗、流程卡点有着病态的敏感。他们是用铁腕执行确保系统不出现一毫米偏差的硬核工头", "work_style_cn": "密集的现场巡检、全自动的监控看板、对未达标交付物进行毫不留情的直接熔断", "strengths_cn": ["极其恐怖的交付稳定性，能够把良品率控到行业极限", "极度适合管理高损耗的高危重工业或硬件供应链"], "blindspots_cn": ["严重缺乏人情味，长期高压的管理风格极易导致基层员工流动率居高不下"], "careers_cn": ["供应链运营高级副总裁", "硬科技制造总监", "高并发系统运维总监"], "celebrity_hook": {"en": "Taiichi Ohno（大野耐一，丰田生产方式 TPS 之父）", "zh": "富士康等超大型精密制造工厂的硬核铁血厂长", "tw": "富士康等超大型精密制造工厂的硬核铁血厂长"}, "tier": "common", "primary_id": "GUA", "secondary_id": "OPR", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_WEA": {"id": 25, "name_cn": "编织·守护者", "name_en": "The Alliance Shield", "tagline_cn": "你从不单打独斗，而是用精妙的利益锁链，将所有友商绑架在你的安全战车上。", "description_cn": "擅长建立风险共担网络的生态守卫者。他们认为单一企业的防线是脆弱的，真正的安全来自于利益网的交织。副轴的织网能力让他们长于建立跨企业、跨行业的联合防御联盟（如专利池、网络安全联合体、供应链防火墙）", "work_style_cn": "通过签署复杂的互不侵犯条约、多方联合声明、交叉持股及生态数据共享协议来巩固防线", "strengths_cn": ["极高的生态护城河防卫能力，一旦有人发起攻击，会触发整个联盟的自动反击"], "blindspots_cn": ["联盟内部一旦出现利益分赃不均的内鬼，防御网络会从内部发生雪崩式塌陷"], "careers_cn": ["集团战略联盟副总裁", "公共事务总监", "跨国生态风险防范专家"], "celebrity_hook": {"en": "Robert Hannigan（前英国政府通讯总部 GCHQ 主管，主导跨国网络安全情报网联盟）", "zh": "牵头组建国内新能源车/半导体供应链安全联盟的幕后操盘手", "tw": "牵头组建国内新能源车/半导体供应链安全联盟的幕后操盘手"}, "tier": "common", "primary_id": "GUA", "secondary_id": "WEA", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_ANL": {"id": 26, "name_cn": "理性·守护者", "name_en": "The Actuarial Deity", "tagline_cn": "不相信眼泪，不相信直觉，只对小数点后六位的生存概率低头。", "description_cn": "冷酷的数字精算师。他们把现实世界中的一切风险——无论是员工离职、服务器宕机还是资金链断裂，全部解构为概率分布模型。在他们眼里，没有主观的恶，只有未被算准的概率", "work_style_cn": "依赖高阶数理统计、蒙特卡洛模拟、量化风控模型，全面拒绝拍脑袋决策", "strengths_cn": ["能在极端复杂的金融或技术噪音中，精算出成本收益比最优的防守方案"], "blindspots_cn": ["容易陷入“数据隧道视野”，无法计算人心向背、团队士气或创始人的非理性直觉突变"], "careers_cn": ["首席风险控制官（CRO）", "量化对冲基金风控总监", "AI 自动化保险核保专家"], "celebrity_hook": {"en": "Harry Markowitz（马科维茨，现代投资组合理论奠基人）", "zh": "顶级金融集团/主权基金的首席风险官（CRO）", "tw": "顶级金融集团/主权基金的首席风险官（CRO）"}, "tier": "common", "primary_id": "GUA", "secondary_id": "ANL", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_CAT": {"id": 27, "name_cn": "感召·守护者", "name_en": "The Cultural Preacher", "tagline_cn": "你用信念为员工洗脑，将企业的价值观锻造成坚不可摧的精神防波堤。", "description_cn": "职场里的“精神教父”。他们认为所有的技术防线和制度漏洞，最终都是人心的问题。因此，他们用副轴的点燃能量，把枯燥的合规要求、企业文化包装成极具感染力的“使命与圣战”，让员工自发进行道德自律", "work_style_cn": "极具煽动力的全员演说、企业文化洗礼、高频的情绪共鸣与价值观团建", "strengths_cn": ["能在组织面临灭顶之灾（如公关危机、裁员潮）时，靠纯粹的精神信念锁住核心团队的忠诚度"], "blindspots_cn": ["当底层业务和薪酬无法支撑大饼时，持续的价值观布道会演变成令人反感的“职场PUA”"], "careers_cn": ["首席文化官（CCO）", "集团人力资源副总裁（CHRO）", "公关危机精神重建专家"], "celebrity_hook": {"en": "Howard Schultz（星巴克创始人，后期回归主导企业文化重塑与品牌精神防守）", "zh": "大厂组织部负责人、企业文化与价值观终极守护者（常被称为大厂政委）", "tw": "大厂组织部负责人、企业文化与价值观终极守护者（常被称为大厂政委）"}, "tier": "common", "primary_id": "GUA", "secondary_id": "CAT", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_DIP": {"id": 28, "name_cn": "融通·守护者", "name_en": "The Velvet Diplomat", "tagline_cn": "你在各方势力的刀光剑影中优雅举杯，在谈笑间悄然化解了毁灭公司的致命危机。", "description_cn": "影子内阁般的外交家。面对职场内部激烈的派系斗争，或者外部监管的重重绞杀，他们从不搞硬碰硬。副轴的高超斡旋能力让他们擅长在多方利益间寻找公约数，靠利益重组和太极推手来维持长周期的平稳", "work_style_cn": "私密茶叙、闭门和谈、通过微调利益分配方案来平息各方怨气", "strengths_cn": ["极强的政治智慧与八面玲珑的手腕", "能在利益高度冲突的险境中保全大盘"], "blindspots_cn": ["为了追求绝对的平衡与和谐，有时会和稀泥，牺牲掉组织内部进行激进效率变革的机会"], "careers_cn": ["政府关系副总裁（GR VP）", "特殊利益调解专家", "跨国合资集团董事会秘书"], "celebrity_hook": {"en": "Henry Kissinger（基辛格，均势外交与风险制衡大师）", "zh": "多方合资大厂里负责平衡各方大股东利益、维持业务稳定的温和派高管", "tw": "多方合资大厂里负责平衡各方大股东利益、维持业务稳定的温和派高管"}, "tier": "common", "primary_id": "GUA", "secondary_id": "DIP", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_SOV": {"id": 29, "name_cn": "威权·守护者", "name_en": "The Forbidden Sovereign", "tagline_cn": "此地为组织禁区，胆敢逾越雷池一步者，不论职位高低，直接抹杀。", "description_cn": "带有强悍统治欲的铁面判官。他们建立安全防御体系的终极目的，是为了在组织内部确立绝对不可挑战的中央集权。他们不接受任何形式的“将在外君命有所不受”，任何越权和灰色地带的创新都会被他们视作对主权的背叛", "work_style_cn": "顶格的行政处罚、绝对的自上而下审查、全方位的数字化监视网络（如内网监控、权限一键熔断）", "strengths_cn": ["拥有无与伦比的内部震慑力，能彻底根除大企业内部的贪腐、泄密与拉帮结派行为"], "blindspots_cn": ["恐怖统治会彻底扼杀基层的创新活力，导致所有人因为害怕犯错而选择集体装死"], "careers_cn": ["集团内审总监", "最高安全权限拥有者", "反贪腐特殊调查组长"], "celebrity_hook": {"en": "J. Edgar Hoover（胡佛，前美国 FBI 局长，极权防守的典型代表）", "zh": "大厂内审合规部/反腐败“廉正合规部”的铁面掌门人", "tw": "大厂内审合规部/反腐败“廉正合规部”的铁面掌门人"}, "tier": "common", "primary_id": "GUA", "secondary_id": "SOV", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "GUA_CUR": {"id": 30, "name_cn": "苛求·守护者", "name_en": "The Aesthetic Inspector", "tagline_cn": "在你的视界里，平庸就是犯罪，一丁点像素的瑕疵都是对神圣系统的玷污。", "description_cn": "带有严重强迫症的极简美学防守者。主轴给他们安全与稳定的底色，而副轴的甄别能力让他们对交付物的品质挑剔到了病态的地步。不管是代码缩进、UI 的微米级偏差，还是PPT的排版，他们都会用显微镜进行审判", "work_style_cn": "极度苛刻的白盒审查、漫长的验收流程、对不符合个人品味的产品直接退件重做", "strengths_cn": ["能够将产品的工艺、安全声誉拔高到艺术品级的奢侈高度，是品牌口碑的终极守护神"], "blindspots_cn": ["容易在非核心的细节上陷入“无休止的死磕”，严重拖慢团队整体的上线与商业变现进度"], "careers_cn": ["核心产品评审主席", "奢侈品/高端硬件品控总监", "视觉与安全交互终极裁决官。\n\n矩阵 4：以【先行者 PIO】为主型（10种组合）\n主轴核心： 探索", "0 到 1", "寻找新大陆", "不确定性耐和高耐受度。\n\n系统张力： 【先行者 PIO】天生具备敏锐的商业嗅觉和在迷雾中前行的勇气。当副轴力量介入时"], "celebrity_hook": {"en": "Dieter Rams（迪特·拉姆斯，工业设计之父，对纯粹与秩序的极致死守）", "zh": "微信等王牌大厂中，死死卡住最后上线体验、不允许任何冗余功能混入的核心产品评委", "tw": "微信等王牌大厂中，死死卡住最后上线体验、不允许任何冗余功能混入的核心产品评委"}, "tier": "common", "primary_id": "GUA", "secondary_id": "CUR", "inner_opposite_id": "PIO", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_ARC": {"id": 31, "name_cn": "架构·先行者", "name_en": "The Strategic Navigator", "tagline_cn": "你不是在盲目寻找新大陆，你是带着未来五十年的城市规划图去开辟荒原。", "description_cn": "顶级的战略航海家。主轴的敏锐探索欲与副轴的宏观建构力完美结合。这类人极其罕见，他们不仅能比所有人更早看到未来的行业风口（如 AI Agent 生态、下一代空间计算），而且在风口刚出现、市场一片混乱时，就已经在脑海中画好了新大陆的底层技术架构与商业蓝图", "work_style_cn": "极其注重长远布局。习惯用 MVP（最小可行性产品）去试探前线，但每一步探测都有严密的模块化系统做支撑，拒绝打无准备的乱仗", "strengths_cn": ["具备将宏大远景（Vision）直接转化为可落地技术栈与商业路径的系统级推演能力"], "blindspots_cn": ["规划往往过于宏大超前，如果前线执行团队的理解力跟不上，容易变成他个人的“孤勇者”沙盘推演"], "careers_cn": ["科技巨头首席战略官（CSO）", "前沿科技实验室创始人", "风险投资基金管理合伙人"], "celebrity_hook": {"en": "Sam Altman (OpenAI 创始人 - 极具宏大叙事与长周期 AI 架构的先行者)", "zh": "孙正义 (软银集团主席 - 依靠“时间机器理论”对未来产业进行超前建构的先行者)", "tw": "孙正义 (软银集团主席 - 依靠“时间机器理论”对未来产业进行超前建构的先行者)"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "ARC", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_DIS": {"id": 32, "name_cn": "闪电·先行者", "name_en": "The Blitz Predator", "tagline_cn": "规则只是弱者的保护色。在别人还在研读法规时，你已经靠直觉完成了对市场的野蛮收割。", "description_cn": "极具攻击性的掠夺者。当先行者的探索欲撞上破局者的破坏力，会产生极其恐怖的商业破坏力。他们对旧世界的繁文缛节没有任何敬畏，专门挑行业巨头防守最薄弱、监管最模糊的边缘地带，用降维的产品、不讲理的补贴或流量黑客手段发起闪电战", "work_style_cn": "闪电行军。天下武功唯快不破，习惯在运动战中解决问题，靠速度压缩对手的反应时间，用既成事实来逼迫市场低头", "strengths_cn": ["拥有无与伦比的冷启动速度与破局爆发力", "能在极短时间内撕裂现有竞争格局"], "blindspots_cn": ["破坏力过强而建设力不足。如果业务无法在闪电战后迅速转入正规化运营，留下的烂摊子极易引发毁灭性的官僚绞杀或法律诉讼"], "careers_cn": ["高增长业务线 GM", "增长黑客总指挥（VP of Growth）", "高风险项目奇袭专家"], "celebrity_hook": {"en": "Travis Kalanick (Uber 早期创始人 - 用闪电破局战法撕裂全球出租车行业的狂人)", "zh": "王兴 (千团大战时期的美团 - 靠极强野性与闪电撕裂市场完成进化的破局者)", "tw": "王兴 (千团大战时期的美团 - 靠极强野性与闪电撕裂市场完成进化的破局者)"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "DIS", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_GUA": {"id": 33, "name_cn": "固防·先行者", "name_en": "The Armored Explorer", "tagline_cn": "你可以冲进没有任何补给的无人区，但你必须穿着全套的重型防弹衣。", "description_cn": "“带盾前冲”的硬核探险家。与那些底牌输光、蒙眼狂奔的投机者不同，他们对风险有着极高耐受度的同时，对安全边界有着变态的执念。副轴的守护者特质让他们在决定杀入一个全新的蓝海赛道前，已经悄悄为自己锁死了退路、合规防线和兜底资金", "work_style_cn": "步步为营。在不确定性中寻找确定性的锚点，每向前推进一个业务里程碑，就必须立刻在后方建立起防御性的标准作业程序（SOP）", "strengths_cn": ["拥有极高的探险存活率。他们很少成为“先烈”，往往能熬死所有激进的竞品，成为最后收割红利的“先驱”"], "blindspots_cn": ["盾牌有时过重。在需要绝对的速度去抢占核心卡位时，可能因为过度纠结风险控制而错失一秒千金的黄金窗口"], "careers_cn": ["创新业务风控副总裁", "硬科技出海合规负责人", "大型企业“第二曲线”转型总指挥"], "celebrity_hook": {"en": "Satya Nadella (Microsoft CEO - 带领微软全面向 AI 转型，但每一步都伴随着严苛的企业级合规与安全防线)", "zh": "头部金融科技巨头中，负责探索 Web3/RWA 资产代币化等前沿业务的温和合规派掌门", "tw": "头部金融科技巨头中，负责探索 Web3/RWA 资产代币化等前沿业务的温和合规派掌门"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "GUA", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_OPR": {"id": 34, "name_cn": "铁履·先行者", "name_en": "The Trench Warfare Captain", "tagline_cn": "别跟我谈虚无缥缈的未来，老子只想带着突击队，在天亮前拿下这块阵地。", "description_cn": "肉搏型拓荒突击队长。主轴的探索方向被副轴的铁血执行力直接降维压实。他们极度务实，对宏大的战略演说毫无感觉。他们一旦看准了某个新方向（比如短视频带货、新零售开店），会直接换上作训服下场，用疯狂的加班、饱和式的资源交付和死磕细节的打法把阵地生生砸下来", "work_style_cn": "战壕思维。依靠极其紧密的日会、周会制度和魔鬼般的 KPI 铁律来推进从 0 到 1 的项目", "strengths_cn": ["极高的业务落地率，能把任何飘在空中的概念迅速转化为账面上的流水与真实的用户留存"], "blindspots_cn": ["容易由于过度关注眼前的肉搏战与交付细节，忽视了市场宏观环境的长期流变，产生“战术上的巨人，战略上的盲人”的现象"], "careers_cn": ["新业务线落地负责人", "铁血增长总监（Head of Execution）", "企业突击队 Captain"], "celebrity_hook": {"en": "Andy Jassy (Amazon 前 AWS 主管兼现任 CEO - 将贝佐斯的云主张用恐怖的工程执行力逐一在地面建成的铁履者)", "zh": "字节跳动/拼多多早期带队深入一线、用高强度执行力硬啃新业务的核心副总裁", "tw": "字节跳动/拼多多早期带队深入一线、用高强度执行力硬啃新业务的核心副总裁"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "OPR", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_WEA": {"id": 35, "name_cn": "蛛网·先行者", "name_en": "The Ecosystem Arbitrageur", "tagline_cn": "你从不自己制造武器，你只负责在新旧大陆之间搭建桥梁，收干所有的暴利差价。", "description_cn": "跨境套利的贸易买办、无边界的生态织网大师。他们敏锐地发现，新大陆（新技术、新市场）的出现必然带来信息不对称和资源断层。副轴的织网能力让他们长于将新大陆的资源与旧大陆的资金、供应链、流量池通过精妙的接口无缝拼装起来，玩的是“轻资产、高杠杆”的借力游戏", "work_style_cn": "极度依赖开放 API 逻辑、战略联姻与复杂的股权/分账设计。他们是职场里的顶级社交与资源猎手", "strengths_cn": ["能以极低的自身资本消耗，迅速撬动极为庞大的跨国、跨行业商业合作网络，形成非线性爆发"], "blindspots_cn": ["护城河天然脆弱。一旦新旧大陆之间的信息差被抹平，或者核心网络节点发生解绑，他们的商业大厦极易瞬间蒸发"], "careers_cn": ["跨国商务拓展高级副总裁（SVP of Global BD）", "生态投资合伙人", "平台型产品首席大客户架构师"], "celebrity_hook": {"en": "Yuri Milner (DST Global 创始人 - 凭借独特的全球科技生态网络，精准在早期跨国捕获社交与电商红利的巨鳄)", "zh": "跨境电商/出海链条中，将中国供应链与海外红人流量网络精妙拼接的超级资源操盘手", "tw": "跨境电商/出海链条中，将中国供应链与海外红人流量网络精妙拼接的超级资源操盘手"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "WEA", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_ANL": {"id": 36, "name_cn": "精算·先行者", "name_en": "The Algorithm Hunter", "tagline_cn": "你的直觉来自于冰冷的数学公式。在风口形成的三年前，你已经在数据洪流中看到了它的骸骨。", "description_cn": "纯理性、高阶技术捕手。别人靠拍脑袋和激情去探索未知，他们靠第一性原理和量化回归模型。副轴的深析特质让他们能够从纷繁复杂的行业噪音、论文文献和开源代码库中，精准剥离出真正具有指数级增长潜力的技术奇点", "work_style_cn": "依赖深度埋点、高阶数据推演、AB 测试白皮书。所有的探索步骤必须有严密的数据因果链条支撑", "strengths_cn": ["极其精准的趋势预测能力", "能帮助企业避开绝大多数由资本泡沫炒作起来的“伪风口”"], "blindspots_cn": ["容易陷入“理性过载”，面对需要依靠纯粹的审美、直觉或创始人的非理性人格引爆的消费级赛道时，往往会因为算不出数据而选择放弃"], "careers_cn": ["首席数据科学家", "硬科技风投量化合伙人", "前沿 AI 算法战略总监"], "celebrity_hook": {"en": "Jensen Huang (NVIDIA 创始人 - 坚信加速计算与物理模拟的第一性原理，在 AI 爆发十年前就完成了铁血布局)", "zh": "宿华 (快手联合创始人 - 用严密的算法与数据逻辑推演，在早期定义并捕获短视频红利的数字极客)", "tw": "宿华 (快手联合创始人 - 用严密的算法与数据逻辑推演，在早期定义并捕获短视频红利的数字极客)"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "ANL", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_CAT": {"id": 37, "name_cn": "神启·先行者", "name_en": "The Messianic Pioneer", "tagline_cn": "你只需要振臂一呼，所有人就会像着了魔一样，变卖资产跟着你冲向未知的火山。", "description_cn": "狂热的淘金队长、具备“现实扭曲场”的精神领袖。主轴赋予他们看穿未来的眼光，副轴的点燃能力让他们拥有神棍般的感召力。他们能够把一个在别人眼里九死一生的跨界大冒险（如造火箭、量子计算商业化），包装成一场神圣的史诗任务", "work_style_cn": "舞台演说、高频高张力的营销文案、用极具感染力的精神愿景（Vision）为底层搬砖团队和上层投资人进行灵魂洗礼", "strengths_cn": ["拥有无与伦比的人才吸引力与低成本融资能力", "能靠纯粹的信念溢价把死局生生盘活"], "blindspots_cn": ["如果业务长期无法通过硬核指标验证，这种依靠情绪资本搭建的信任链条一旦发生断裂，会引发灾难性的组织雪崩"], "careers_cn": ["颠覆性创业公司 CEO", "首席布道师（Chief Evangelist）", "早期项目天使合伙人"], "celebrity_hook": {"en": "Elon Musk (Tesla/SpaceX 创始人 - 完美的先行者与疯狂布道者的结合体，靠愿景和硬核技术双轮引爆世界)", "zh": "罗永浩 (在多次科技/电商连续创业早期，具备恐怖声量与粉丝自发追随能量的布道领袖)", "tw": "罗永浩 (在多次科技/电商连续创业早期，具备恐怖声量与粉丝自发追随能量的布道领袖)"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "CAT", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_DIP": {"id": 38, "name_cn": "穿梭·先行者", "name_en": "The Frontier Diplomat", "tagline_cn": "你是那个在未知星系与土著酋长优雅碰杯，在无声间为帝国带回一整个星系开采权的穿梭外交官。", "description_cn": "极具政治智慧的拓荒外交官。一般的先行者往往锋芒毕露，容易在新地盘遭到原住民（旧利益集团、地方监管）的联合绞杀。而他们则靠副轴的斡旋技巧，面带微笑地在新旧势力间长袖善舞。他们把开辟新业务做成了一场利益均摊的丝滑谈判", "work_style_cn": "闭门饭局、多方利益对齐（Stakeholder Alignment）、通过精妙的灰度合作与退让来换取核心业务的准入许可", "strengths_cn": ["极高的新市场政治生存率", "擅长把死板的竞争关系转化为多方共赢的生态切片游戏"], "blindspots_cn": ["偶尔会为了照顾方方面面的情绪和利益平衡，而在产品的纯粹性或业务的推进速度上做出不该做的妥协"], "careers_cn": ["全球政府关系副总裁", "复杂牌照准入特使", "跨行业战略重组总操盘手"], "celebrity_hook": {"en": "Eric Schmidt (前 Google CEO - 专门负责在谷歌全球扩张早期，处理政府关系、法律版权与错综复杂多方博弈的穿梭者)", "zh": "大厂里负责带队杀入传统垄断行业（如智慧医疗、网约车合规化）并成功摆平各方行政关系的 GR 顶级高管", "tw": "大厂里负责带队杀入传统垄断行业（如智慧医疗、网约车合规化）并成功摆平各方行政关系的 GR 顶级高管"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "DIP", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_SOV": {"id": 39, "name_cn": "封疆·先行者", "name_en": "The Shadow Overlord", "tagline_cn": "你打下这片江山不是为了给皇帝进贡，而是为了在离中央最远的地方，建立你自己的独立王国。", "description_cn": "带有强悍统治欲的影子领主。这类先行者极度危险，他们冲锋陷阵的终极动力，不是对探索本身的热爱，而是为了获取至高无上的【主权】。在组织内部，他们一旦攻下某个新赛道，会立刻实施全方位的物理和信息封锁，建立起一套不受集团指挥的“国中国”", "work_style_cn": "强自上而下决策（Top-down Control）、对核心数据进行接口化隔离、强烈的地盘与任免权意识", "strengths_cn": ["在新地盘具备极高的集权执行力，能以最快速度完成资本和资源的原始积累，形成极强的局部护城河"], "blindspots_cn": ["功高盖主，极易引发集团董事会或中央集权老大的猜忌，最终面临“削藩”或高层政治摊牌的悲剧"], "careers_cn": ["集团独立子公司 CEO", "全权分部（Region）总裁", "恶意收购与重组基金管理人"], "celebrity_hook": {"en": "Robert Moses (罗伯特·摩西 - 纽约城市规划史上的“筑路总师”，在远离市长的边缘部门建立起庞大的基建割据帝国)", "zh": "大厂早期带队开拓西南/海外分公司，成气候后彻底将分部做成“独立割据王国”的铁血封疆大吏", "tw": "大厂早期带队开拓西南/海外分公司，成气候后彻底将分部做成“独立割据王国”的铁血封疆大吏"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "SOV", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "PIO_CUR": {"id": 40, "name_cn": "挑剔·先行者", "name_en": "The Luxury Treasure Hunter", "tagline_cn": "新大陆遍地都是垃圾，而你只会在满地淤泥中，精准挖出那一颗价值连城的极简钻石。", "description_cn": "高冷、克制的宝物猎人。普通的先行者追求量（占领了多少市场，融了多少钱），而他们追求质的纯粹性。副轴的甄别力让他们对行业内烂大街的跟风抄袭产生严重的审美和生理排斥。他们只会寻找最顶级、最干净、能直接击穿人类认知的核心产品或技术特质", "work_style_cn": "极简主义、高门槛准入、不盲目跟随大众热点（No FOMO），一旦选中某一点，则会进行像素级的完美打磨", "strengths_cn": ["能创造出具备艺术品品味与极高客单价溢价的产品", "是企业长期高价值品牌资产（Brand Equity）的锚定者"], "blindspots_cn": ["因为精神洁癖太严重，容易在寻找完美宝物的过程中耗尽资源，或者因为曲高和寡而错失大众市场的规模化红利"], "careers_cn": ["前沿设计驱动型硬件 Product VP", "高端风投审美合伙人（Sourcing Partner）", "精品应用工作室创始人。\n\n\n矩阵 5：以【执行者 OPR】为主型（10种组合）\n主轴核心： 结果导向", "里程碑强力推进", "超强工程化交付", "拒绝一切概念虚妄。\n\n系统张力： 【执行者 OPR】是整个组织中最坚硬的底层轴承"], "celebrity_hook": {"en": "Brian Chesky (Airbnb 创始人 - 拥有强烈的设计师内核，在一片混乱的短租市场中靠极致的设计审美和筛选机制趟出一条血路)", "zh": "独立出海精品消费级硬件/轻奢级 App 创始人 (对产品的极致克制、调性与品味死死卡住的先行者)", "tw": "独立出海精品消费级硬件/轻奢级 App 创始人 (对产品的极致克制、调性与品味死死卡住的先行者)"}, "tier": "scarce", "primary_id": "PIO", "secondary_id": "CUR", "inner_opposite_id": "GUA", "axis_num": 2, "axis_cn": "探索轴", "axis_en": "Exploration Axis", "axis_tension_cn": "稳定 vs 探索", "axis_tension_en": "Stability vs Explore"}, "OPR_ARC": {"id": 41, "name_cn": "蓝图·执行者", "name_en": "The Master General Contractor", "tagline_cn": "把天马行空的 PPT 宏大愿景，变成脚下每一颗精准浇灌的钢筋混凝土。", "description_cn": "顶级的“总承包商”。主轴对交付结果的极度饥渴，与副轴的宏观架构力完美结合。他们是技术与管理层之间的翻译官：能够一眼看穿战略层画出的宏大蓝图，并迅速在脑海中将其解构为可排期的甘特图、模块化的工程接口和精确到日的交付节点", "work_style_cn": "依赖高精度的项目管理软件（Jira/Asana）、微观里程碑拆解、严格的模块化依赖关系管理", "strengths_cn": ["极高的大型项目落地成功率", "能将庞大、混乱、超长周期的战略愿景，转化为基层可以无脑执行的流水线任务"], "blindspots_cn": ["如果战略蓝图本身存在致命的方向性错误，他们会因为过于专注于“正确地做事”，而带着团队极其高效地冲向错误的终点"], "careers_cn": ["首席运营官（COO）", "超级项目总指挥（Program Director）", "复杂硬件平台交付总监"], "celebrity_hook": {"en": "Gwynne Shotwell (SpaceX 总裁兼 COO - 把马斯克的火星蓝图转化为现实中高频商业发射的硬核执行者)", "zh": "大厂里专门负责承接创始人“新构想”，并带几百人团队连夜熬夜将其无缝上线的核心工程副总裁", "tw": "大厂里专门负责承接创始人“新构想”，并带几百人团队连夜熬夜将其无缝上线的核心工程副总裁"}, "tier": "common", "primary_id": "OPR", "secondary_id": "ARC", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_DIS": {"id": 42, "name_cn": "铁血·执行者", "name_en": "The Process Shredder", "tagline_cn": "任何阻碍今天交付的流程、会议和官僚，都是老子刀下的炮灰。", "description_cn": "暴力提效的流程粉碎机。为了确保项目结果按时交付，副轴的破局特质让他们对大企业病、冗长的繁文缛节以及没有产出的无聊会议产生极强的生理厌恶。他们是职场里的“推土机”，会动用一切手段甚至不惜越权，去砸碎旧有体制的枷锁来为交付抢时间", "work_style_cn": "闪电战式的项目推进，高频使用“特事特办”特权，越级沟通，直接强行切断一切不产生直接代码或流水的边缘业务", "strengths_cn": ["能够强行让陷入僵死的迟钝组织重新恢复极限交付速度", "是拯救卡死项目（Red Projects）的核武器"], "blindspots_cn": ["杀伤力过大，容易严重破坏企业的长期合规体系和跨部门的政治和谐，留下大量需要后方擦屁股的“法务与流程尾款”"], "careers_cn": ["危机项目重组专家（Turnaround Specialist）", "降本增效总指挥", "特殊突击业务线 GM"], "celebrity_hook": {"en": "Jack Welch (杰克·韦尔奇 - 通用电气前 CEO，以铁腕砍掉一切非核心流程和部门、暴力提升执行效率著称)", "zh": "大厂空降负责“降本增效 / 业务清洗”并必须在单季度交出硬核盈利财报的铁腕高管", "tw": "大厂空降负责“降本增效 / 业务清洗”并必须在单季度交出硬核盈利财报的铁腕高管"}, "tier": "common", "primary_id": "OPR", "secondary_id": "DIS", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_GUA": {"id": 43, "name_cn": "容错·执行者", "name_en": "The Zero-Failure Inspector", "tagline_cn": "你可以嫌我的交付速度慢，但你必须承认，我交出来的东西哪怕遭遇核打击也不会崩。", "description_cn": "极致追求零工伤、零故障的安全交付狂。一般的执行者为了追求速度可以接受“带病上线”，而他们则受到副轴守护者特质的强烈钳制。他们认为，一个带有不稳定隐患、无法做到 100% 连续可用（High Availability）的交付，无异于对职责的背叛", "work_style_cn": "实行严苛的自动化回归测试、多重备份机制（Redundancy）、上线前的安全与合规一票否决制", "strengths_cn": ["交付质量稳如泰山，是企业在核心命脉业务（如计费、底层数据库、医疗系统）上最值得托付的底牌"], "blindspots_cn": ["容易因为过度陷入对“极端异常情况（Edge Cases）”的防御而严重拖慢项目的响应速度，在快速流变的大众消费级市场可能错失先机"], "careers_cn": ["基础设施运维总监（Head of Infrastructure）", "灾备中心总指挥", "军工/医疗级产品总交付"], "celebrity_hook": {"en": "Gene Kranz (阿波罗 13 号任务的 NASA 首席飞行指挥官 - 经典名言“Failure is not an option”)", "zh": "航天级、军事级核心安全系统及金融清算系统的现场总调度官", "tw": "航天级、军事级核心安全系统及金融清算系统的现场总调度官"}, "tier": "common", "primary_id": "OPR", "secondary_id": "GUA", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_PIO": {"id": 44, "name_cn": "奔袭·执行者", "name_en": "The Long-Range Campaigner", "tagline_cn": "不需要后方补给，不需要集团安慰，给我一个方向，天亮前老子把红旗插上山头。", "description_cn": "疯狂行军的远征机器。这是一群将探索欲与交付力合二为一的狠角色。副轴的先行者能量让他们对现有的成熟阵地不感兴趣，专门渴望带领轻骑兵切入公司从未碰过的“硬骨头新赛道”。他们具备恐怖的不确定性耐受度，能在一无所有的情况下在最前线凭空砸出结果", "work_style_cn": "依靠敏捷开发与饱和攻击。没有标准 SOP 就边打边建，不纠结于形式的完美，只要拿到第一笔真实客户流水或跑通第一个核心数据指标", "strengths_cn": ["极强的新赛道冷启动与攻坚能力，能在资源极度匮乏、没有任何前人经验借鉴的“黑天鹅环境”中生还并带回战果"], "blindspots_cn": ["无法在成熟业务中坐定，业务一旦进入需要精细化运营和节约成本的稳定期，他们就会丧失斗志，甚至因为管理动作过于粗放而造成资源浪费"], "careers_cn": ["新业务冷启动负责人", "高风险出海业务线 GM", "竞争性攻坚项目突击队 Captain"], "celebrity_hook": {"en": "George S. Patton (巴顿将军 - 以不顾后勤补给、超速超长距离大纵深奔袭闪电战著称的铁血将领)", "zh": "大厂开拓五环外下沉市场、社区团购或出海地推早期，带领几百个地推铁军疯狂开城的野战高管", "tw": "大厂开拓五环外下沉市场、社区团购或出海地推早期，带领几百个地推铁军疯狂开城的野战高管"}, "tier": "common", "primary_id": "OPR", "secondary_id": "PIO", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_WEA": {"id": 45, "name_cn": "整合·执行者", "name_en": "The Supply-Chain Maestro", "tagline_cn": "我不需要自己会写代码或造硬件，我只需要把全世界最顶级的供应商像齿轮一样咬合起来。", "description_cn": "穿透多层外包和供应链的硬核总督工、超级整合者。他们深知在现代商业中，单一团队的生产力是有极限的。副轴的织网特质让他们极度擅长借力。他们通过完美的协议接口、严密的 SLA（服务等级协议）约束以及极其精妙的利益勾兑，把外部庞杂的外包团队、供应链节点打造成一支比内部员工还听话的虚拟执行铁军", "work_style_cn": "极度依赖供应链契约、多方联合调度会议、严格的节点考核标准，长于玩弄商业“组合拳”", "strengths_cn": ["极高的资源杠杆率", "能以极轻的自有团队资产控制极其庞大复杂的系统级交付（如造车、超级 App 生态运营）"], "blindspots_cn": ["高度依赖外部节点的稳定性，一旦供应链上的某一个关键隐形节点（如核心芯片、底层 API）因地缘或不可抗力断裂，容易引发系统性的连带延迟崩溃"], "careers_cn": ["首席供应链官（CSCO）", "全球外包集成总监", "跨界平台生态总交付"], "celebrity_hook": {"en": "Tim Cook (Apple 早期作为运营 VP，重构全球苹果供应链、将其精细化控制到零库存的运营大师形态)", "zh": "头部新能源车企/跨境电商平台中，负责调度上万家跨界供应商并在既定时间推出爆款硬件的供应链老大", "tw": "头部新能源车企/跨境电商平台中，负责调度上万家跨界供应商并在既定时间推出爆款硬件的供应链老大"}, "tier": "common", "primary_id": "OPR", "secondary_id": "WEA", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_ANL": {"id": 46, "name_cn": "极数·执行者", "name_en": "The Digital Taskmaster", "tagline_cn": "别跟我谈工作热情，我只看你昨天的代码产出、千行 Bug 率和系统吞吐量。", "description_cn": "数字化工头、没有感情的指标精算执行者。在他们眼里，管理不需要艺术，只需要数学。副轴的深析洞察力让他们把整个团队的交付能力做到了像素级的数字化量化。他们会为每一个岗位、每一秒钟的产出建立数学回归模型，用绝对冰冷客观的数字指标推动团队向前走", "work_style_cn": "依赖高频的自动化数据看板（Dashboard）、工时追踪、精密的绩效矩阵分析，用数字化指标替代一切管理对话", "strengths_cn": ["能够将组织的工程损耗降到无限接近于零", "极其擅长在大规模工业化/信息化复制阶段榨干最后一丝效率红利"], "blindspots_cn": ["极其缺乏人文关怀，全面抹杀人性，长期实施这种高压管理会导致团队创新力彻底归零，员工流失率飙升"], "careers_cn": ["精益生产总监", "算法效率评估专家", "大规模呼叫中心/内容审核线首席运营"], "celebrity_hook": {"en": "Frederick Winslow Taylor (泰勒 - 科学管理原理之父，将工人每一个动作的时间量化到秒的极致极数者)", "zh": "头部大厂中负责搭建并死磕算法派发系统（如外卖骑手调度算法、审核线效率追踪）的硬核量化运营总监", "tw": "头部大厂中负责搭建并死磕算法派发系统（如外卖骑手调度算法、审核线效率追踪）的硬核量化运营总监"}, "tier": "common", "primary_id": "OPR", "secondary_id": "ANL", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_CAT": {"id": 47, "name_cn": "战鼓·执行者", "name_en": "The Trench Commissar", "tagline_cn": "把你们的懦弱留在后方！看老子的刺刀指向哪里，你们就跟老子冲向哪里！", "description_cn": "战壕里的铁血政委。普通的执行者靠制度管人，而他们靠肉身点燃。副轴的点燃者天赋让他们具备极强的职场情绪资本操盘能力。在项目最艰难、资源断绝、士气低迷的至暗时刻（例如产品上线前夕的连续通宵），他们会第一个搬进办公室睡睡袋，用高亢的激情和带头吃苦的肉身，把下属内心的疲惫强行转化为宗教般的交付圣战", "work_style_cn": "极具现场感染力的誓师大会、充满激情的内部宣讲、高频的身先士卒行为，把 KPI 变成团队的共同信仰", "strengths_cn": ["拥有恐怖的组织极限抗压与动员能力，能带领团队完成在外界看来绝对不可能按时交付的“自杀式任务”"], "blindspots_cn": ["这种高强度的情绪榨取是有半衰期的。如果项目交付后没有给予团队对等的巨额现金或休假回报，热血降温后会迎来极度反噬的集体离职潮"], "careers_cn": ["极限攻坚项目总经理", "大厂核心业务线“政委型”HRD", "企业生死存亡期变革落地操盘手"], "celebrity_hook": {"en": "Lee Iacocca (李·艾科卡 - 克莱斯勒汽车前总裁，在企业濒临倒闭时用极强的执行力与煽动力重组并复活车企的战鼓者)", "zh": "华为等狼性大厂早期，在海外开拓极为恶劣市场时，睡床垫、打地铺、带头冲锋的核心野战军政委", "tw": "华为等狼性大厂早期，在海外开拓极为恶劣市场时，睡床垫、打地铺、带头冲锋的核心野战军政委"}, "tier": "common", "primary_id": "OPR", "secondary_id": "CAT", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_DIP": {"id": 48, "name_cn": "妥协·执行者", "name_en": "The Lubricated Project Mason", "tagline_cn": "战略是神圣的，但现实充满了摩擦。我负责在多方利益的泥潭里，把项目安全运送到对岸。", "description_cn": "职场泥水匠、高超的项目调解员。他们深知在一个充满政治内耗和跨部门利益撕扯的大型组织里，一味地硬推执行只会导致玉石俱焚。副轴的斡旋技巧让他们拥有极高的情商与灰色生存空间：他们会在不伤害核心交付结果（Baseline）的前提下，通过巧妙的面子让步、利益微调和太极推手，摆平一路上所有的利益干系人", "work_style_cn": "依赖频繁的私下沟通、灰色利益对齐（Trade-offs alignment）、通过在非核心细节上的妥协来换取核心里程碑的放行", "strengths_cn": ["极高的大型组织政治生存率", "能让一个原本会在重重官僚审核中卡死的复杂项目，在各方的笑声中丝滑落地"], "blindspots_cn": ["为了追求过程的平稳和不彻底得罪人，有时会做出过多的功能向协，导致交付的产品带有某种“向委员会妥协”的臃肿与中庸感"], "careers_cn": ["跨国复杂项目群总监（Program PMO）", "企业间合资业务交付负责人", "多方战略重组落地协调官"], "celebrity_hook": {"en": "Sheryl Sandberg (雪莉·桑德伯格 - Facebook 前 COO，在高管内耗与扎克伯格激进想法之间，靠高超的外交与执行手腕将商业化平稳落地的润滑者)", "zh": "复杂合资企业或多方股东背景大厂里，专门负责打通跨部门死结、推动核心项目按时上线的资深项目总监", "tw": "复杂合资企业或多方股东背景大厂里，专门负责打通跨部门死结、推动核心项目按时上线的资深项目总监"}, "tier": "common", "primary_id": "OPR", "secondary_id": "DIP", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_SOV": {"id": 49, "name_cn": "威压·执行者", "name_en": "The Iron KPI General", "tagline_cn": "我不需要你的解释，更不需要你的眼泪。在我的日历表上，只有按时交付，或者直接滚蛋。", "description_cn": "铁面独裁将军。主轴的执行冲动遇上副轴的主权统治欲，会产生一种极度强势、不容置疑的管理威权。他们将整个部门视作个人的军事沙盘，实行严格的自上而下决策（Top-down Control）。他们极度排斥基层的自发创新和任何形式的借口，视未按时交付为对他们个人权威的直接挑衅", "work_style_cn": "实行军事化的 KPI 军事铁律、公开的末位淘汰公示、对执行不力者进行毫无情面的直接全员通报清洗", "strengths_cn": ["在需要公司全速掉头、面临重大生存危机的战略决战期，具备恐怖的步调一致性与近乎冷兵器时代的集权杀伤力"], "blindspots_cn": ["会彻底消灭团队的独立思考能力，导致下属全部沦为不敢承担任何责任、只会机械盲从的执行奴隶"], "careers_cn": ["集团铁血执行副总裁（EVP）", "末位淘汰与组织重组铁面官", "高压销售网络大总管"], "celebrity_hook": {"en": "Lawrence Ellison (拉里·埃里森 - Oracle 创始人，以极度强势的铁血销售 KPI 与绝对集权统治确保公司执行力著称的威压者)", "zh": "传统巨头向数字化转型期，由集团董事会直接赋权、专门负责用铁腕执行指标清洗懒散旧部的“尚方宝剑”型外聘高管", "tw": "传统巨头向数字化转型期，由集团董事会直接赋权、专门负责用铁腕执行指标清洗懒散旧部的“尚方宝剑”型外聘高管"}, "tier": "common", "primary_id": "OPR", "secondary_id": "SOV", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "OPR_CUR": {"id": 50, "name_cn": "极致·执行者", "name_en": "The Micro-Pixel Artisan", "tagline_cn": "不要用‘差不多’来敷衍我。如果表面有一颗像素的刮痕，整个产品全部销毁重做。", "description_cn": "硬核像素工匠。普通的执行者只要“能用、按时”就给过，而他们则受到了副轴甄别特质的强烈折磨。他们是彻底的完美主义执行者，对交付物的表面工艺、性能响应时间、甚至是代码的整洁度有着近乎神经质的苛求。他们是那种宁可让团队全员通宵把一个细节改一万遍，也绝不允许任何平庸之作流出实验室的硬核圣徒", "work_style_cn": "极其漫长且近乎变态的内部评审（Code Review / Design Review）、亲自下场卡死最后一个细节、实行像素级的灰度准入机制", "strengths_cn": ["能将原本普通的工程交付物，生生打磨成具备行业最高天花板审美与工艺品质的“神级作品”"], "blindspots_cn": ["极易由于过度死磕一些对大盘流水影响极小的非核心美学/技术细节，导致项目出现严重的延期，急死前线的销售与增长团队"], "careers_cn": ["顶级硬件/软件首席体验官（CXO）", "核心产品最终验收裁决官", "精品奢侈品线总负责人。\n\n\n\n矩阵 6：以【织网者 WEA】为主型（10种组合）主轴核心： 跨界连接", "资源拼图", "生态杠杆", "轻资产控制。  系统张力： 【织网者 WEA】是天然的商业蜘蛛"], "celebrity_hook": {"en": "Jonathan Ive (前 Apple 首席设计官与核心工程推动者 - 将苹果硬件表面的材质、圆弧倒角控制到微米级极致的硬核工匠)", "zh": "华语圈中对产品字体、动画过渡流畅度、包装阻尼感死磕到让研发团队又恨又爱的高冷产品执行教父", "tw": "华语圈中对产品字体、动画过渡流畅度、包装阻尼感死磕到让研发团队又恨又爱的高冷产品执行教父"}, "tier": "common", "primary_id": "OPR", "secondary_id": "CUR", "inner_opposite_id": "WEA", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_ARC": {"id": 51, "name_cn": "战略·织网者", "name_en": "The Ecosystem Architect", "tagline_cn": "你从不单点破局，你是把十个行业的头部玩家像乐高一样拼接，推演并构建出一座商业母舰。", "description_cn": "生态矩阵的终极规划师。主轴的跨界整合力与副轴的宏观建构力完美咬合。这类人拥有极强的宏观视野，他们看待商业的视角不是“我的产品好不好卖”，而是“如何建立一套由硬件、软件、第三方供应链和内容服务共同组成的闭环生态（Flywheel）”。他们是在商业迷雾中设计开放平台底层协议与利益分配机制的顶级造局者", "work_style_cn": "强依赖开放 API 逻辑与战略联盟，花大量时间进行战略层面的生态点对点拼接与长周期红利链条推演", "strengths_cn": ["极强的生态护城河设计能力，能通过跨界穿透创造出非线性的业务增长点"], "blindspots_cn": ["顶层架构往往过于庞大复杂，如果底层任何一个外部节点（如关键供应商或第三方开发者）断裂，可能引发全盘生态级的雪崩"], "careers_cn": ["战略生态副总裁", "开放平台负责人", "跨国集团首席技术战略官（CTO）"], "celebrity_hook": {"en": "Reed Hastings (Netflix 生态与技术网络重构者)", "zh": "王兴 (美团创始人 - 无边界生态的搭建者)", "tw": "王兴 (美团创始人 - 无边界生态的搭建者)"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "ARC", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_DIS": {"id": 52, "name_cn": "跨界·织网者", "name_en": "The Parasitic Disrupter", "tagline_cn": "你不需要自己砸钱建渠道，你负责悄悄渗透进巨头的网络，然后用它的血肉孵化出绞杀它的武器。", "description_cn": "极其危险且聪明的借力破局者。当织网者的生态触角碰上破局者的颠覆欲，他们会成为老牌巨头最头疼的“寄生性反叛者”。他们拒绝用重资产去和行业老大硬碰硬，而是通过副轴的破局特质，精准发现巨头生态网络中利益分配不均的死角，拉拢被巨头剥削的边缘玩家，反客为主切断巨头的命脉", "work_style_cn": "渗透性商业战术。利用巨头的开放接口、灰色监管地带或长尾流量进行冷启动，在巨头反应过来之前完成对核心资产的包抄", "strengths_cn": ["拥有恐怖的轻资产爆破能力", "能把敌人的资源转化为自己破局的弹药"], "blindspots_cn": ["带有强烈的投机与破坏属性，如果反客为主后无法迅速建立起正向的合规防御体系，容易被更激进的后来者用同样的手段寄生"], "careers_cn": ["开放生态套利专家", "跨国流量操盘手", "Web3 商业闭环架构师"], "celebrity_hook": {"en": "Craig Wright / 早期中本聪概念追随者 (利用现有互联网与博弈论网络打破主权货币垄断)", "zh": "拼多多早期利用微信生态的社交裂变网络，快速抄底长尾商家并最终反切电商大盘的核心操盘手", "tw": "拼多多早期利用微信生态的社交裂变网络，快速抄底长尾商家并最终反切电商大盘的核心操盘手"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "DIS", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_GUA": {"id": 53, "name_cn": "固网·织网者", "name_en": "The Alliance Shield", "tagline_cn": "单独的一根丝线一扯就断，但当我的利益网编织完成，任何攻击我们的敌人都将被蛛网反噬。", "description_cn": "安全联盟的幕后构建者。一般的织网者为了追求扩张可以不择手段，而他们则受到了副轴守护者特质的强烈约束。他们认为生态的广度不决定生死，防线的厚度才决定。他们专门致力于搭建跨企业、跨行业的风险共担网络，通过交叉持股、专利壁垒共享和供应链安全条约，为整个生态套上防弹衣", "work_style_cn": "强流程与契约驱动，通过签署极其严苛的互不侵犯条约、多方多中心灾备协议、生态合规白皮书来巩固防线", "strengths_cn": ["极高的组织抗脆弱性，能建立起让竞争对手无从下口的联合防御堡垒"], "blindspots_cn": ["防御网由于绑定了太多利益方的诉求，在面临市场瞬息万变、需要断臂求生或急速掉头时，往往会因为内部协调成本过高而错失战机"], "careers_cn": ["集团战略联盟副总裁", "公共事务总监", "跨国生态风险防范专家"], "celebrity_hook": {"en": "Robert Hannigan (前英国政府通讯总部 GCHQ 主管，主导跨国网络安全情报网联盟)", "zh": "牵头组建国内新能源车/半导体供应链安全联盟、将上百家上下游企业利益死死绑定的幕后操盘手", "tw": "牵头组建国内新能源车/半导体供应链安全联盟、将上百家上下游企业利益死死绑定的幕后操盘手"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "GUA", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_PIO": {"id": 54, "name_cn": "远征·织网者", "name_en": "The Ecosystem Arbitrageur", "tagline_cn": "你在两个完全处于平行时空的市场之间拉起一条暗线，收干所有信息不对称的暴利。", "description_cn": "跨境套利买办、商业丝绸之路的开拓者。主轴的织网能力让他们长于资源拼图，而副轴的先行者天赋让他们对未知的“不确定性”具有极高的耐受度。他们是第一批冲向新大陆（如新兴海外市场、前沿技术奇点）的人，但他们不自己留下来种地，而是火速在迷雾中拉起一条连接旧大陆供应链与新大陆流量池的链路，玩的是高杠杆的跨界时间差游戏", "work_style_cn": "跨地域、跨行业的敏捷 BD 组合拳，利用信息差进行闪电式的生态拼接，快进快出", "strengths_cn": ["具备极强的新大陆资源捕获力与生态冷启动速度，总能在市场红海化之前榨干第一波红利"], "blindspots_cn": ["缺乏本土业务根基，一旦新旧大陆之间的技术、信息或政策壁垒被抹平，其赖以生存的套利链路会瞬间失效"], "careers_cn": ["跨国商务拓展高级副总裁（SVP of Global BD）", "生态投资合伙人", "平台型产品首席大客户架构师"], "celebrity_hook": {"en": "Yuri Milner (DST Global 创始人 - 凭借全球科技生态网络，精准捕获跨国社交与电商红利的巨鳄)", "zh": "跨境电商/出海链条中，将中国硬核供应链与全球红人网络、TikTok 流量精妙拼接的超级超级资源操盘手", "tw": "跨境电商/出海链条中，将中国硬核供应链与全球红人网络、TikTok 流量精妙拼接的超级超级资源操盘手"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "PIO", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_OPR": {"id": 55, "name_cn": "督工·织网者", "name_en": "The Supply-Chain Maestro", "tagline_cn": "我不需要我的团队写一行代码、干一件脏活，我只负责让上千家外包像钟表齿轮一样为我交付。", "description_cn": "虚拟帝国的硬核总督工。主轴的生态思维让他们坚信“自己干活的人做不大”，而副轴的执行力让他们对结果交付有着近乎变态的执念。他们把轻资产控制玩到了极致：公司核心团队可能只有十几个人，但通过他们制定的魔鬼级 SLA（服务等级协议）和高频、高压的节点控制，能够让全球成千上万的外包技术团队、第三方物流和代工厂像同一个大脑指挥下的肢体一样全速推进", "work_style_cn": "依赖极其紧密的日会、周会制度和魔鬼般的 KPI 铁律，通过数字化监控看板对外部供应链进行全天候的肉搏式高频调度", "strengths_cn": ["恐怖的交付落地效率与极高的资源杠杆率，能以极轻的自身资产撬动超大规模的工程交付"], "blindspots_cn": ["极易由于对外部节点施加过高压迫，导致外包团队反弹或代工厂在危机时刻掉链子，缺乏系统韧性"], "careers_cn": ["首席供应链官（CSCO）", "全球外包集成总监", "跨界平台生态总交付"], "celebrity_hook": {"en": "Tim Cook (Apple 早期作为运营 VP，重构全球苹果供应链、将其精细化控制到零库存的运营大师形态)", "zh": "头部跨境电商平台中，负责调度数万家中小外贸工厂、并在最短时间内将柔性供应链商品送达全球的硬核运营负责人", "tw": "头部跨境电商平台中，负责调度数万家中小外贸工厂、并在最短时间内将柔性供应链商品送达全球的硬核运营负责人"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "OPR", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_ANL": {"id": 56, "name_cn": "数网·织网者", "name_en": "The Data Network Actuary", "tagline_cn": "人情会撒谎，但生态节点之间的调用数据、资金流向和降维概率模型，从来不骗人。", "description_cn": "数据生态的冷酷精算师。他们拒绝相信商务拓展（BD）在饭桌上吹嘘的“战略合作”，只相信第一性原理和系统底层的因果逻辑链条。副轴的深析洞察力让他们把整个生态网解构为纯粹的数学关系：API 互调频次、流量漏斗留存率、多方博弈的纳什均衡点。他们是在错综复杂的商业网里，通过算法和埋点精确计算出每一颗流量应该流向哪里的数字上帝", "work_style_cn": "依赖高阶数据推演、量化风控模型、AB 测试白皮书，用冷冰冰的指标看板作为所有生态调整的唯一依据", "strengths_cn": ["拥有极其精准的生态预测与防腐败、防刷量能力", "能在一片混乱的跨界合作中，算准成本收益比最优的通路"], "blindspots_cn": ["容易陷入“数据隧道视野”，彻底忽视了合作方企业文化、创始人的非理性个人情绪以及品牌调性等无法被量化的软性因素"], "careers_cn": ["首席数据官（CDO）", "流量清算系统架构师", "AI 自动化生态机制设计总监"], "celebrity_hook": {"en": "Harry Markowitz (马科维茨，现代投资组合理论奠基人 - 将各类资产进行精妙量化拼接的先驱)", "zh": "大厂广告联盟 / 算法派发系统（如穿山甲、广告交易平台 ADX）背后的首席量化流量机制架构师", "tw": "大厂广告联盟 / 算法派发系统（如穿山甲、广告交易平台 ADX）背后的首席量化流量机制架构师"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "ANL", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_CAT": {"id": 57, "name_cn": "布道·织网者", "name_en": "The Ideological Networker", "tagline_cn": "你的网不需要金钱和协议去维系，你只用一句话，就能让上百万独立个体为了一个共同愿景疯狂共建。", "description_cn": "信仰级生态领袖。主轴给他们轻资产控制的技巧，而副轴的点燃能量赋予他们宗教般的感召力。这类人是搭建开源社区、去中心化自治组织（DAO）或创作者经济生态的绝代高手。他们不靠强制性的 KPI 驱使外部人员，而是把生态的战略目标包装成改变世界、打破垄断的史诗圣战，让成千上万的志愿者自发地为他们的平台搬砖", "work_style_cn": "演讲台与开放社区的无缝切换，高频利用极具感染力的精神愿景（Vision）为底层开发者、创作者进行灵魂洗礼", "strengths_cn": ["极其恐怖的组织边界蔓延速度与组织向心力拉动能力，能靠纯粹的信念溢价把死局生生盘活"], "blindspots_cn": ["当生态底层的分账机制、变现红利长期无法达到预期时，持续的口号式布道极易引发社区的反弹和信仰崩盘"], "careers_cn": ["全球开发者生态总监（Head of DevRel）", "开源基金会执行主席", "首席创作者生态官"], "celebrity_hook": {"en": "Linus Torvalds (Linux 之父) / 早期具有极强现实扭曲场的开源生态旗手", "zh": "罗永浩 (在多次科技/电商连续创业早期，具备恐怖声量并能迅速组建跨界粉丝生态的领袖)", "tw": "罗永浩 (在多次科技/电商连续创业早期，具备恐怖声量并能迅速组建跨界粉丝生态的领袖)"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "CAT", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_DIP": {"id": 58, "name_cn": "融通·织网者", "name_en": "The Velvet Alliance Architect", "tagline_cn": "在利益错综复杂的修罗场里，你在面带微笑的杯盏碰撞中，悄无声息地完成了整个行业的合纵连横。", "description_cn": "优雅的商业平衡大师。在大型国企、跨国集团或多方资本博弈的深水区里，一般的生态拓展者很容易因为吃相太难看而被群起而攻之。而他们则靠副轴高超的外交智慧与太极推手，面带微笑地穿梭在各大对立的派系之间。他们把跨界连接做成了一场优雅的面子妥协与灰色利益均摊游戏，在谁都没吃亏的笑声中，悄悄把所有人装进了他们编织的利益网里", "work_style_cn": "私密茶叙、闭门和谈、多方利益对齐（Stakeholder Alignment），擅长在非核心细节上通过让步换取核心生态节点的放行", "strengths_cn": ["极高的大型组织政治生存率与复杂合作推进率", "擅长把死板的针锋相对转化为多方共赢的灰度合作游戏"], "blindspots_cn": ["有时为了照顾方方面面的情绪和平衡，会导致生态体系内的利益链条过于臃肿、繁琐，牺牲掉了生态的绝对进化速度"], "careers_cn": ["多方战略重组落地协调官", "复杂合资企业生态总经理", "集团政企大客户战略 VP"], "celebrity_hook": {"en": "Henry Kissinger (基辛格，均势外交与风险制衡大师)", "zh": "陆奇 (奇绩创坛创始人 - 在多方复杂背景大厂中，兼具顶级整合手腕与极高各方融通公约数的教父)", "tw": "陆奇 (奇绩创坛创始人 - 在多方复杂背景大厂中，兼具顶级整合手腕与极高各方融通公约数的教父)"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "DIP", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_SOV": {"id": 59, "name_cn": "掌控·织网者", "name_en": "The Imperial Ecosystem Overlord", "tagline_cn": "我允许你在我的网里赚取财富，但你必须明白：谁才是这个数字帝国的唯一君王。", "description_cn": "带有强悍统治欲的影子宗主。这类织网者极度危险且稀缺。他们编织跨界生态网的终极目的，不是为了分享红利，而是为了建立独裁的控制权。他们通过副轴的主权统治欲，在生态网络的核心卡位（如底层操作系统、唯一的支付接口、核心账户体系）设立绝对的中央集权。任何在他们网里的第三方玩家，其生杀大权全部在他们的 Dashboard 上一键决定", "work_style_cn": "强自上而下决策（Top-down），对生态数据和分成比例进行垄断性隔离，具有强烈的地盘意识与规则定义权", "strengths_cn": ["拥有绝对的中央控制力，能够以最高效率调动生态内的全盘资源迎战外部敌人，形成极强的局部护城河"], "blindspots_cn": ["剥削感和威压感过重，会彻底扼杀生态内部小玩家的自发创新活力，甚至面临行业反垄断绞杀或内部集体的集体逃逸"], "careers_cn": ["集团独立子公司 CEO", "超级平台生态掌门人", "集团董事会主席"], "celebrity_hook": {"en": "Larry Ellison (Oracle 创始人 - 极度强势的软件、数据库生态及集权网络统治者)", "zh": "任正非 (华为创始人 - 带有强烈军事化统御与系统防线建构色彩)", "tw": "任正非 (华为创始人 - 带有强烈军事化统御与系统防线建构色彩)"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "SOV", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "WEA_CUR": {"id": 60, "name_cn": "精准·织网者", "name_en": "The High-Fidelity Curator", "tagline_cn": "我的网络里不需要数百万的垃圾流量，我只要那十个能改变世界品味的顶级节点。", "description_cn": "高冷的品味裁决官、精品生态猎手。普通的织网者贪大求全，而他们由于受到了副轴甄别特质的强烈折磨，对大水漫灌的庸俗跟风产生严重的审美和生理排斥。他们是彻底的完美主义整合者，坚信“少即是多（Less is more）”。他们的生态网络实行最严苛的门槛准入制，宁可牺牲规模，也必须确保加入进来的每一个外部合作方、每一款联名产品都具备奢侈品级别的调性与纯粹性", "work_style_cn": "极度克制的功能与合作迭代，亲自下场卡死最后一个关于美学、体验和品质的合作细节", "strengths_cn": ["能够创造出具备艺术品品味与极高客单价溢价的生态产品", "是品牌声誉的最高天花板与锚定者"], "blindspots_cn": ["容易在非核心的细节上陷入无休止的挑剔与打磨，导致项目严重延期，甚至因为曲高和寡而错失大众市场的规模化红利"], "careers_cn": ["核心生态评审委员会主席", "精品消费级硬件 Product VP", "高端美学设计总监。\n\n\n矩阵 7：以【洞察者 ANL】为主型（10种组合）\n主轴核心： 深度分析", "因果推演", "底层模型", "客观冷酷。  \nHTML\n\n系统张力： 【洞察者 ANL】是职场里的终极理性解构者"], "celebrity_hook": {"en": "Jonathan Ive (前 Apple 首席设计官 - 极简美学与硬核软硬件生态整合的代表)", "zh": "张小龙 (微信创始人 - 带有强烈极简与精细化筛选逻辑、对合作入口死死克制的产品教父)", "tw": "张小龙 (微信创始人 - 带有强烈极简与精细化筛选逻辑、对合作入口死死克制的产品教父)"}, "tier": "rare", "primary_id": "WEA", "secondary_id": "CUR", "inner_opposite_id": "OPR", "axis_num": 3, "axis_cn": "边界轴", "axis_en": "Boundary Axis", "axis_tension_cn": "专注 vs 跨界", "axis_tension_en": "Focus vs Synthesize"}, "ANL_ARC": {"id": 61, "name_cn": "架构·洞察者", "name_en": "The Algorithm Architect", "tagline_cn": "你拒绝一切玄学。你负责将错综复杂的现实商业，降维重构为严密的代码与算法母舰。", "description_cn": "算法建构师。主轴的因果推演力与副轴的宏观建构力完美合流。这类人是纯粹的第一性原理践行者。他们看待业务的视角极其冰冷和宏观——没有所谓的“运气”或“情怀”，所有的商业增长或组织内耗，在他们眼里都是数据流和底层架构因果关系的必然产物。 HTML + 1", "work_style_cn": "依赖极其详尽的数据埋点、严密的量化回归模型和底层技术框架的推演，拒绝任何形式的微观补丁和拍脑袋决策", "strengths_cn": ["极其恐怖的技术与趋势预测能力", "能从零开始搭建出具备极强数据动态吞吐与高护城河的底层系统"], "blindspots_cn": ["容易出现系统过于理性而缺乏人性弹性的情况，极易忽视团队在现实中无法被数字量化的疲惫、内讧或情感诉求"], "careers_cn": ["核心 AI 算法架构总监", "硬科技投研总监", "首席数据官（CDO）。  \nHTML\n+ 1"], "celebrity_hook": {"en": "Jensen Huang (NVIDIA 创始人 - 坚定的计算物理第一性原理建构者) HTML", "zh": "宿华 (快手联合创始人 - 算法与系统建构的典型代表) HTML", "tw": "宿华 (快手联合创始人 - 算法与系统建构的典型代表) HTML"}, "tier": "common", "primary_id": "ANL", "secondary_id": "ARC", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_DIS": {"id": 62, "name_cn": "破局·洞察者", "name_en": "The Vulnerability Hunter", "tagline_cn": "你的每一次破坏都不是因为愤怒，而是你在精算了几百个技术指标后，一枪打中了行业的死穴。", "description_cn": "漏洞猎人（做空者）。当洞察者的冷酷撞上破局者的颠覆欲，他们将成为资本市场或企业内卷中最危险的刺客。他们对权威没有丝毫敬畏，专门用显微镜去解构行业巨头或内部旧部门的财务报表、代码库和流程死角。一旦发现逻辑上无法自圆其说的致命漏洞，便会用极其精准的数据刀法给予致命一击。 HTML + 1", "work_style_cn": "长期处于静默期进行深度研究（Deep Dive），不轻易表态，一旦出手便是极具毁灭性、证据确凿的做空报告或降维算法替代", "strengths_cn": ["拥有行业大盘级别的致命盲点捕捉能力", "能通过无情的逻辑粉碎和套利，快速实现跨越式破局"], "blindspots_cn": ["带有强烈的做空和毁灭倾向，容易因为过度专注寻找“系统死穴”而丧失了在正面战场上进行长期耐心建设的耐心"], "careers_cn": ["顶级做空机构合伙人", "反垄断经济学家", "AI 漏洞挖掘与自动化替代架构师。  \nHTML\n+ 2"], "celebrity_hook": {"en": "Bill Ackman (华尔街著名维权投资者 / 做空鳄鱼) HTML", "zh": "大厂内审团队中，通过蛛丝马迹的底层财务与日志数据，一举清洗掉百亿规模腐败链条的硬核清道夫", "tw": "大厂内审团队中，通过蛛丝马迹的底层财务与日志数据，一举清洗掉百亿规模腐败链条的硬核清道夫"}, "tier": "common", "primary_id": "ANL", "secondary_id": "DIS", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_GUA": {"id": 63, "name_cn": "御防·洞察者", "name_en": "The Actuarial Deity", "tagline_cn": "你的世界里没有奇迹。你用最严密的概率公式，算死了黑天鹅降临的每一种路径。", "description_cn": "量化风控上帝。主轴的冷酷分析与副轴的防御本能完全绑定。他们是风险控制的终极形态，认为所有的危机（服务器宕机、合规暴雷、资金链断裂）都是因为之前的因果模型没有算准。他们拒绝相信任何人的口头保证，只对数据推演出的生存概率低头。 HTML + 1", "work_style_cn": "强依赖蒙特卡洛模拟、量化压力测试和严苛的自动化回归白皮书，实行强力风险指标一票否决制", "strengths_cn": ["能在极端混乱和高并发的市场震荡中，精算出成本收益比最完美的长期安全防线"], "blindspots_cn": ["容易陷入“数据隧道视野”，因为过分规避逻辑上可能存在的微小风险，而把企业最需要敏捷突击的创新业务彻底掐死在摇篮里。 HTML"], "careers_cn": ["首席风险控制官（CRO）", "高频量化对冲风控总监", "复杂灾备基础设施总工程师。  \nHTML\n+ 1"], "celebrity_hook": {"en": "Harry Markowitz (马科维茨，现代投资组合理论奠基人) HTML", "zh": "顶级金融集团或主权基金的首席风险官（CRO） HTML", "tw": "顶级金融集团或主权基金的首席风险官（CRO） HTML"}, "tier": "common", "primary_id": "ANL", "secondary_id": "GUA", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_PIO": {"id": 64, "name_cn": "远征·洞察者", "name_en": "The Trend Speculator", "tagline_cn": "别人在热点里疯狂 FOMO，而你在三年前的数据洪流里，就已经看到了今天风口的骸骨。", "description_cn": "前沿风口的技术捕手。主轴的因果剖析力结合了副轴的探索欲。他们对现有的、被炒热的成熟红海市场毫无感觉，专门喜欢在极度混乱、冷门且缺乏标准的前沿领域（如量子计算、前沿脑机接口、合成生物学）进行大规模的数据清洗与逻辑精算，寻找在未来具备非线性暴涨的商业奇点。 HTML + 1", "work_style_cn": "敏捷探索与硬核精算的结合。习惯用最低限度的数据模型去试探前线反馈，一经逻辑验证无误，则全速跟进", "strengths_cn": ["极高的新大陆红利捕捉准确度", "总能赶在资本泡沫破裂、市场严重内卷的三年前，完成最底层的铁血布局"], "blindspots_cn": ["容易陷入“理性超载”，在面对需要纯粹依靠感性情绪、审美、或非理性信仰来引爆的消费级大众赛道时，往往会因为算不出数字而错失战机"], "careers_cn": ["科技巨头首席战略官（CSO）", "前沿科技风险投资合伙人", "首席趋势精算师。  \nHTML\n+ 1"], "celebrity_hook": {"en": "Yuri Milner (DST Global 创始人 - 依靠独家科技生态数据模型，冷酷捕获跨国大盘红利的巨鳄) HTML", "zh": "顶级科技风投机构里，通过追踪全球开源代码库提交频次与顶尖论文引用率、精准捕获下一个硬科技独角兽的深析合伙人", "tw": "顶级科技风投机构里，通过追踪全球开源代码库提交频次与顶尖论文引用率、精准捕获下一个硬科技独角兽的深析合伙人"}, "tier": "common", "primary_id": "ANL", "secondary_id": "PIO", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_OPR": {"id": 65, "name_cn": "督工·洞察者", "name_en": "The Efficiency Taskmaster", "tagline_cn": "我不看你的工作态度，我只看你昨天的代码千行 Bug 率和系统吞吐量。数字代表一切。", "description_cn": "数字化工头。主轴的客观冷酷直接砸进了副轴的硬核执行力中。在这类人的字典里，没有所谓的“管理艺术”，只有“数学公式”。他们会把团队、流水线甚至每一个具体的研发节点全部解构为具体的 KPI 损耗矩阵，用冰冷客观的数据看板压榨出最后一丝效率红利。 HTML + 1", "work_style_cn": "依赖全自动的项目工时追踪系统、自动化的数据监控看板（Dashboard）和严格的代码审计，用指标替代一切无意义的开会与安抚。 HTML", "strengths_cn": ["能将组织的工程和管理损耗降到无限接近于零", "是大规模工业化阶段降本增效的终极利器"], "blindspots_cn": ["极其缺乏人情味，会将团队内的人性温度彻底蒸发，长期实施此种榨取式管理会导致团队丧失自发创新力，基层离职率居高不下。 HTML + 1"], "careers_cn": ["精益生产总监", "大规模云服务器效能精算专家", "大厂降本增效总指挥。  \nHTML\n+ 1"], "celebrity_hook": {"en": "Frederick Winslow Taylor (泰勒 - 科学管理原理之父，将工人动作和损耗精确量化到秒的极数者) HTML", "zh": "互联网巨头中，负责搭建并高频死磕算法派发及人员提效系统（如外卖骑手调度、精益生产控制）的量化运营高管 HTML", "tw": "互联网巨头中，负责搭建并高频死磕算法派发及人员提效系统（如外卖骑手调度、精益生产控制）的量化运营高管 HTML"}, "tier": "common", "primary_id": "ANL", "secondary_id": "OPR", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_WEA": {"id": 66, "name_cn": "织网·洞察者", "name_en": "The Network Arbitrageur", "tagline_cn": "所有的战略联姻都是虚伪的。我只看两个平台、多个生态节点之间的 API 调用流向与降维利润率。", "description_cn": "数据网络精算师。普通的织网者靠饭桌和商业情感来撮合资源，而他们则用纯粹的纳什均衡模型来审判所有的跨界合作。副轴的织网能力让他们能够看清跨行业、跨公司之间纵横交错的利益网，但他们的主轴促使他们只通过开放 API 的数据流、流量漏斗转换率来冷酷筛选核心节点。 HTML + 2", "work_style_cn": "强依赖接口数据清算、多方博弈数学模型、生态组件的 AB 测试", "strengths_cn": ["具备极强的防商业欺诈、防刷量能力", "能在一片混乱的联盟生态中，通过最轻的资产切走利润最厚的流量核心"], "blindspots_cn": ["偶尔会因为过于计较单点的数据得失，导致合作方觉得计算得太死、缺乏基本信任，从而让长周期的宏大生态合作产生阻碍"], "careers_cn": ["生态投资合伙人", "平台广告机制首席架构师", "首席创作者生态清算官。  \nHTML"], "celebrity_hook": {"en": "广告交易巨头（如 Google AdMob / DoubleClick 早期）背后的算法结算机制设计师", "zh": "大厂开放平台广告联盟 / 跨界流量清算系统的首席量化机制架构师 HTML", "tw": "大厂开放平台广告联盟 / 跨界流量清算系统的首席量化机制架构师 HTML"}, "tier": "common", "primary_id": "ANL", "secondary_id": "WEA", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_CAT": {"id": 67, "name_cn": "燃动·洞察者", "name_en": "The Messianic Intellect", "tagline_cn": "用神棍般的情绪温度去描述最冰冷的算法。你是那个在讲台上让所有人为底层代码流泪的冷面神父。", "description_cn": "智力布道师（冷面神父）。这类人奇迹般地解决了技术深度与商业煽动力对立的难题。主轴赋予他们坚不可摧的底层模型和因果逻辑，而副轴的点燃能力让他们掌握了如何挑逗人类情绪的秘诀。他们能把枯燥的分布式数据库或大模型底层架构，包装成一场“解救全人类生产力”的宗教级叙事。 HTML + 3", "work_style_cn": "完美的科技发布会演讲、高度兼具硬核数据与极强情绪反差的商业白皮书，通过智力降维打击与愿景感召同时收割投资人与工程师", "strengths_cn": ["拥有极强的行业话语权（Thought Leadership）定义能力", "能靠逻辑的纯粹与情绪的高温，极低成本地吸引顶级技术人才降薪加盟"], "blindspots_cn": ["如果底层的技术数据或业务指标被爆出无法造假的数据缺陷，其精心维护的“神坛”会瞬间引来逻辑理性的毁灭性清算"], "careers_cn": ["顶级科技巨头创始人", "首席产品布道师（Chief Evangelist）", "硬科技超级项目合伙人。  \nHTML\n+ 2"], "celebrity_hook": {"en": "Steve Jobs (在解释苹果产品软硬件底层因果关系时，具备恐怖现实扭曲场的产品布道师) HTML", "zh": "罗永浩 (在发布会上将硬核工业设计、算法逻辑用极致幽默与情绪张力包装得恰到好处的布道领袖) HTML", "tw": "罗永浩 (在发布会上将硬核工业设计、算法逻辑用极致幽默与情绪张力包装得恰到好处的布道领袖) HTML"}, "tier": "common", "primary_id": "ANL", "secondary_id": "CAT", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_DIP": {"id": 68, "name_cn": "融通·洞察者", "name_en": "The Analytical Diplomat", "tagline_cn": "我看穿了你们每一个派系的面具和底牌。我面带微笑，只是为了在因果链条里寻找最符合我利益的等式。", "description_cn": "灰度精算政客。在政治斗争激烈的集团高层或多方多头跨国博弈中，他们是极为长寿的智囊。他们从不参与情绪化的站队，副轴的斡旋能力让他们表面上八面玲珑、温和谦逊；但他们的主轴让他们在私下里将所有同事、股东的利益诉求与性格弱点，全部精算进了一张“职场权力沙盘”中，通过精准的出牌完成长周期权衡。 HTML + 1", "work_style_cn": "私密和谈、利益对齐（Stakeholder Alignment）、通过向对方提供极其精准、无法反驳的数据因果利益分析，让其自愿做出妥协。 HTML", "strengths_cn": ["极高的大型组织变革通过率", "能用冷冰冰的利益最大化逻辑，让两个原本要撕碎对方的敌对派系握手言和"], "blindspots_cn": ["容易因为一切都在“精算平衡”之内，导致管理动作过于四平八稳，缺乏带领组织在绝境中进行刺刀见红式搏杀的血性"], "careers_cn": ["集团跨国并购总操盘手", "复杂利益干系人对齐特使", "董事会首席清算与战略智囊"], "celebrity_hook": {"en": "Henry Kissinger (基辛格 - 以绝对理性、冷酷的国家利益因果为底色，主导均势外交的全球大棋局操盘手) HTML", "zh": "陆奇 (奇绩创坛创始人 - 在多方大厂派系林立的冲突中，能依靠极其纯粹的智力洞察与极高外交融通赢得所有人低头尊重的战略高管) HTML", "tw": "陆奇 (奇绩创坛创始人 - 在多方大厂派系林立的冲突中，能依靠极其纯粹的智力洞察与极高外交融通赢得所有人低头尊重的战略高管) HTML"}, "tier": "common", "primary_id": "ANL", "secondary_id": "DIP", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_SOV": {"id": 69, "name_cn": "掌控·洞察者", "name_en": "The Algorithmic Dictator", "tagline_cn": "不要试图隐瞒你的偷懒或背叛。在我设计的数字化监视网络里，你的一举一动都在实时显影。", "description_cn": "极权数字化监视者。这是一群将“数据分析”武器化为“统治手段”的铁血管理者。副轴的主权特质让他们具备变态的控制欲，他们要求对公司的数据流、资金流和人事底层拥有绝对集权。为此，他们会通过主轴在组织内建立起一套全方位的自动化报表审计、内网监控和日志留痕系统，任何在系统里产生的微小偏差，都会在他们的全面屏 Dashboard 上一键预警。 HTML + 2", "work_style_cn": "极致的 Top-down（自上而下决策）、数据接口权限高度中央集权隔离、对任何越线行为进行无情的全员通报清洗。 HTML", "strengths_cn": ["内部震慑力极其恐怖，能将集团内部的信息泄露、裙带关系和贪腐效率降低到行业最低"], "blindspots_cn": ["会彻底扼杀基层的自发创新火苗，由于全方位的无死角监控，中层高管会因为极度缺乏安全感而走向集体伪装和装死"], "careers_cn": ["集团内审与合规总监", "首席信息安全特权官（CISO）", "铁面重组清洗专家。  \nHTML\n+ 1"], "celebrity_hook": {"en": "J. Edgar Hoover (胡佛 - 前美国 FBI 局长，依靠建立全美最庞大、最严密的因果档案与监控网络实施长达数十年的幕后极权统治) HTML", "zh": "科技巨头内部，掌握最高反腐败、内审合规权，以冷酷著称的大厂“风控锦衣卫”掌门人 HTML", "tw": "科技巨头内部，掌握最高反腐败、内审合规权，以冷酷著称的大厂“风控锦衣卫”掌门人 HTML"}, "tier": "common", "primary_id": "ANL", "secondary_id": "SOV", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "ANL_CUR": {"id": 70, "name_cn": "精准·洞察者", "name_en": "The High-Fidelity Analyst", "tagline_cn": "大盘的垃圾信息再多也只是噪音。在我的显微镜下，数据只要有百万分之一的失真，整个报告就毫无价值。", "description_cn": "完美主义数据精算专家。高冷、极简、带有严重精神洁癖的极致分析者。主轴给他们深度的解构能力，而副轴的甄别挑剔让他们对研究报告、代码算法中的任何一丝冗余、脏数据或平庸的产品设计产生强烈的生理不适。他们绝不贪多，如果一个模型不能解释 100% 的底层因果，他们宁可无限延期，也绝不放过任何未达极致的细节。 HTML + 2", "work_style_cn": "极度克制的数据模型准入、严苛的像素级清洗、宁可推迟交付也必须死磕到底的盲审校准机制", "strengths_cn": ["能够产出在行业内具备教科书、艺术品级别的高保真（High-Fidelity）分析结果与数据架构", "品牌声誉极佳"], "blindspots_cn": ["极其容易在一些对商业流水大盘影响极小的“非核心、非致命细节”上陷入无休止的完美主义死循环，从而拖慢了前线业务线急需数据弹药的冲锋时间"], "careers_cn": ["AI 基础科学前沿研究领头人", "核心算法最高评审委员会主席", "精品独立应用首席机制设计师。  \nHTML\n\n矩阵 8：以【点燃者 CAT】为主型（10种组合）\n主轴核心： 感召", "情绪资本操盘", "愿景布道", "引爆群体行为。\n\n系统张力： 【点燃者 CAT】是组织中最强烈的能量源和现实扭曲场。他们不靠冰冷的数据或机械的流程来驱动世界"], "celebrity_hook": {"en": "顶级奢侈品集团（如 LVMH 投研线）或顶级智库中，对一份数据研报的调性、因果链条死死死卡住的高冷首席经济学家", "zh": "微信等大厂内部，死死守住底层用户行为数据模型、对任何带有营销垃圾属性的功能一票否决的清流产品评委 HTML", "tw": "微信等大厂内部，死死守住底层用户行为数据模型、对任何带有营销垃圾属性的功能一票否决的清流产品评委 HTML"}, "tier": "common", "primary_id": "ANL", "secondary_id": "CUR", "inner_opposite_id": "CAT", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_ARC": {"id": 71, "name_cn": "架构·点燃者", "name_en": "The Messianic System Prophet", "tagline_cn": "我不单是在卖一款产品，我是在为你推演人类文明的下一个数字神殿。", "description_cn": "宗教级产品大师。主轴狂热的群体引爆力与副轴极其严密的宏观建构力合流。他们具备一种稀缺的天赋：能把底层复杂的系统架构、技术演进路径，用极具宿命感和史诗感的宏大叙事包装出来。他们一开口，就能让原本枯燥的软硬件工程变成一场改变人类生活方式的“圣战”，让消费者为信仰买单，让工程师为理想卖命", "work_style_cn": "史诗级的舞台演讲、充满思想领导力（Thought Leadership）的行业白皮书、高度概念化且具备美学对称性的系统发布会", "strengths_cn": ["具备恐怖的品牌溢价创造力与无中生有的“现实扭曲场”", "能够给冰冷的技术注入灵魂，建立极高的用户心智垄断"], "blindspots_cn": ["容易在顶层愿景和宏大叙事里自我陶醉，如果缺乏硬核的工程团队在后方接盘，产品最终落地时容易货不对板，引发重大的信任崩塌"], "careers_cn": ["科技巨头灵魂创始人", "首席品牌布道师（Chief Evangelist）", "颠覆性新赛道冷启动旗手"], "celebrity_hook": {"en": "Steve Jobs (史蒂夫·乔布斯 - 将极致的软硬件架构与宗教般的现实扭曲场完美结合的终极模板)", "zh": "科技圈里能把一个大模型底座或操作系统，讲成是“重塑人类数字化生存空间”的教父级创始人", "tw": "科技圈里能把一个大模型底座或操作系统，讲成是“重塑人类数字化生存空间”的教父级创始人"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "ARC", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_DIS": {"id": 72, "name_cn": "破局·点燃者", "name_en": "The Revolutionary Flag-Bearer", "tagline_cn": "看看那座腐朽的帝国！跟我一起，砸碎旧世界的枷锁，去分食巨头的血肉！", "description_cn": "革命旗手、疯狂的行业颠覆者。当点燃者的煽动力碰上破局者的毁灭欲，会诞生出职场上最激进的反叛领袖。他们天然懂得如何寻找行业巨头的腐朽点，并将其放大为公众的集体愤怒。他们最擅长激发底层、边缘玩家或大众消费者的叛逆情绪，拉起一支充满狂热复仇心理的铁军，用暴风雨般的攻势撕裂既得利益者的防线", "work_style_cn": "充满煽动性的讨伐檄文、极具对抗性的公关战（PR War）、高调宣布全面打破行业暴利与陈规", "strengths_cn": ["极强的流量黑洞效应与低成本的群体动员能力", "是打破行业阶级固化、强行撕开红海市场缺口的核武器"], "blindspots_cn": ["毁灭欲过重而建设力不足。如果砸碎旧秩序后无法迅速转入常态化的精细化运营，团队会因为失去共同的“敌人”而陷入内耗与迷茫"], "careers_cn": ["高成长性野蛮突击型 CEO", "公关危机转机操盘手", "激进市占率掠夺总指挥"], "celebrity_hook": {"en": "Travis Kalanick (Uber 创始人 - 以狂暴、对抗和点燃全球司机/乘客情绪来撕裂传统出租车行业的破局者)", "zh": "早期高调宣称“用硬件免费击碎行业暴利”，用微博矩阵引发全民狂欢并全面掀翻传统家电/手机战场的颠覆者", "tw": "早期高调宣称“用硬件免费击碎行业暴利”，用微博矩阵引发全民狂欢并全面掀翻传统家电/手机战场的颠覆者"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "DIS", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_GUA": {"id": 73, "name_cn": "御防·点燃者", "name_en": "The Ideological Guardian", "tagline_cn": "外面的世界充满谎言与动荡。留在这里，我们彼此守护，这里是唯一的诺亚方舟。", "description_cn": "精神避风港的筑网者、内向型文化图腾。普通的点燃者向外冲锋，而他们向内凝聚。副轴的守护者特质让他们对外界的风险和不确定性极其敏感。他们通过输出共同的价值观、安全感与防御话术，在组织内部建立起一种近乎家庭或隐秘社群的强壁垒文化。他们用情绪将团队死死黏合在一起，让员工产生“生是公司人，死是公司魂”的极高忠诚度", "work_style_cn": "高频的内部文化洗礼、极具仪式感的内部团建、建立密不透风的价值观考核与一票否决制", "strengths_cn": ["拥有行业顶级的组织向心力与抗离职率", "在企业遭遇外部舆论危机或寒冬裁员时，团队能展现出恐怖的抱团抗压能力"], "blindspots_cn": ["极易在组织内部演变成思想上的因循守旧与排外主义，拒绝吸收带有破坏性的外部新鲜血液，导致创新力慢性退化"], "careers_cn": ["企业文化终极架构师", "大厂首席人才官（CHRO）", "危机时期组织稳定总指挥"], "celebrity_hook": {"en": "Howard Schultz (星巴克创始人 - 通过倡导“第三空间”和对员工的家庭式关怀，建立起庞大而温情的情绪防御帝国)", "zh": "某些极度强调“家文化”或特定互助信仰，员工极少流失、视公司利益为家族荣誉的隐形冠军企业掌门人", "tw": "某些极度强调“家文化”或特定互助信仰，员工极少流失、视公司利益为家族荣誉的隐形冠军企业掌门人"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "GUA", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_PIO": {"id": 74, "name_cn": "远征·点燃者", "name_en": "The Messianic Explorer", "tagline_cn": "目标是星辰大海！不要问我后勤和退路，天亮前，跟我一起冲向宇宙的无尽深空！", "description_cn": "疯狂的淘金热引爆者、远征军军长。主轴的能量倾泻伴随着副轴强烈的先行者基因。他们对守成毫无兴趣，一辈子都在寻找尚未被开垦的蛮荒之地（如火星移民、加密浪潮、AI 具身智能）。他们最擅长在外界都看不懂、甚至认为是一片死地的黑天鹅领域，凭空描绘出黄金遍地的未来图景，并用这种狂热灼烧第一批极客和冒险家，组建起全速奔袭的星际舰队", "work_style_cn": "极具未来感的愿景发布、闪电式的资源集结、靠高亢的个人英雄主义色彩和不确定性进行对赌", "strengths_cn": ["拥有无人能及的无人区冷启动能力", "能将原本九死一生的试错过程，包装成极具感召力的史诗远征，极低成本吸引天才同行"], "blindspots_cn": ["由于副轴过于激进，他们对后勤保障、财务合规和精细化数据极度厌烦，如果战线拉得太长而迟迟没有战果，团队容易客死他乡"], "careers_cn": ["颠覆性前沿科技创始人", "高风险新大陆业务总指挥", "企业创新实验室（X-Lab）掌门人"], "celebrity_hook": {"en": "Elon Musk (埃隆·马斯克 - 经典名言“愿景必须大到让人兴奋”，用火星移民和改变人类能源结构的狂热点燃世界的超级远征者)", "zh": "大厂内部专门负责远征出海、开拓全新高风险硬件品类，靠两页 PPT 就能在硅谷和深圳拉起顶级天才突击队的疯子高管", "tw": "大厂内部专门负责远征出海、开拓全新高风险硬件品类，靠两页 PPT 就能在硅谷和深圳拉起顶级天才突击队的疯子高管"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "PIO", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_WEA": {"id": 75, "name_cn": "织网·点燃者", "name_en": "The Viral Ecosystem Preacher", "tagline_cn": "不需要我给你发工资，加入我的精神网络，我们一起去收割这个时代的红利分配权。", "description_cn": "传销级生态大师、去中心化社区的圣徒。主轴的情绪引爆力与副轴的轻资产整合力碰撞，会产生极具裂变效应的化学反应。他们是构建开源社区、DAO（去中心化自治组织）或创作者经济的绝顶高手。他们不依靠传统的雇佣合同，而是通过设计一套极其精妙的精神信仰与共同分账机制，让成千上万外部独立的个体、小 B 商家、开发者自发自费地为他们的平台拼死搬砖", "work_style_cn": "社区布道（DevRel）、裂变式机制设计、高频的情绪资本众筹、将利益分配机制包装为“重塑行业正义”", "strengths_cn": ["极其恐怖的组织边界蔓延速度", "能以极轻的自有资产控制极其庞大、兼具生产力与传播力的超级生态网络"], "blindspots_cn": ["这种生态高度依赖群体情绪的半衰期。一旦底层承诺的变现红利长期无法兑现，狂热的信徒会在一夜之间变成最极端的反噬者和声讨者"], "careers_cn": ["全球创作者生态总监", "Web3/DAO 核心发起人", "开放平台商业化生态总经理"], "celebrity_hook": {"en": "Vitalik Buterin (V神 - 以极具精神感召力的先知形象，编织出全球庞大以太坊开发者与资本生态的布道者)", "zh": "某些将大厂流量、私域节点与几十万中小实体商家通过信仰与平台机制死死绑定在一起的超级社交生态操盘手", "tw": "某些将大厂流量、私域节点与几十万中小实体商家通过信仰与平台机制死死绑定在一起的超级社交生态操盘手"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "WEA", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_ANL": {"id": 76, "name_cn": "极数·点燃者", "name_en": "The Rational Cult Master", "tagline_cn": "我用最无懈可击的数学公式和数据埋点，向你证明为什么我的信仰是唯一的真理。", "description_cn": "披着数据外衣的冷面神父、高段位逻辑洗脑者。这是一群极度罕见且危险的组合：拥有主轴极强的情绪煽动力，却同时掌握了副轴深析洞察的冷酷武器。他们从不进行毫无根据的瞎吼，他们会用极其严密的数据流、因果链和数学模型，把他们的愿景和 KPI 包装成逻辑上完全无懈可击的“必然真理”。他们能让团队在被极其精准地量化压榨的同时，内心还充满着为了崇高科学而献身的自豪感", "work_style_cn": "数据高度脱敏但极具说服力的 Dashboard 演示、用严密的因果逻辑链条进行的一对多精神催眠、科学神话构建", "strengths_cn": ["他们的洗脑具有极高的技术门槛和抵抗力，因为底层逻辑无缝闭环，能让极度聪明的极客和数据分析师也心甘情愿地臣服"], "blindspots_cn": ["极其容易走向数字极权与智力欺诈的边缘。一旦外界用更高阶的第一性原理砸碎其赖以生存的底层假设，整个帝国的逻辑支柱会瞬间崩塌"], "careers_cn": ["核心 AI 产品首席增长官（CGO）", "前沿量化投研说客", "数据驱动型现象级应用掌门人"], "celebrity_hook": {"en": "Elizabeth Holmes (伊丽莎白·霍姆斯 - Theranos 创始人，曾用极其硬核的技术名词和数据图表，让整个美国政商精英为一滴血的谎言疯狂)", "zh": "某些将增长黑客（Growth Hacker）理论、量化行为学发挥到极致，让团队和大众在数据陷阱里产生宗教般狂热的顶尖增长高管", "tw": "某些将增长黑客（Growth Hacker）理论、量化行为学发挥到极致，让团队和大众在数据陷阱里产生宗教般狂热的顶尖增长高管"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "ANL", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_OPR": {"id": 77, "name_cn": "执行·点燃者", "name_en": "The Trench General", "tagline_cn": "把你们的借口留给火葬场！看看老子的刺刀指向哪里，今晚天亮前，用肉身给我把山头拿下来！", "description_cn": "战壕里的铁血政委。普通的执行者靠制度逼人，而他们靠肉身点燃。主轴让他们具备极强的职场情绪资本操盘力，副轴则给予了他们对工程交付结果近乎变态的执念。在项目面临断水断粮、连续通宵一个月、士气即将彻底崩溃的至暗时刻（Crisis Time），他们会第一个把睡袋搬进办公室，用高亢的激情和带头吃苦的肉身，强行将下属内心的疲惫转化为军人式的交付圣战", "work_style_cn": "极具现场感染力的誓师大会、充满血性的对赌协议、高频的“身先士卒”行为（如带头熬夜写核心代码或跑地推）", "strengths_cn": ["拥有恐怖的组织极限抗压与动员能力，能够带领团队完成在外界看来绝对不可能按时交付的“自杀式工程”"], "blindspots_cn": ["这种高强度的情绪榨取是有生理极限的。如果项目交付后没有给予团队对等的巨额现金或休假回报，热血降温后会迎来极度反噬的集体离职潮"], "careers_cn": ["极限攻坚项目总指挥", "企业生死存亡期变革落地操盘手", "硬核突击业务线总经理"], "celebrity_hook": {"en": "Lee Iacocca (李·艾科卡 - 克莱斯勒汽车前总裁，在企业濒临倒闭、全面重组时，用极致的执行力与铁血煽动力重组车企的战鼓者)", "zh": "狼性巨头里，专门负责承接“几乎无法完成的死期交付任务”，带领几百号研发在封闭基地里打地铺、用命换产品上线的核心铁腕副总裁", "tw": "狼性巨头里，专门负责承接“几乎无法完成的死期交付任务”，带领几百号研发在封闭基地里打地铺、用命换产品上线的核心铁腕副总裁"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "OPR", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_DIP": {"id": 78, "name_cn": "妥协·点燃者", "name_en": "The Velvet Preacher", "tagline_cn": "我理解你们所有人的委屈和利益。来，让我们把这些摩擦放下，为了那个伟大的终局各让一步。", "description_cn": "天才的矛盾化解者、和稀泥界的艺术家。当点燃者的高温碰上斡旋者的天鹅绒手套，会诞生出大型组织政治深水区里最完美的调和剂。他们天然具备极高的情商，能够一眼看穿跨部门博弈里各方的委屈、面子与核心利益。他们不会硬推执行，而是通过副轴高超的外交太极，面带微笑地在各派系之间游走，用一个更大、更有包容性的“未来共同利益”将冲突融化", "work_style_cn": "充满情感共鸣的私下茶叙、极具艺术感的利益分摊、在公开场合将功劳全部推给合作方以换取核心节点的放行", "strengths_cn": ["极高的复杂项目推进率", "擅长把死板的利益针锋相对，转化为在温情和稀泥中共同推进行业合纵连横的优雅游戏"], "blindspots_cn": ["有时为了照顾方方面面的情绪和政治正确，会导致最终交付的战略方案过于四平八稳、缺乏绝对的攻击性与锋利度"], "careers_cn": ["多方战略重组落地协调官", "集团政企合作高级副总裁", "超级跨国项目群总负责人（PMO Director）"], "celebrity_hook": {"en": "Bill Clinton (比尔·克林顿 - 具备顶级个人魅力与超强情商平衡手腕，能在多方政治死结中让所有人微笑着达成妥协的典范)", "zh": "复杂合资企业或多方利益交织的超级生态里，专门负责打通跨部门死结、在笑声与面子里让重大项目丝滑落地的资深公共事务高管", "tw": "复杂合资企业或多方利益交织的超级生态里，专门负责打通跨部门死结、在笑声与面子里让重大项目丝滑落地的资深公共事务高管"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "DIP", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_SOV": {"id": 79, "name_cn": "威压·点燃者", "name_en": "The Imperial Cult Overlord", "tagline_cn": "顺从我的意志，你将成为新世界的共同主宰；违背我的信仰，你将在组织内被彻底抹杀。", "description_cn": "独裁信仰教主、带有精神统治欲的暴君。主轴对群体的引爆力遇上副轴极致的主权控制欲，会产生一种具有极强压迫感和精神控制色彩的管理威权。他们不满足于只控制员工的上班时间和 KPI，他们要求员工全盘交出思想主导权。他们通过将自己神格化，在部门内部实行严格的自上而下绝对服从。在他们的地盘里，任何对战略的质疑都被等同于对“信仰的背叛”，会招致无情的清洗", "work_style_cn": "强自上而下的意志灌输、严厉的思想对齐会议（Alignment）、对任何独立思考或异见者进行毫无情面的公开羞辱与淘汰", "strengths_cn": ["在企业面临重大生存危机的生死决战期，能够用铁流一体的绝对步调和精神控制，形成冷兵器时代般的集权杀伤力"], "blindspots_cn": ["会彻底消灭组织的底层自发创新红利。由于威压过重，中高层会迅速沦为不敢承担任何责任、只会疯狂拍马屁和机械盲从的精神奴隶"], "careers_cn": ["危机企业铁血重组清洗专家", "高压狼性销售网络总司令", "集权制集团董事会主席"], "celebrity_hook": {"en": "Steve Ballmer (史蒂夫·鲍尔默 - 微软前 CEO，以极度狂暴的舞台煽动力与强势的铁血治军集权著称的威压点燃者)", "zh": "某些带有强烈个人英雄主义、在集团内部拥有说一不二的绝对话语权，推行军事化精神洗脑与严苛 KPI 连坐的创始人", "tw": "某些带有强烈个人英雄主义、在集团内部拥有说一不二的绝对话语权，推行军事化精神洗脑与严苛 KPI 连坐的创始人"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "SOV", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "CAT_CUR": {"id": 80, "name_cn": "极致·点燃者", "name_en": "The High-Taste Aesthetic Curator", "tagline_cn": "大众是盲目的。我负责用神迹般的工艺与完美主义品味，点燃他们灵魂深处对顶奢的终极渴望。", "description_cn": "高冷的品味审判官、精品主义的疯子。主轴给他们引爆群体的渴望，但副轴的甄别挑剔让他们对任何平庸、跟风、妥协的“地摊货”产生强烈的生理排斥。他们是彻底的完美主义布道者，坚信只有将品味、设计美学和细节打磨到人类工业天花板的作品，才有资格去“启蒙”和“点燃”大众。他们宁可让团队通宵将一个UI动画重做一万遍，也绝不放过任何未达极致的细节", "work_style_cn": "极度克制的产品迭代发布、亲自下场卡死最后一个关于视觉与感官的体验细节、用近乎艺术展的调性来举办每一次商业亮相", "strengths_cn": ["能够给产品注入极高的艺术性、信仰溢价和奢侈品级别的客单价，是企业品牌声誉和审美护城河的最强定海神针"], "blindspots_cn": ["极其容易由于过度死磕一些对业务大盘流水影响极小的“非核心、纯美学细节”而导致项目无限期延期，急死前方负责增长和销售的野战团队"], "careers_cn": ["核心产品最终体验裁决官（CXO）", "高端硬科技/独立奢侈品线 Product VP", "顶级创意品牌主理人。\n\n\n\n矩阵 9：以【斡旋者 DIP】为主型（10种组合）\n主轴核心： 共识构建", "多方调解", "利益对齐", "在冲突中寻找最大公约数。\n\n系统张力： 【斡旋者 DIP】是组织中最不可或缺的润滑剂与粘合剂。他们对权力对抗没有兴趣"], "celebrity_hook": {"en": "Jonathan Ive (前 Apple 首席设计官 - 将极致的极简美学、材质工艺包装成让全球果粉为之流泪的品味圣徒)", "zh": "华语圈中对字体、动画过渡、包装阻尼感有着强迫症般死磕，并能在产品发布会上用极致高冷的美学叙事引爆全网的产品教父", "tw": "华语圈中对字体、动画过渡、包装阻尼感有着强迫症般死磕，并能在产品发布会上用极致高冷的美学叙事引爆全网的产品教父"}, "tier": "scarce", "primary_id": "CAT", "secondary_id": "CUR", "inner_opposite_id": "ANL", "axis_num": 4, "axis_cn": "驱动轴", "axis_en": "Drive Axis", "axis_tension_cn": "理性 vs 感召", "axis_tension_en": "Analyze vs Evangelize"}, "DIP_ARC": {"id": 81, "name_cn": "架构·斡旋者", "name_en": "The Consensus Architect", "tagline_cn": "你是那个在所有人都在吵架的时候，悄悄把共识画成一张所有人都认可的系统蓝图的造局者。", "description_cn": "共识蓝图大师。主轴的调解能力与副轴宏大的建构力完美结合。他们在听完所有人的诉求后，能够把复杂的利益冲突转化为一套所有人都能接受的底层架构设计。他们的调解成果不是一纸和约，而是一个真正可以运行的系统", "work_style_cn": "在多方对齐会议前进行深度的个人访谈，将所有诉求转化为系统需求文档，用架构图替代文字争论，让所有人指着同一张图说\"这个我能接受", "strengths_cn": ["调解成果落地率极高", "在利益高度冲突的环境下推动复杂基础设施升级", "跨部门项目的天然粘合剂"], "blindspots_cn": ["为追求最大公约数可能在底层设计上做出不必要的妥协", "调解耗时较长，快速决策时可能滞后"], "careers_cn": ["技术标准委员会主席", "企业架构转型总顾问", "跨组织协议设计专家", "复杂联盟技术负责人"], "celebrity_hook": {"en": "Vint Cerf（互联网联合发明人）——设计TCP/IP时确保所有不同网络和系统都能接受，把技术共识变成了改变世界的架构", "zh": "陆奇（奇绩创坛）——在百度复杂的多方利益格局中推动AI架构转型，用极高的融通力让不同派系都愿意服从同一套技术路线", "tw": "陆奇（奇绩创坛）——在百度复杂的多方利益格局中推动AI架构转型，用极高的融通力让不同派系都愿意服从同一套技术路线"}, "tier": "common", "primary_id": "DIP", "secondary_id": "ARC", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_DIS": {"id": 82, "name_cn": "破局·斡旋者", "name_en": "The Velvet Revolutionary", "tagline_cn": "我面带微笑，在优雅的举杯碰撞中，完成了让所有人都无法察觉的政变。", "description_cn": "丝绒杀手、温柔颠覆者。他们把\"破局\"包装得极为温和。在极其复杂的官僚体系或多方势力格局中，他们表面上跟谁都是朋友，却在私下悄悄达成了将旧利益集团连根拔起的最终共识。当破坏终于发生，所有人都以为这是\"自然演进", "work_style_cn": "在无数次私密饭局和闭门会议中，通过精准的利益重新分配，让旧秩序的守卫者自愿成为新秩序的受益者，从而在无声中完成权力结构的彻底重组", "strengths_cn": ["颠覆的过程几乎没有阻力", "在政治生态极复杂的大型组织中推动根本性变革", "极低的政治风险，很少成为任何人的靶子"], "blindspots_cn": ["变革速度较慢，需要大量时间铺垫", "有时过于迂回，在需要直接行动的危机时刻反应迟缓"], "careers_cn": ["企业合规与重组顾问", "多方跨境破产清算专家", "组织变革温和推进者", "政企关系战略总顾问"], "celebrity_hook": {"en": "Nelson Mandela——通过极其柔和与高超的外交智慧，彻底重组南非的国家权力结构，让压迫者自愿成为和解的参与者", "zh": "周恩来——在极端复杂的政治格局中，用高超的斡旋能力悄然推动了无数在表面上\"不可能发生\"的历史转折", "tw": "周恩来——在极端复杂的政治格局中，用高超的斡旋能力悄然推动了无数在表面上\"不可能发生\"的历史转折"}, "tier": "common", "primary_id": "DIP", "secondary_id": "DIS", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_GUA": {"id": 83, "name_cn": "御防·斡旋者", "name_en": "The Alliance Shield Keeper", "tagline_cn": "我不打硬仗，我负责确保每一个可能撕裂联盟的裂缝，在它变成深渊之前就被我悄悄弥合。", "description_cn": "联盟防御大师、关系网络的稳定锚。他们深知真正的安全不来自硬实力，而来自关系网络的稳固。副轴的守护者特质让他们对可能破坏信任的任何信号极其敏感。他们是多方合作体系中最重要的\"预防性外交官\"，专注于在裂缝出现之前就完成修补", "work_style_cn": "高频的非正式关系维护、在利益分配出现倾斜时主动发起\"校准对话\"、通过在非关键利益上的主动让步换取核心合作关系的长期稳定", "strengths_cn": ["联盟的长期稳定性极高，内耗成本远低于行业平均", "能在利益格局发生变化时迅速完成关系重新校准"], "blindspots_cn": ["为维护和谐有时会回避必要的直接冲突", "在需要快速决断的危机时刻，保全关系的本能可能与决策效率产生矛盾"], "careers_cn": ["集团战略联盟副总裁", "公共事务总监", "跨国生态风险防范专家", "多边合作关系总负责人"], "celebrity_hook": {"en": "Robert Hannigan（前英国GCHQ主管）——主导构建跨国网络安全情报联盟，用高超的多边协调防止联盟从内部瓦解", "zh": "复杂合资企业中，负责平衡各方大股东利益、确保多年合作关系不因短期利益冲突而断裂的温和派高管", "tw": "复杂合资企业中，负责平衡各方大股东利益、确保多年合作关系不因短期利益冲突而断裂的温和派高管"}, "tier": "common", "primary_id": "DIP", "secondary_id": "GUA", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_PIO": {"id": 84, "name_cn": "远征·斡旋者", "name_en": "The Frontier Diplomat", "tagline_cn": "你是那个在未知星系与土著酋长优雅碰杯，在无声间为帝国带回整个星系开采权的穿梭外交官。", "description_cn": "拓荒外交官、新大陆关系先锋。一般的先行者锋芒毕露，容易在新地盘遭到旧利益集团的联合绞杀。而他们则靠高超的斡旋技巧面带微笑地在新旧势力间长袖善舞，把开辟新业务做成了一场利益均摊的丝滑谈判", "work_style_cn": "在进入新市场或新赛道前，先花大量时间建立与当地关键利益方的个人关系，通过精妙的灰度合作与退让换取核心业务的准入许可", "strengths_cn": ["极高的新市场政治生存率", "把死板的竞争关系转化为多方共赢的生态合作", "进入新领域的阻力远小于强攻路线"], "blindspots_cn": ["为照顾各方利益有时会在产品纯粹性或推进速度上做出不必要的妥协", "关系建立耗时较长，在窗口期极短的市场机会面前可能贻误战机"], "careers_cn": ["全球政府关系副总裁", "复杂牌照准入特使", "跨行业战略重组总操盘手", "出海合规与政府关系负责人"], "celebrity_hook": {"en": "Eric Schmidt（前Google CEO）——专门处理谷歌全球扩张早期的政府关系与复杂多方博弈，靠外交手腕打开了一个又一个新市场", "zh": "大厂里负责带队杀入传统垄断行业并成功摆平各方行政关系的GR顶级高管", "tw": "大厂里负责带队杀入传统垄断行业并成功摆平各方行政关系的GR顶级高管"}, "tier": "common", "primary_id": "DIP", "secondary_id": "PIO", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_OPR": {"id": 85, "name_cn": "督工·斡旋者", "name_en": "The Diplomatic Executor", "tagline_cn": "我不需要强迫任何人，在所有人都微笑着点头之后，项目就已经按时交付了。", "description_cn": "共识驱动的高效推进者。他们深知在充满政治内耗的大型组织里，硬推执行只会玉石俱焚。副轴的执行力让他们在摆平各方利益之后，会以同样高效的节奏推动事情真正落地。他们是那种让所有人都感到被尊重的同时，事情也莫名其妙地按时完成了的人", "work_style_cn": "在项目推进的每个关键节点之前做一轮快速的\"感知检查\"，提前识别并化解潜在阻力。执行中同步做关系维护，从不把推进任务和维护人心视为两件分开的事", "strengths_cn": ["大型组织项目的实际落地率极高，政治阻力极低", "把执行效率和组织和谐两者兼顾得最好"], "blindspots_cn": ["有时为维护和谐推迟必要的困难决定", "当推进速度和所有人满意出现冲突时会陷入纠结"], "careers_cn": ["跨国复杂项目群总监", "跨职能团队负责人", "变革管理专家", "企业间合资业务交付负责人"], "celebrity_hook": {"en": "Sheryl Sandberg（Meta COO）——在高管内耗与扎克伯格激进想法之间，靠高超的外交与执行手腕将Facebook商业化平稳落地", "zh": "复杂合资企业里专门负责打通跨部门死结、推动核心项目按时上线的资深项目总监", "tw": "复杂合资企业里专门负责打通跨部门死结、推动核心项目按时上线的资深项目总监"}, "tier": "common", "primary_id": "DIP", "secondary_id": "OPR", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_WEA": {"id": 86, "name_cn": "编网·斡旋者", "name_en": "The Cross-Domain Bridge Builder", "tagline_cn": "我把来自不同世界的人连在一张桌子上，然后让他们发现，彼此其实一直在用不同的语言说同一件事。", "description_cn": "跨界共识织造师。副轴的织网能力让他们能够把原本完全不在同一个世界里的人连接起来，创造出意想不到的合作可能。他们在不同领域、不同文化、不同背景的人之间架设桥梁，让他们能够真正对话", "work_style_cn": "主动寻找不同领域之间的\"翻译机会\"，用双方都能理解的语言重新表达对方的诉求，让不可能的合作变成自然而然的结果", "strengths_cn": ["在跨行业、跨文化合作中的沟通效率远超同类", "能发现单一领域参与者看不见的跨界协同机会"], "blindspots_cn": ["在单一领域内的深度可能弱于专家型人才", "过于注重各方理解和接受，有时使推进节奏慢于市场要求"], "careers_cn": ["跨国战略联盟总监", "跨行业生态合作负责人", "国际商务拓展副总裁", "开放平台合作总经理"], "celebrity_hook": {"en": "Tim Berners-Lee（万维网发明人）——设计万维网时确保它能被所有不同背景的人使用，通过开放标准连接了整个人类知识体系", "zh": "李开复（创新工场）——连接中美科技生态近三十年，成为两个世界之间最重要的翻译者和桥梁", "tw": "李开复（创新工场）——连接中美科技生态近三十年，成为两个世界之间最重要的翻译者和桥梁"}, "tier": "common", "primary_id": "DIP", "secondary_id": "WEA", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_ANL": {"id": 87, "name_cn": "洞析·斡旋者", "name_en": "The Analytical Mediator", "tagline_cn": "我理解你们每个人——不只是感受，还有数据。在我眼里，每一场冲突都是一个待解的方程式。", "description_cn": "理性外交官、数据驱动的调解专家。副轴的洞察力让他们能够在调解中看穿每一方真正的利益诉求，而不是被情绪表达所迷惑。他们的调解方案不只是让人感到被理解，还建立在对各方利益的精确分析之上，因此执行阻力极低", "work_style_cn": "在调解之前做深度的信息收集和利益分析，用数据和逻辑而非情绪来呈现各方的真实诉求，让所有人都无法反驳的理性框架成为共识的基础", "strengths_cn": ["调解方案的逻辑严密性极高，难以被质疑", "能识别情绪表达背后的真实利益诉求", "在复杂的多方谈判中提供可量化的决策依据"], "blindspots_cn": ["过于理性有时无法充分回应纯情绪性的诉求", "数据收集和分析过程可能使调解节奏慢于实际需要"], "careers_cn": ["集团跨国并购总操盘手", "复杂利益干系人对齐特使", "战略智囊与董事会顾问", "数据驱动的谈判专家"], "celebrity_hook": {"en": "Henry Kissinger（基辛格）——以绝对理性的国家利益因果为底色，主导均势外交的全球大棋局，让情绪让位于战略逻辑", "zh": "陆奇——在复杂的多方利益格局中，用极其纯粹的逻辑洞察力而非政治情商赢得了所有派系的信任与尊重", "tw": "陆奇——在复杂的多方利益格局中，用极其纯粹的逻辑洞察力而非政治情商赢得了所有派系的信任与尊重"}, "tier": "common", "primary_id": "DIP", "secondary_id": "ANL", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_CAT": {"id": 88, "name_cn": "点燃·斡旋者", "name_en": "The Inspiring Consensus Builder", "tagline_cn": "我理解所有人的委屈，然后我用那份理解，点燃了大家愿意一起往前走的热情。", "description_cn": "有温度的催化外交官。副轴的点燃能力让他们的调解不只是化解冲突，而是能够在共识达成之后，让所有人带着真正的热情而不是勉强的妥协一起行动。他们是最能把\"不得不做\"变成\"真心想做\"的调解者", "work_style_cn": "在化解冲突的同时，找到并放大各方共同的价值观和目标，用情感共鸣而非利益交换来建立更持久的合作意愿", "strengths_cn": ["合作关系的质量高于纯利益驱动的联盟，更具韧性", "能在负面情绪浓厚的环境中重新建立集体积极性"], "blindspots_cn": ["情绪资本有消耗极限，高频点燃后需要充分的恢复时间", "在纯粹的利益博弈场景中，情感驱动的策略可能被认为不够硬核"], "careers_cn": ["首席文化官", "危机时期组织重建专家", "企业文化总监", "跨部门协同项目总负责人"], "celebrity_hook": {"en": "Barack Obama（美国前总统）——让共识感觉像灵感，在分裂的政治环境中用情感共鸣建立了超越利益的联盟", "zh": "俞敏洪——在最黑暗的时刻让学生看见出路，用真正的共情建立了三十年最强的教育品牌忠诚度", "tw": "俞敏洪——在最黑暗的时刻让学生看见出路，用真正的共情建立了三十年最强的教育品牌忠诚度"}, "tier": "common", "primary_id": "DIP", "secondary_id": "CAT", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_SOV": {"id": 89, "name_cn": "御权·斡旋者", "name_en": "The Shadow Sovereign", "tagline_cn": "你不命令任何人，但在所有人都自愿走向同一个方向之后，那个方向一直都是你想要的。", "description_cn": "影子权威、温柔的主权者。他们通过让所有人都感到被理解和被尊重，把自己的意志自然地融入了集体的共识之中。他们是那种结果永远指向自己判断方向的人，但没有人觉得被强迫过", "work_style_cn": "在多方对齐的过程中，巧妙地引导讨论方向，让有利于自己判断的选项看起来像是众人自然达成的共识，而非某人的强行要求", "strengths_cn": ["影响力极强但几乎不产生阻力", "能在官僚体制或强势竞争对手面前以极低的政治成本实现目标"], "blindspots_cn": ["过于迂回的策略在需要明确授权和快速决策时效率很低", "影响力过于隐性，在需要公开信用背书的场合可能无法被充分认可"], "careers_cn": ["影子顾问与幕后战略家", "政府关系总监", "董事会独立董事", "首席谈判代表"], "celebrity_hook": {"en": "Jacinda Ardern（前新西兰总理）——用共情和调解取代权威和命令，却实现了前所未有的政策目标，权威通过理解而非强制建立", "zh": "周恩来——几十年在极端复杂的政治格局中，用高超的斡旋能力形成了几乎不依赖正式职权的巨大影响力", "tw": "周恩来——几十年在极端复杂的政治格局中，用高超的斡旋能力形成了几乎不依赖正式职权的巨大影响力"}, "tier": "common", "primary_id": "DIP", "secondary_id": "SOV", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "DIP_CUR": {"id": 90, "name_cn": "极选·斡旋者", "name_en": "The Precision Peacemaker", "tagline_cn": "我不追求让所有人满意的和平，我只寻找真正值得达成的共识。", "description_cn": "精准调解师、有判断力的外交官。副轴的甄别力让他们对\"假共识\"和\"和稀泥\"有着本能的排斥——他们知道有些冲突不应该被调解，因为其中一方本来就是错的。他们的调解有立场，有底线，是最有判断力的外交官", "work_style_cn": "在调解之前先判断\"这场冲突的解决方向是什么\"，然后带着明确的目标去建立共识。他们会在私下明确告知某一方哪些诉求是不合理的，然后帮助他们找到体面的退出方式", "strengths_cn": ["调解的结果质量高，不是廉价的\"面子和平\"而是真正的利益重组", "能识别并拒绝不值得维持的关系或合作"], "blindspots_cn": ["有时过于坚持底线，可能被认为缺乏灵活性", "拒绝和稀泥的风格在某些文化环境中可能被视为不够圆融"], "careers_cn": ["高级法律顾问与调解专家", "企业并购与整合谈判代表", "战略合作伙伴审计官", "复杂冲突仲裁专家。\n\n\n矩阵 10：以【主权者 SOV】为主型（10种组合）\n主轴核心： 极强的掌控欲", "建立绝对权威", "铁血 Top-down（自上而下决策）"], "celebrity_hook": {"en": "Tony Blair（前英国首相）——在极为复杂的北爱尔兰和平进程中，坚持寻找真正可持续的政治解决方案而非表面停火", "zh": "王石（万科）——在中国房地产最混乱的年代坚持拒绝不合理的商业合作，用甄别力守住了商业底线和个人声誉", "tw": "王石（万科）——在中国房地产最混乱的年代坚持拒绝不合理的商业合作，用甄别力守住了商业底线和个人声誉"}, "tier": "common", "primary_id": "DIP", "secondary_id": "CUR", "inner_opposite_id": "SOV", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_ARC": {"id": 91, "name_cn": "架构·主权者", "name_en": "The Empire Founder", "tagline_cn": "我不单是要统治这个部门，我是要在这片荒芜的市场上，垂帘听政、垂范百世。", "description_cn": "帝国缔造者。主轴对中央集权的绝对渴望，与副轴宏大的战略建构力完美合流。这类人是天生的顶级封建君王。他们看待权力的视角极其宏观：他们不仅要求当下的绝对服从，更致力于设计一套在法理上、技术底层上和组织架构上让其统治能够千秋万代的“底层协议”", "work_style_cn": "制定长周期的集团母法与顶层晋升宪章、垄断最核心的技术总线或账目分配权、推行极其严密的阶级汇报链条（Hierarchy）", "strengths_cn": ["具备极强的大局观与长效基业长青设计能力，能够一手将混乱的小作坊改造成坚不可摧、秩序井然的商业帝国"], "blindspots_cn": ["顶层设计过于中央集权，底层为了迎合“圣意”往往层层加码，导致组织陷入严重的制度化僵死，极易在外部敏捷小团队的侧翼偷袭下反应迟钝"], "careers_cn": ["集团终身董事长", "控股母公司 CEO", "复杂政企生态的最高规则制定者"], "celebrity_hook": {"en": "Augustus Caesar (屋大维 - 罗马帝国的实际奠基人，将独裁意志无缝嵌入复杂国家制度设计的典范)", "zh": "传统巨头集团中，花十年时间完成“削藩”、集权并重组集团底层利益分配规则的铁血创始人", "tw": "传统巨头集团中，花十年时间完成“削藩”、集权并重组集团底层利益分配规则的铁血创始人"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "ARC", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_DIS": {"id": 92, "name_cn": "破局·主权者", "name_en": "The Rebel Tyrant", "tagline_cn": "老子砸碎前任的旧摊子，不是为了给你们自由，而是为了由我来重新定义这里的规矩。", "description_cn": "暴君起义者、清洗型空降兵。当主权者的统治欲碰上破局者的毁灭能量，会诞生出职场上最具杀伤力的“权力清道夫”。他们对任何现存的既得利益集团和旧制度充满敌意，空降后的第一件事就是用暴力手段撕碎现有的派系平衡。但他们的破坏带有明确的私欲——清场之后，必须立刻建立属于他们个人的绝对独裁领地", "work_style_cn": "闪电式的组织清洗、废除所有旧有会议和汇报线、越权直接对核心资产实施一刀切的物理控制", "strengths_cn": ["能够以最快、最残暴的速度砸碎盘根错节的组织利益死结，强行收回流落在外的权力"], "blindspots_cn": ["破坏性过大，如果清洗后无法迅速带来真金白银的业务增长，会因为手段过于残酷而引发组织大面积的“兵变”或人才集体出逃"], "careers_cn": ["高危变革期接管 CEO", "大厂核心亏损业务清洗人", "危机重组委员会主席"], "celebrity_hook": {"en": "Elon Musk (在收购 Twitter 早期，以铁血暴君姿态一夜之间清洗掉大部分高管和员工，强行打上个人烙印的破局统治者)", "zh": "大厂空降兵高管，专门负责清洗前任留下的老部下，并带上尚方宝剑重新圈地盘的硬核整顿者", "tw": "大厂空降兵高管，专门负责清洗前任留下的老部下，并带上尚方宝剑重新圈地盘的硬核整顿者"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "DIS", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_GUA": {"id": 93, "name_cn": "御防·主权者", "name_en": "The Citadels Sovereign", "tagline_cn": "我的领地哪怕缩小一圈，也绝不允许任何一颗不稳定的钉子混进我的核心内阁。", "description_cn": "铁牢典狱长、绝不妥协的防御型领主。普通的集权者热衷于对外扩张，而他们则受到了副轴守护者特质的强烈阉割与固化。他们认为“控制风险的唯一手段就是控制人”。他们具有变态的地盘意识和极度多疑的政治性格，宁可牺牲业务的扩张速度，也必须确保现有领地内的每一封邮件、每一笔预算、每一个核心高管都在其绝对可控的无菌环境里", "work_style_cn": "实行极度严苛的背调与忠诚度考核、设立多重信息隔离墙（Need-to-know basis）、对任何风吹草动的离职倾向或越线沟通实施饱和式封杀", "strengths_cn": ["极高的防腐败、防信息泄露和防战略暴雷能力", "在行业大寒冬时，其绝对集权的防御领地是企业最后的核心壁垒"], "blindspots_cn": ["组织文化会变得极度压抑和窒息，下属人人自危、只求无过不求有功，导致部门彻底丧失自发的市场捕食能力"], "careers_cn": ["集团首席合规控制官", "绝对核心命脉部门总经理", "家族企业首席内阁大总管"], "celebrity_hook": {"en": "J. Edgar Hoover (胡佛 - 前美国 FBI 局长，将防范风险与极端的个人控制欲绑定，建立起密不透风的信息隔离帝国的铁腕掌门)", "zh": "大厂或传统集团里，掌控最核心钱袋子、章子，且背景极度深厚、多疑，任何财务合规不签字就寸步难行的铁面风控老臣", "tw": "大厂或传统集团里，掌控最核心钱袋子、章子，且背景极度深厚、多疑，任何财务合规不签字就寸步难行的铁面风控老臣"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "GUA", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_PIO": {"id": 94, "name_cn": "远征·主权者", "name_en": "The Conquering Warlord", "tagline_cn": "把地图拿来！我要把老子的军旗，插到每一个前人从未征服过的蛮荒星头！", "description_cn": "铁血督战队、远征军暴君。主轴的集权统治欲与副轴野性的先行者天赋碰撞。这是一群具有强烈扩张侵略性的商业军阀。他们对守在家里玩办公室政治不感兴趣，一辈子都在疯狂地为公司开疆拓土。但他们带兵打仗的逻辑非常冷酷：我带你们去最危险的前线淘金，但战场上的生死和军纪必须由我一人说了算，胆敢后退或质疑者，直接斩首", "work_style_cn": "军事化的对赌协议、长距离且高压的异地大纵深突击、高频的自上而下目标灌输，用胜利的战果来消弭过程中的暴政", "strengths_cn": ["具备恐怖的无人区抢滩登陆能力和闪电战速度", "能在一片混乱和一无所有的新市场中，用铁腕纪律砸出第一座由公司绝对控盘的桥头堡"], "blindspots_cn": ["战线拉得太长，且后方留守能力极差。一旦前线攻坚受阻，长期积压的军法威压极易在瞬间引发前线地推或研发团队的集体反水"], "careers_cn": ["跨境出海独立业务线 CEO", "高风险硬科技赛道突击队 Captain", "集团新业务孵化总司令"], "celebrity_hook": {"en": "Genghis Khan (成吉思汗 - 将极致的远征侵略欲望与军事法典 Top-down 集权完美融合的冷酷征服者)", "zh": "科技巨头早期负责出海或下沉市场突击，带几百号人封闭开发或疯狂扫街，把 KPI 军令状当成脑袋挂在裤腰带上的硬核野战军长", "tw": "科技巨头早期负责出海或下沉市场突击，带几百号人封闭开发或疯狂扫街，把 KPI 军令状当成脑袋挂在裤腰带上的硬核野战军长"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "PIO", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_OPR": {"id": 95, "name_cn": "执行·主权者", "name_en": "The Overlord Contractor", "tagline_cn": "不要跟我谈你的客观困难，老子的日历表上只有按时交付。交不出结果，你就连人带座位一起消失。", "description_cn": "军事化 KPI 考核官、没有感情的工程督工。主轴的统治欲直接砸进了副轴的结果导向交付里。他们是职场上的“铁面将军”，将整个团队当成了一台精准咬合的精密战争机器。他们极度排斥基层的任何借口和所谓的“过程努力”，视“未能按时交付”为对他们个人领主权威的直接挑衅，惩罚手段极为露骨且毫无留情", "work_style_cn": "依赖极其严密且高频的节点对齐（Daily Check-in）、红黑榜公开处刑、将全员绩效与核心里程碑死死捆绑", "strengths_cn": ["拥有组织内最硬核、最恐怖的工程执行落地成功率", "在面临死线（Deadlines）或重大系统转型时，能强行按住全员的脑袋保质保量完成交付"], "blindspots_cn": ["完全抹杀基层的自发主观能动性，长期实施这种高压恐吓式管理会导致团队沦为不敢承担任何创新风险、只会机械盲从的执行奴隶"], "careers_cn": ["集团独立交付 VP", "危机项目重组专家", "传统制造/供应链精益化铁血操盘手"], "celebrity_hook": {"en": "Gwynne Shotwell (SpaceX 总裁 - 虽有 ARC 色彩，但在执行马斯克指令、死卡火箭高频商业发射死线时，展现出不容任何人讲借口的铁面主权者姿态)", "zh": "大厂里专门负责接手“Red Project（严重卡死且延期的危机项目）”，进去后实施军事化作息、谁延期就直接开除谁的铁血项目总指挥", "tw": "大厂里专门负责接手“Red Project（严重卡死且延期的危机项目）”，进去后实施军事化作息、谁延期就直接开除谁的铁血项目总指挥"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "OPR", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_WEA": {"id": 96, "name_cn": "织网·主权者", "name_en": "The Ecosystem Despot", "tagline_cn": "你可以加入我的生态网里赚取财富，但你必须明白，我才是这个数字帝国里唯一的宗主国。", "description_cn": "生态集权君王。主轴的绝对控制欲遇上副轴的跨界整合力。这类人是极其高明的“影子宗主”。他们不会蠢到用重资产把整个产业链全买下来，而是通过设计底层唯一的账号体系、垄断性的支付接口或核心的流量分账规则，在轻资产的资源拼图里设立中央集权。他们允许成千上万的第三方软件商、外包商在他们的土地上跳舞，但生杀大权全部在他们的 Dashboard 上一键决定", "work_style_cn": "强自上而下的生态规则定义权、对外部合作方实施高度的信息与数据隔离、通过严厉的下架和封禁权力维持统治", "strengths_cn": ["拥有恐怖的局部护城河控制力，能够以最高效率调动全生态的长尾资源迎战外部竞争，将资源杠杆玩到了极致"], "blindspots_cn": ["剥削感和威压感过重，容易把生态内部的小玩家和合作伙伴逼到对立面，极易招致监管层的反垄断绞杀或合作方的集体逃逸"], "careers_cn": ["超级开放平台掌门人", "集团投资生态控制官", "行业标准联合会中方最高裁决主席"], "celebrity_hook": {"en": "Larry Ellison (Oracle 创始人 - 极度强势的软件生态及集权网络统治者，对不听话的合作方和客户实施铁血法务起诉与控制)", "zh": "超级平台型 App 的掌门人，掌握着几百万商户或创作者的生死流量大权，制定着绝对不容置疑的分账红线", "tw": "超级平台型 App 的掌门人，掌握着几百万商户或创作者的生死流量大权，制定着绝对不容置疑的分账红线"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "WEA", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_ANL": {"id": 97, "name_cn": "极数·主权者", "name_en": "The Algorithmic Autocrat", "tagline_cn": "你的情绪和忠诚在数学模型面前毫无意义。在我设计的全方位监视看板里，你的偷懒一秒钟就会显影。", "description_cn": "极权数字化监视者。这是一群将“数据分析”与“代码审计”武器化为“统治锁链”的冷酷管理者。副轴的深析洞察力让他们看穿了人性的所有伪装。他们不听中层的汇报，只相信系统底层的调用日志（Log）。他们通过在整个公司和业务流里建立起一套无死角的自动化审计与数据埋点网络，把所有人的工作效率、甚至是离职倾向全部解构为具体的概率预测，实施像素级的精准集权", "work_style_cn": "依赖实时全面屏 Dashboard 监控、权限极度集中的特权账号隔离制、用算法和自动化绩效结果一键进行全员通报清洗", "strengths_cn": ["内部震慑力极其恐怖，能将集团内部的信息泄露、裙带腐败和摸鱼效率拉低到行业最低水平"], "blindspots_cn": ["极度缺乏人文关怀，全面抹杀人性，会导致中高层由于极度缺乏安全感而走向集体伪装、装死或在数据上做手脚，彻底蒸发组织的创新弹性"], "careers_cn": ["集团内审与合规总监", "首席信息安全特权官（CISO）", "量化效能最高评估裁决官"], "celebrity_hook": {"en": "Jeremy Bentham (功利主义哲学家，其设计的“圆形正监视网”是此类人数字化统治的终极心智模板)", "zh": "科技巨头内部，手握核心内审合规权、通过抓取全员内网聊天记录与行为模型、一举送几百人进去的硬核风控“锦衣卫”掌门人", "tw": "科技巨头内部，手握核心内审合规权、通过抓取全员内网聊天记录与行为模型、一举送几百人进去的硬核风控“锦衣卫”掌门人"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "ANL", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_CAT": {"id": 98, "name_cn": "燃动·主权者", "name_en": "The Imperial Cult Overlord", "tagline_cn": "爱戴我，或者惧怕我，你没有第三种选择。我的意志就是这个团队唯一的终极信仰。", "description_cn": "独裁信仰教主、带有精神统治欲的暴君。主轴极致的主权控制欲遇上副轴对群体的点燃煽动力，会产生一种具有极强思想精神控制色彩的管理威权。他们不满足于只控制员工的上班时间和 KPI，他们要求员工全盘交出思想主导权。他们通过将自己神格化、英雄化，在领地内部推行高亢的集体狂热。在他们的地盘里，任何对战略的质疑都被等同于对“信仰的叛变”，会招致无情的清洗与公开羞辱", "work_style_cn": "强自上而下的思想对齐会议（Alignment）、极具情绪张力的公开宣讲、对任何不合群的异见者实施毫无情面的全员公开边缘化", "strengths_cn": ["在企业面临重大生存危机的生死决战期，能够用铁流一体的绝对步调和精神控制，形成冷兵器时代般的集权杀伤力"], "blindspots_cn": ["极度容易陷入信息茧房。因为威压和洗脑过重，身边会迅速围满不敢说真话、只会疯狂拍马屁和机械盲从的“精神奴隶”，导致对市场真实危机的彻底盲视"], "careers_cn": ["铁血重组清洗专家", "高压销售网络大总管", "精神图腾型集团董事会主席"], "celebrity_hook": {"en": "Steve Ballmer (史蒂夫·鲍尔默 - 微软前 CEO，以极度狂暴的舞台煽动力与强势的铁血治军集权著称的威压者)", "zh": "某些带有强烈个人英雄主义、在集团内部拥有说一不二的绝对话语权，推行军事化精神洗脑与严苛 KPI 连坐的创始人", "tw": "某些带有强烈个人英雄主义、在集团内部拥有说一不二的绝对话语权，推行军事化精神洗脑与严苛 KPI 连坐的创始人"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "CAT", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_DIP": {"id": 99, "name_cn": "妥协·主权者", "name_en": "The Velvet Overlord", "tagline_cn": "我面带微笑地给你让步和面子，只是为了让你能在我的太极手推下，乖乖走进老子早就画好的围栏里。", "description_cn": "天鹅绒手套里的铁腕领主、高超的政治博弈家。这是一群极度长寿、深不见底的顶级组织高层。他们虽然主轴有着极强的主权控制欲，但副轴高超的外交手腕与斡旋智慧让他们学会了“将刀藏在棉花里”。他们在公开场合从来不拍桌子，永远八面玲珑、温和谦逊，甚至主动在非核心利益上向旁系派系让步。但他们所做的一切太极推手，都是为了在长周期里神不知鬼不觉地切断对方的退路，完成温水煮青蛙式的绝对控盘", "work_style_cn": "频繁的私密茶叙、闭门和谈、通过利益的微调和面子平衡（Stakeholder Alignment）来交换核心主权岗位的否决权", "strengths_cn": ["极高的大型组织政治生存率与集权通过率", "擅长把死板的刺刀见红转化为在各方笑声中悄然完成的“权力中央集权”"], "blindspots_cn": ["权力游戏玩得太深、太长，有时会导致组织内部的政治空气过于粘稠，中层在看清其“笑面虎”的本质后，可能会产生极深的隐性防御和戒备"], "careers_cn": ["复杂合资企业中方最高实际掌权人", "集团董事会首席清算与战略智囊", "跨国大盘权力重组幕后操盘手"], "celebrity_hook": {"en": "Cardinal Richelieu (黎塞留 - 法国红衣主教，在错综复杂的欧洲多头政治博弈中，靠高超外交手腕为法兰西王权完成绝对集权的幕后黑手)", "zh": "巨头集团高层里，从不站队、对谁都客客气气，但每一次集团架构调整，其地盘和核心嫡系都会悄然扩大一倍的资深政治副总裁", "tw": "巨头集团高层里，从不站队、对谁都客客气气，但每一次集团架构调整，其地盘和核心嫡系都会悄然扩大一倍的资深政治副总裁"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "DIP", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "SOV_CUR": {"id": 100, "name_cn": "精准·主权者", "name_en": "The Micro-Pixel Monarch", "tagline_cn": "别跟我谈什么大盘大局，只要老子视线所及的范围内有一颗像素的失真，你整个部门的预算立刻全部作废。", "description_cn": "硬核像素独裁者、强迫症式的统治狂。主轴对地盘的控制欲与副轴极致的甄别挑剔完美结合，产生了整个矩阵中最折磨下属的“微观管理暴君（Micromanager）”。一般的集权者只管大权、不管细节，而他们则把统治权延伸到了像素级和微米级。他们天然缺乏对员工技术品味的信任，对交付物的表面工艺、文案的标点符号、甚至是PPT的配色有着近乎变态的苛求，必须由他们一人亲自御览放行", "work_style_cn": "极其漫长且近乎变态的亲自下场卡死最后一个关于细节、体验和美学的评审会议，实行严苛的“天子一票否决制”", "strengths_cn": ["能将原本普通的业务在极致高压的挑剔下，生生打磨出具备全行业最高天花板审美、工艺与品质的“神级作品”，是品牌声誉的最高锚定者"], "blindspots_cn": ["极其容易由于过度死磕一些对业务大盘流水影响极小的“非致命、非核心细节”而导致重大项目严重延期，且由于其微观管理插手过深，会导致中高层彻底放弃独立思考与决策"], "careers_cn": ["核心产品最终体验独裁裁决官", "精品硬件/科技品线最高掌门人", "品牌声誉最高天花板守门人。\n\n\n矩阵 11：以【连接者 CON】为主型（10种组合）\n主轴核心： 开放管道", "高频交互", "全向信息枢纽", "无歧视准入。\n\n系统张力： 【连接者 CON】是组织与市场中最活跃的流动性媒介。不同于织网者（WEA）带着强烈的利益拼图和目的性去整合资源"], "celebrity_hook": {"en": "Steve Jobs (在其回归苹果中期，将极致的美学甄别与绝对的自上而下像素级微观管理控制欲结合得淋漓尽致的暴君暴政形态)", "zh": "科技/游戏巨头中，对核心产品的界面流畅度、ICON 阴影过渡死磕到让研发团队又恨又爱、不亲自点头产品绝不能上线的顶级高冷产品教父", "tw": "科技/游戏巨头中，对核心产品的界面流畅度、ICON 阴影过渡死磕到让研发团队又恨又爱、不亲自点头产品绝不能上线的顶级高冷产品教父"}, "tier": "rare", "primary_id": "SOV", "secondary_id": "CUR", "inner_opposite_id": "DIP", "axis_num": 5, "axis_cn": "权力轴", "axis_en": "Power Axis", "axis_tension_cn": "共识 vs 权威", "axis_tension_en": "Consensus vs Sovereignty"}, "CON_ARC": {"id": 101, "name_cn": "架构·连接者", "name_en": "The Ecosystem Overpass", "tagline_cn": "我不定义谁是赢家，我只负责设计一条让所有人都能无缝并线、全速狂飙的生态立交桥。", "description_cn": "生态立交桥。主轴无歧视的开放管道属性，与副轴宏大的系统建构力完美结合。这类人是互联网平台或数字化基础设施的顶级架构师。他们看待商业的视角不是“如何击败对手”，而是“如何设计一套极其包容的底层协议（Protocol），让竞争对手也不得不跑在我的管道上”", "work_style_cn": "制定极致标准化的开放接口文档、高并发的数据总线设计、追求平台整体调用量（API Calls）而非单点利润率", "strengths_cn": ["具备极高的系统格局与长效的生态吞吐力", "能将原本割裂的、碎片化的行业痛点，生生烫平成一个多方共生的高速流量枢纽"], "blindspots_cn": ["由于架构过于追求包容与无门槛，容易在平台早期混入低质、黑产等噪音节点，对底层的流量过滤与治理成本提出极高挑战"], "careers_cn": ["首席平台架构师（Chief Platform Architect）", "数字化基础设施总指挥", "开放协议联盟主席"], "celebrity_hook": {"en": "Tim Berners-Lee (万维网之父 - 坚持将 WWW 协议完全开源、无歧视免费开放给全人类连接的终极连接架构师)", "zh": "大厂内部专门负责设计底层跨业务中台、开放平台公共网关，不参与前端内卷、只追求全集团数据高频互调的首席系统架构师", "tw": "大厂内部专门负责设计底层跨业务中台、开放平台公共网关，不参与前端内卷、只追求全集团数据高频互调的首席系统架构师"}, "tier": "common", "primary_id": "CON", "secondary_id": "ARC", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_DIS": {"id": 102, "name_cn": "破局·连接者", "name_en": "The Friction Disrupter", "tagline_cn": "行业老大的护城河不是高科技，而是信息不对称。我今天就拉起一条直连管道，砸碎所有中间商。", "description_cn": "流量中介粉碎机、去中心化突击手。当连接者的全向交互能力碰上破局者的颠覆能量，他们会成为传统分销体制或垄断巨头的噩梦。他们对“行业潜规则”和高昂的中间抽成产生本能的排斥，最擅长利用先进的技术工具建立两端直连通道（如 D2C 模式或去中心化撮合系统），强行撕开既得利益者的垄断黑盒", "work_style_cn": "闪电式发布零门槛直连工具、饱和式公关曝光行业价格水分、通过将流量直接导向长尾生产者来实施降维破局", "strengths_cn": ["具备恐怖的单点爆破力与流量虹吸效应，能在极短时间内靠“去中间化”赢得海量用户的用脚投票"], "blindspots_cn": ["容易沦为纯粹的“价格破坏者”，如果砸碎旧有的利益分配体系后，无法迅速建立起确保两端长期合规与服务履约的常态机制，平台容易走向无序混乱"], "careers_cn": ["颠覆性撮合平台 GM", "D2C 创新业务负责人", "流量套利破局专家"], "celebrity_hook": {"en": "Brian Chesky (Airbnb 创始人 - 用一个纯粹的直连管道打破传统酒店业边界，让全球房东与房客自由连接的破局者)", "zh": "早期做网络直销、二手车直连平台或货运撮合平台，靠“没有中间商赚差价”的极简逻辑把传统线下黑中介一枪爆头的铁血跨界高管", "tw": "早期做网络直销、二手车直连平台或货运撮合平台，靠“没有中间商赚差价”的极简逻辑把传统线下黑中介一枪爆头的铁血跨界高管"}, "tier": "common", "primary_id": "CON", "secondary_id": "DIS", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_GUA": {"id": 103, "name_cn": "御防·连接者", "name_en": "The Safe Harbor Router", "tagline_cn": "无论外面的监管风暴和数据黑客多么猖獗，进了我这条管道，你的隐私和资产就进了避风港。", "description_cn": "流量安全港、数据隐私长城。主轴的高频信息交换受到副轴守护者特质的强烈钳制与赋能。他们不追求盲目的流量扩张，而是将全部精力放在“管道本身的绝对纯净与合规”上。他们坚信只有极致的安全，才能带来最高频的信任交互", "work_style_cn": "推行全链路端到端加密（End-to-End Encryption）、零知识证明（Zero-Knowledge）、在管道关键节点设立严苛的自动化审计与反洗钱/反作弊一票否决机制", "strengths_cn": ["拥有无可挑剔的合规与信任壁垒", "是企业在处理跨境数据流、金融清算或核心敏感机密时最不可或缺的底层安全路由器"], "blindspots_cn": ["容易因为过度陷入对合规、隐私和多重加密细节的死磕，导致系统交互体验出现延迟，在追求快速粗放迭代的消费级大众市场容易被嫌弃"], "careers_cn": ["首席隐私官（CPO）", "金融清算管道总负责人", "跨境数据合规与灾备专家"], "celebrity_hook": {"en": "Pavel Durov (Telegram 创始人 - 顶住全球多方主权压力，死死守住端到端加密与用户无门槛连接隐私底线的守卫者)", "zh": "顶级金融巨头或跨境电商结算中心里，专门负责打通跨境多币种合规通道、用最严密风控确保万亿级资金丝滑流转的首席合规官", "tw": "顶级金融巨头或跨境电商结算中心里，专门负责打通跨境多币种合规通道、用最严密风控确保万亿级资金丝滑流转的首席合规官"}, "tier": "common", "primary_id": "CON", "secondary_id": "GUA", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_PIO": {"id": 104, "name_cn": "远征·连接者", "name_en": "The Frontier Connector", "tagline_cn": "旧市场的红利已经干涸。跟我一起，把连接的管道铺向尚未通网的无人区！", "description_cn": "商业丝绸之路的筑路工、新大陆连接先锋。主轴的管道搭建渴望与副轴强烈的先行者基因相融。他们对在成熟市场里死磕存量毫无兴趣，天然渴望带领团队冲向未知的新生代赛道（如出海新兴市场、低轨卫星通信、前沿 Web3 交互网络）。他们不自己下场做内容，而是专职在蛮荒无人区搭建第一条信息与物流的“高速公路”", "work_style_cn": "极其敏捷的异地冷启动、依靠高频的BD和两端资源试探快速建立第一条通路，边跑通边修补（Run and patch）", "strengths_cn": ["具备无与伦比的“新大陆基建冷启动能力”", "总能在行业风口彻底爆发的前夜，卡死新旧市场之间唯一的连接卡位"], "blindspots_cn": ["由于副轴过于激进，往往在基建管道铺设完成后缺乏精细化运营和收费闭环的耐心，容易出现“前人栽树，后人乘凉”的情况，被后进的精细化对手摘了桃子"], "careers_cn": ["全球新业务基建负责人", "出海物流/支付通道线 GM", "高风险硬科技基建拓荒 Captain"], "celebrity_hook": {"en": "Starlink (星链计划早期技术与商业化推动者 - 致力于在地球任何无人区建立无歧视准入通信管道的远征军)", "zh": "大厂出海大潮中，不参与前端 App 卷短视频，而是专门在非洲、东南亚死磕底层网络加速、本地化移动支付基建通道的低调高管", "tw": "大厂出海大潮中，不参与前端 App 卷短视频，而是专门在非洲、东南亚死磕底层网络加速、本地化移动支付基建通道的低调高管"}, "tier": "common", "primary_id": "CON", "secondary_id": "PIO", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_OPR": {"id": 105, "name_cn": "执行·连接者", "name_en": "The High-Throughput Contractor", "tagline_cn": "不要跟我讲什么虚无的情怀。我的任务就是把两端的交付链条彻底打通，少跑一单都是我的失职。", "description_cn": "高通量工程督工、高频交付机器。主轴对连接通量的追求，直接在副轴结果导向的超强执行力下固化。他们是典型的“修路加催单”型硬核管理者，对管道内信息的停滞、系统的延迟或订单的卡顿产生极强的生理厌恶，会动用一切工程手腕强行提升系统整体的吞吐量（Throughput）", "work_style_cn": "依赖精密的工时与流量看板、推行全自动的性能监控与报警机制、谁在交付链条上掉链子直接全员通报处分", "strengths_cn": ["拥有组织内最硬核的“通道疏通力”", "极其擅长在高并发、高压力的重大战役（如电商大促、系统大迁移）中确保全盘管道零宕机、满负荷高效运转"], "blindspots_cn": ["管理动作过于机械和冷酷，容易为了死卡“系统通量”而过度压榨团队的精力，将基层研发或运维人员当成流水线上的机械元件"], "careers_cn": ["首席运营官（COO）", "超级高并发调度总指挥", "精益供应链通量操盘手"], "celebrity_hook": {"en": "Jeff Bezos (贝索斯早期形态 - 将亚马逊定位为全球效率最高的商品与信息流转管道，用铁血指标死卡物流交付时效的执行狂人)", "zh": "大厂内部专门负责双十一、跨年晚会等超大规模流量洪峰调度，按秒死卡全平台链路响应时间的硬核工程运维副总裁", "tw": "大厂内部专门负责双十一、跨年晚会等超大规模流量洪峰调度，按秒死卡全平台链路响应时间的硬核工程运维副总裁"}, "tier": "common", "primary_id": "CON", "secondary_id": "OPR", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_ANL": {"id": 106, "name_cn": "极数·连接者", "name_en": "The Social Data Radar", "tagline_cn": "人情和关系会说谎，但用户在平台上的高频交互日志、调用关系和数据热力图，从来不骗人。", "description_cn": "社交数据雷达、网络拓扑精算师。普通的连接者靠高情商和饭局来维系人际网络，而他们则把连接和交互做成了纯粹的数学建模。副轴的深析洞察力让他们对所有的交互行为（谁和谁发了消息、哪两个接口在频繁调用、流量的留存衰减率）进行像素级的数据清洗与量化归因，在错综复杂的连接网里寻找那条成本收益比最优的数学公式", "work_style_cn": "依赖高级图数据库（Graph Databases）、网络拓扑结构推演、量化用户行为行为学，用冷冰冰的数据看板审判所有合作通道的价值", "strengths_cn": ["具备降维级别的“风控与异常流量识别力”", "能在一片混乱的高频交互中，通过算法精准算出未来的流量风口和核心杠杆节点"], "blindspots_cn": ["极其容易陷入“数据隧道视野”，将活生生的人和用户情感冷酷地等同于一串代码或活跃度指标，容易忽视品牌调性等无法被量化的软性资产"], "careers_cn": ["首席数据官（CDO）", "社交网络机制设计总监", "AI 自动化流量清算架构师"], "celebrity_hook": {"en": "Mark Zuckerberg (扎克伯格早期 - 将人类所有的社交关系、高频互动全部解构为纯粹的数据网络拓扑图，用算法理性统治连接的数网先驱)", "zh": "大厂内部专门负责设计用户画像、社交关系链挖掘、或负责千人千面广告分发系统（ADX）底层连接逻辑的首席数据科学家", "tw": "大厂内部专门负责设计用户画像、社交关系链挖掘、或负责千人千面广告分发系统（ADX）底层连接逻辑的首席数据科学家"}, "tier": "common", "primary_id": "CON", "secondary_id": "ANL", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_CAT": {"id": 107, "name_cn": "燃动·连接者", "name_en": "The Top PR Wave-Rider", "tagline_cn": "我不需要创造任何内容，我只需要在对的时间、把对的人聚在一起，就能引爆全网的舆论海啸。", "description_cn": "顶级公关弄潮儿、超级社群引爆者。主轴无歧视的开放管道属性，与副轴宗教般的群体点燃能量发生激烈的化学反应。这类人是公关界与社群经济里的无冕之王。他们天然具备极强的情绪资本操盘力，最擅长在纷繁复杂的职场噪音中抓取群体的最大公约数情绪，拉起一条连接数十万核心粉丝、KOL和媒体的超级情感通路，一键引爆现象级声量", "work_style_cn": "充满情感张力的发布会策划、高频的媒体与大 V 私密茶叙、极具病毒式裂变效应的社交话题设计", "strengths_cn": ["拥有恐怖的“舆论四两拨千斤”能力", "能靠极低的成本在极短时间内为品牌或产品注入巨大的情感溢价与群体认同"], "blindspots_cn": ["这种高挥发性的情绪流量是有极短半衰期的。如果公关热度引爆后，后方的产品、履约团队没有跟上，容易引来群体巨大的失望与舆论反噬"], "careers_cn": ["集团首席品牌官（CBO）", "全球公共事务副总裁", "现象级创作者生态主理人"], "celebrity_hook": {"en": "Richard Branson (理查德·布兰森 - 维珍集团创始人，永远处于镁光灯中心，擅长把各种跨界连接活动变成点燃大众情绪的行为艺术大师)", "zh": "科技/汽车大厂里手握全网大 V 关系链，只要公司一发新车或新品，就能在一夜之间让全网共同为之高潮的明星级公关/市场副总裁", "tw": "科技/汽车大厂里手握全网大 V 关系链，只要公司一发新车或新品，就能在一夜之间让全网共同为之高潮的明星级公关/市场副总裁"}, "tier": "common", "primary_id": "CON", "secondary_id": "CAT", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_DIP": {"id": 108, "name_cn": "妥协·连接者", "name_en": "The Velvet Intermediary", "tagline_cn": "在利益撕扯的修罗场里，我是那个永远不带任何偏见、微笑着听完你们所有人委屈的首席润滑剂。", "description_cn": "天鹅绒滑道、优雅的利益对齐专家。在大型国企、多方跨国集团或大厂内讧严重的深水区里，一般的连接者很容易被派系冲突的流弹击中。而他们则凭借副轴高超的外交智慧与太极推手，在所有人面前都保持“绝对中立、人畜无害、无歧视倾听”的白天使形象。他们把管道连接做成了一场充满面子妥协与灰色利益均摊的优雅游戏", "work_style_cn": "频繁的闭门闭门听证会、私密咖啡叙事、通过在非核心细节上频繁让步来换取跨部门核心接口的放行与互通", "strengths_cn": ["拥有行业顶级的“政治生存率”与“死局盘活率”", "能让两个原本老死不相往来、甚至要撕碎对方的敌对部门，在他的管道里微笑着达成跨系统打通"], "blindspots_cn": ["有时为了照顾各方的情绪和政治平衡，会在管道设计中加入太多的灰色补丁与冗余流程，牺牲掉了系统绝对的流转速度与锋利度"], "careers_cn": ["集团公共事务高管", "复杂合资企业中方协调官", "大型组织项目管理办公室（PMO）总监"], "celebrity_hook": {"en": "Ban Ki-moon (潘基文 - 典型温和、中立，在各大主权国家利益冲突中通过极高交互手腕维持联合管道运转的外交典范)", "zh": "大厂内部面对十几个占山为王的业务诸侯，专门负责出面拉通集团年度跨部门协同、让所有人都能在笑声里把数据和预算交出来的老练 PMO 掌门人", "tw": "大厂内部面对十几个占山为王的业务诸侯，专门负责出面拉通集团年度跨部门协同、让所有人都能在笑声里把数据和预算交出来的老练 PMO 掌门人"}, "tier": "common", "primary_id": "CON", "secondary_id": "DIP", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_SOV": {"id": 109, "name_cn": "掌控·连接者", "name_en": "The Pipeline Sovereign", "tagline_cn": "你可以用我的管道自由地做买卖，但你必须记住：谁才是这条路上的唯一执法者。", "description_cn": "影子管线领主、带有强烈控制欲的路由器。这类人在连接者矩阵中极度危险且稀缺。主轴给他们搭建开放管道的技术，但副轴强大的主权统治欲让他们要求对管道内的全盘流水拥有绝对的“Top-down 掌控权”。他们推行的是一种“开明的专制”——表面上平台无门槛准入，但只要你敢在我的管道里不听话、不交税、或者试图脱离我的视线，我的 Dashboard 上就能一键让你灰度封禁、人间蒸发", "work_style_cn": "强自上而下的规则定义权、高度中央集权的接口权限隔离、对任何有“脱网独立倾向”的节点实施无情的技术降权或清退", "strengths_cn": ["拥有绝对的中央控制力，能够以最高效率调动全管道资源阻击外部竞争对手，形成了坚不可摧的“基建护城河”"], "blindspots_cn": ["剥削感和极权威压感过重，容易把平台内的长尾生态和合作伙伴逼到对立面，极易引来行业反垄断的饱和式绞杀或生态的大面积逃逸"], "careers_cn": ["集团独立基建子公司 CEO", "超级平台底层协议掌门人", "集团安全与核心权限控制委员会主席"], "celebrity_hook": {"en": "John D. Rockefeller (洛克菲勒 - 早期不仅控制采油，更通过强力集权控制了全美唯一的铁轨与输油管线，从而勒索整个行业的垄断巨鳄)", "zh": "某些掌握着国民级基础账户、底层消息网关或关键流量入口的平台大掌门，制定着绝对不容任何人挑战的技术与法务红线", "tw": "某些掌握着国民级基础账户、底层消息网关或关键流量入口的平台大掌门，制定着绝对不容任何人挑战的技术与法务红线"}, "tier": "common", "primary_id": "CON", "secondary_id": "SOV", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CON_CUR": {"id": 110, "name_cn": "精准·连接者", "name_en": "The High-Fidelity Router", "tagline_cn": "我的世界里不需要数亿垃圾流量的高频互倒。我只连接那万分之一、最纯粹的顶级极客与思想。", "description_cn": "高冷管道筛选官、精品连接圣徒。普通的连接者贪图“量大、并发”，而他们由于受到了副轴甄别特质的强烈折磨，对平庸、跟风、带有垃圾营销属性的交互产生严重的精神和生理排斥。他们是极致的克制主义者，坚信“高质量的连接胜过十万倍的噪音”。他们的管道实行最严苛的门槛准入制，宁可牺牲规模，也必须确保通进来的每一个节点都具备最高的保真度", "work_style_cn": "极度克制的功能迭代与合作入口、亲自下场死卡每一个合作品牌的腔调、对带有营销污染的功能实施一票否决", "strengths_cn": ["能够创造出具备艺术品调性与极高精神溢价的精品社交/内容网络", "是企业品牌价值和高客单价的最强定海神针"], "blindspots_cn": ["极易由于过度追求纯粹与完美，导致平台在商业化变现的道路上走得极为艰难，甚至因为过于“曲高和寡”而错失大众市场的规模化红利"], "careers_cn": [], "celebrity_hook": {"en": "Stewart Butterfield (Slack 创始人 - 对产品内部的连接体验、字体、消息通知逻辑有着神经质般的克制死磕，把办公工具打造成硅谷精英品味标志的先驱)", "zh": "张小龙 (微信创始人 - 具备强烈极简主义、对朋友圈广告、外部合作链接死死卡住、极其克制的产品教父形态) 矩阵 12：以【甄别者 CUR】为主型（10种组合） 主轴核心： 严苛筛选、品味至上、少即是多（Less is more）、追求绝对的纯粹性。 系统张力： 【甄别者 CUR】是整个组织和产品生态中的“最高质检阀”与“审美品味过滤器”。他们天然对平庸、冗余、妥协和信息噪音产生强烈的生理排斥。他们不追求规模的庞大、速度的盲目或群体的狂热，而是通过极致的“做减法”和像素级的挑剔来确立降维壁垒。当副轴力量介入时，这种孤高的筛选机器将固化为截然不同的产品信仰、降维武器与组织清洗范式", "tw": "张小龙 (微信创始人 - 具备强烈极简主义、对朋友圈广告、外部合作链接死死卡住、极其克制的产品教父形态) 矩阵 12：以【甄别者 CUR】为主型（10种组合） 主轴核心： 严苛筛选、品味至上、少即是多（Less is more）、追求绝对的纯粹性。 系统张力： 【甄别者 CUR】是整个组织和产品生态中的“最高质检阀”与“审美品味过滤器”。他们天然对平庸、冗余、妥协和信息噪音产生强烈的生理排斥。他们不追求规模的庞大、速度的盲目或群体的狂热，而是通过极致的“做减法”和像素级的挑剔来确立降维壁垒。当副轴力量介入时，这种孤高的筛选机器将固化为截然不同的产品信仰、降维武器与组织清洗范式"}, "tier": "common", "primary_id": "CON", "secondary_id": "CUR", "inner_opposite_id": "CUR", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_ARC": {"id": 111, "name_cn": "架构·甄别者", "name_en": "The Minimalist Product Saint", "tagline_cn": "伟大的系统不是因为它无法再增加什么，而是因为它已经精简到无法再减少任何一处细节。", "description_cn": "极简产品圣徒、克制主义系统奠基人。主轴对纯粹性的偏执，与副轴宏大的战略建构力完美交融。这类人是科技与美学交汇处的苦行僧。他们看待架构的视角是“以少胜多”：他们花 90% 的时间在顶层设计上做无情的裁剪，只为了留下一套最优雅、对称且具备数学美感的底层骨架。他们一开口，就能让原本臃肿的大厂系统变成一件极简的数字艺术品", "work_style_cn": "极其克制且严厉的系统方案评审（Architecture Review）、发布极具美学准则与技术洁癖的开发圣经、无情砍掉一切不符合长效美学的非核心功能", "strengths_cn": ["能够为产品和技术注入无与伦比的极简之美与结构性护城河，让组织摆脱“功能越多越臃肿”的死循环"], "blindspots_cn": ["容易因为过度追求底层架构的完美与纯粹，导致研发周期被无限拉长，在需要快速推出粗糙 Demo（MVP）占领市场的早期阶段表现得过于迂腐"], "careers_cn": ["核心底层产品总架构师（Chief Architect）", "精品硬件/系统级产品 VP", "设计驱动型科技企业联合创始人"], "celebrity_hook": {"en": "Dieter Rams (迪特·拉姆斯 - 工业设计一代宗师，提出“好设计十原则”，将极简架构发挥到人类器物天花板的圣徒)", "zh": "华语圈中对代码重构、数据库表结构美感有着近乎变态的强迫症，宁可重写全盘系统也绝不容忍一行“屎山代码”的硬核首席架构师", "tw": "华语圈中对代码重构、数据库表结构美感有着近乎变态的强迫症，宁可重写全盘系统也绝不容忍一行“屎山代码”的硬核首席架构师"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "ARC", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_DIS": {"id": 112, "name_cn": "破局·甄别者", "name_en": "The Taste-Verdict Assassin", "tagline_cn": "整个行业都沉浸在自我感动的垃圾堆里。今天，我负责指出皇帝的新装，并亲手终结平庸。", "description_cn": "品味裁决刺客、行业毒舌颠覆者。当甄别者的严苛审判定罪，碰上破局者不破不立的毁灭欲望，会诞生出商业世界中最锋利的“美学屠夫”。他们天然懂得如何精准狙击竞争对手、甚至是全行业的品味死穴。他们通过高调、犀利、不留情面的毒舌批判，将行业老一代产品的臃肿、丑陋与反人类设计彻底曝光在公众面前，用降维级别的审美降打击穿旧秩序", "work_style_cn": "极具攻击性的对比发布会、针针见血的行业批判檄文、用降维级别的工业美学与极简体验强行重塑用户的心智阈值", "strengths_cn": ["拥有恐怖的“审美降维打击”能力", "能以最低的公关成本，将对手精心筑起的市场壁垒贬低为“时代的土味眼泪”，迅速俘获精英群体"], "blindspots_cn": ["批判性极强而包容度极低。在把旧世界砸个稀巴烂之后，如果自身的产品无法迅速实现常态化、规模化的供应，容易被外界反讽为“只有品味、没有肚量的孤高杠精”"], "careers_cn": ["颠覆性品类首席体验官（CXO）", "破局型品牌公关总操盘手", "潮流与科技美学风向标主理人"], "celebrity_hook": {"en": "Karl Lagerfeld (老佛爷卡尔·拉格斐 - 以毒舌、严苛、无情裁剪并颠覆传统陈腐时尚设计著称的裁决者)", "zh": "科技圈里专门负责在社交媒体上炮轰友商设计“高分低能、审美灾难”，靠极其犀利的毒舌拆解生生在红海中撕开美学缺口的跨界创始人", "tw": "科技圈里专门负责在社交媒体上炮轰友商设计“高分低能、审美灾难”，靠极其犀利的毒舌拆解生生在红海中撕开美学缺口的跨界创始人"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "DIS", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_GUA": {"id": 113, "name_cn": "御防·甄别者", "name_en": "The Sanctum Seneschal", "tagline_cn": "为了确保这片圣殿不被外界的俗气污染，在进门之前，你必须接受全盘的思想与品味洗礼。", "description_cn": "文化净土的司阍、极度保守的品质长城。主轴的严苛筛选机制，在副轴守护者特质的防御驱动下，固化为一道密不透风的“免俗高墙”。他们不关心外面的市场做到了几个亿，他们只关心“组织内部的核心调性是否变质”。他们是企业文化和品牌含金量的“保鲜剂”，通过极其严苛的人才引入、品牌授权与信息隔离，死死守住组织的纯洁性", "work_style_cn": "制定长周期的人才审美与价值观一票否决制、执行近乎严苛的品牌合作白名单、对任何带有营销污染倾向的业务实施饱和式防御", "strengths_cn": ["能够让品牌和组织在历经十几年、几十年的市场诱惑后，依然保持最顶级的核心调性与极高的精神溢价"], "blindspots_cn": ["容易在组织内部演变成思想和审美上的闭关锁国，将所有不符合自身刻板教条的创新和流行趋势误判为“异端”，导致组织慢性丧失对大众市场的捕食敏锐度"], "careers_cn": ["集团首席品牌守护官（Chief Brand Officer）", "奢侈品线终身评委", "企业最高文化规范执行长"], "celebrity_hook": {"en": "Anna Wintour (安娜·温图尔 - 《Vogue》传奇主编，以严苛的筛选权和高冷防线，死死捍卫着传统时尚精英圈纯洁性的守护者)", "zh": "某些顶级精品、独立工作室中，手握最终招人权和设计审批权，宁可公司不扩张也绝不招收一个“带有一丝匠气或俗气”毕业生的古董级高管", "tw": "某些顶级精品、独立工作室中，手握最终招人权和设计审批权，宁可公司不扩张也绝不招收一个“带有一丝匠气或俗气”毕业生的古董级高管"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "GUA", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_PIO": {"id": 114, "name_cn": "远征·甄别者", "name_en": "The Elite Scout", "tagline_cn": "不要在那些烂大街的红海里浪费生命。天亮前，跟我去无人区淘出那颗最纯粹的黑珍珠。", "description_cn": "高冷猎鹰、新赛道精英侦察兵。主轴对顶级品味的追寻，伴随着副轴强烈的先行者基因。他们对在成熟的盘子里争夺存量毫无兴趣，他们一辈子的宿命就是“寻找尚未被工业污染的审美与技术处女地”。他们最擅长在外界都认为是一片杂草丛生的前沿领域（如独立游戏、极客软硬件、小众垂直社交），凭空甄别出最具备爆发潜力的种子，拉起一支精英小队闪电式杀入", "work_style_cn": "依靠极其毒辣的直觉在无人区进行高频的闪电式选址、极轻的组织冷启动、用极致的品味卡死无人区的第一座灯塔", "strengths_cn": ["拥有行业顶级的“前瞻眼光”与“冷启动品味锚定力”", "能在一片混乱和不确定性中，把九死一生的试错过程做成一场极其优雅的精准捕猎"], "blindspots_cn": ["由于副轴过于轻灵激进，他们对长周期的后勤基建、规模化量产和繁琐的日常运营极度厌烦。当无人区变成大众红海时，他们往往会因为觉得“俗了”而提前撤退"], "careers_cn": ["前沿科技星探型合伙人", "高端孵化器（X-Lab）体验总监", "新锐概念品类冷启动总指挥"], "celebrity_hook": {"en": "James Cameron (詹姆斯·卡梅隆 - 电影界的远征暴君与甄别狂人，一辈子都在死磕前沿电影技术与无人区题材，出手即重塑人类视觉体验的超级星探)", "zh": "大厂内部专门负责前沿独立项目孵化，靠着极高的个人品味，在硅谷和独立开源社区里一眼挑出未来颠覆性技术苗子的明星 VP", "tw": "大厂内部专门负责前沿独立项目孵化，靠着极高的个人品味，在硅谷和独立开源社区里一眼挑出未来颠覆性技术苗子的明星 VP"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "PIO", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_WEA": {"id": 115, "name_cn": "织网·甄别者", "name_en": "The Curated Matrix Conductor", "tagline_cn": "我的网络里不欢迎十亿泛滥的流量。加入这里，意味着你拿到了全球前 1% 精英圈层的数字通行证。", "description_cn": "顶级圈层编织者、特权生态布道师。主轴的强筛选性与副轴的跨界整合力碰撞，产生了极具阶层区隔的“圈层红利”。他们不依靠传统的广撒网模式搭建生态，而是通过设计一套极其严苛、甚至是带有羞辱性质的准入门槛（如邀请制、大老黑卡、审美考试），强行让行业内最顶尖的創作者、独立小 B 或资本方在他们的闭门网络里高频交互", "work_style_cn": "实行严苛的会员资格审查与内部引荐制、设计极具优越感的生态分账与特权机制、高频举办闭门私密沙龙", "strengths_cn": ["能够以极低的自有资产控制极其庞大、且客单价与忠诚度都恐怖至极的“高净值/高品味超级生态网络”"], "blindspots_cn": ["这种生态由于门槛过高，其用户规模（Scale）存在着天然的物理天花板。一旦面临大众级平台的合围绞杀，极易因为“圈子太小、供给有限”而面临增长的静止"], "careers_cn": ["顶级高净值会员俱乐部 GM", "Web3/精英 DAO 核心发起人", "奢侈品集团全球生态合作总经理"], "celebrity_hook": {"en": "Clubhouse 早期团队 / Selected 圈层创始人 (在平台建立初期通过严格的邀请制，将硅谷名流与顶级行业大脑死死黏合在纯净信息网里的操盘手)", "zh": "专门针对超级富豪、奢侈品高定收藏家或顶级极客圈，设计了一套极严审核门槛、让外部个体自发以“加入为荣”的私域生态掌门人", "tw": "专门针对超级富豪、奢侈品高定收藏家或顶级极客圈，设计了一套极严审核门槛、让外部个体自发以“加入为荣”的私域生态掌门人"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "WEA", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_ANL": {"id": 116, "name_cn": "极数·甄别者", "name_en": "The Intelligence Sifting Expert", "tagline_cn": "数据和算法越膨胀，里面的垃圾就越多。我负责用最冷酷的模型，做这场数字风暴的最高效清道夫。", "description_cn": "绝密情报沙汰专家、冷面算法裁判。这是一群极度冷静、靠逻辑和数学武器对世界实施“去噪”的分析狂人。副轴深析洞察的冷酷武器，完全服务于主轴对纯粹性的追求。在数据大爆炸、AI 垃圾内容泛滥、情报真假难辨的职场深水区，他们是“沙汰（Sifting）专家”——能够用无懈可击的因果链条和数学模型，将数亿条噪音一剑剔除，只留下最核心、最逼近真相的 1% 真理", "work_style_cn": "编写极其严密的自动化审计与数据过滤算法、用冷冰冰的指标给团队交付的所有方案进行“垃圾率（Noise Rate）”判决、极度依赖日志与日志埋点", "strengths_cn": ["拥有全行业最高门槛的“信息去噪与抗欺诈能力”", "能够在大模型幻觉或行业信息战中，为董事会决策层提供纯度最高的黄金级战略情报"], "blindspots_cn": ["极其容易由于追求数据的绝对无污染而陷入“学术型强迫症”，在需要依靠模糊直觉和不确定性进行商业对赌的重大关头，容易因为数据不够纯净而迟迟不肯开枪"], "careers_cn": ["集团首席信息安全与情报清算官（CISO）", "大模型底层数据清洗总负责人", "前沿科技量化投研最高裁判"], "celebrity_hook": {"en": "Nate Silver (纳特·西尔弗 - 美国顶级统计学家、538网站创始人，通过极强的过滤模型在海量垃圾民调中精准预判大选走势的去噪大师)", "zh": "大厂内最核心的安全内审、反舞弊团队负责人，或负责 AI 大模型底层超大规模清洗与对齐语料库（Alignment）的冷面首席数据科学家", "tw": "大厂内最核心的安全内审、反舞弊团队负责人，或负责 AI 大模型底层超大规模清洗与对齐语料库（Alignment）的冷面首席数据科学家"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "ANL", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_OPR": {"id": 117, "name_cn": "执行·甄别者", "name_en": "The Precision Drill Sergeant", "tagline_cn": "我不要看你的加班时长，老子的交付清单里不接受任何一毫米的误差。不合格，就给我打回重做。", "description_cn": "精准工匠总督、没有感情的良品率暴君。当甄别者对细节的偏执砸进了副轴结果导向的铁血交付里，会诞生出职场上最让人不寒而栗的“地狱督工”。他们不听解释，不看苦劳，视任何不符合工艺规范的次品、延迟或差错为对团队智商的侮辱。他们用近乎变态的“良品率考核”，强行将团队的执行动作规范到像素级", "work_style_cn": "依赖极其细致且不容忤逆的 Check-list、推行高频的阶段性交付物评审、谁的模块出了纰漏直接公开红黑榜通报重做", "strengths_cn": ["拥有组织内最硬核的“工程交付良品率”", "能在面临极度复杂的硬核硬件、敏感供应链交付时，确保出厂的每一批次都如同工艺品般无可挑剔"], "blindspots_cn": ["管理风格极度压抑、缺乏容错空间，长期的高压精神紧绷容易让基层研发或工艺人员由于害怕“犯错挨骂”而走向墨守成规，彻底扼杀自发的创新萌芽"], "careers_cn": ["核心硬科技供应链 VP", "高端制造交付总指挥", "特种复杂工程卓越中心（CoE）掌门人"], "celebrity_hook": {"en": "Taiichi Ohno (大野耐一 - 丰田生产方式 TPS 之父，以其严苛的浪费识别、零次品缺陷管理彻底重塑工业执行流程的铁血大师)", "zh": "顶尖半导体、硬科技巨头中，掌管核心中试线、产线供应链，对一颗螺丝钉的阻尼、一个元器件的贴合有着变态苛求的硬核交付副总裁", "tw": "顶尖半导体、硬科技巨头中，掌管核心中试线、产线供应链，对一颗螺丝钉的阻尼、一个元器件的贴合有着变态苛求的硬核交付副总裁"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "OPR", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_DIP": {"id": 118, "name_cn": "妥协·甄别者", "name_en": "The Velvet Sieve", "tagline_cn": "我会在握手和言欢之间，面带微笑地用天鹅绒筛子，把你们中间所有不达标的劣质筹码全部筛掉。", "description_cn": "天鹅绒滤网、高超的政治博弈调和剂。这是大型组织政治高层中极具魅力的一群人。普通的甄别者因为过于挑剔容易四处树敌，而他们则凭借副轴高超的外交手腕与太极推手，学会了“微笑着说不”。他们在各利益派系、跨部门博弈之间游走时，说话极其温和、面子给足，但手上的“高标准滤网”却从未松开，在神不知鬼不觉之间，就把所有平庸、搭便车的浑水摸鱼之辈优雅地排除在核心利益圈之外", "work_style_cn": "频繁但高效的私下小范围茶叙、在非核心资源的分配上频繁向合作方让步、在谈笑间用极高的行业隐性门槛卡死浑水摸鱼者", "strengths_cn": ["拥有行业顶级的“高危项目优雅落地率”", "能在多方利益交织的修罗场里，不撕破脸皮、微笑着把项目本身的品质与调性拉到行业最高"], "blindspots_cn": ["有时为了照顾方方面面的情绪和政治正确，筛选的过程会拉得极其漫长，为了等待一个“各方都挑不出毛病、且品味极高”的折中点，容易错失瞬息万变的市场窗口"], "careers_cn": ["战略合作伙伴高级审计官", "集团政企核心协同总负责人", "多方战略重组最高品质仲裁主席"], "celebrity_hook": {"en": "Jacqueline Kennedy (杰奎琳·肯尼迪 - 将绝佳的外交情商与顶级美学甄别力结合，在多方政治中优雅重塑白宫品牌与文化调性的典范)", "zh": "复杂合资企业、或巨头集团专门负责跟全球顶级独立机构（如高端设计院、顶级律所）进行战略合纵连横，优雅拔高公司段位的资深公共事务高管", "tw": "复杂合资企业、或巨头集团专门负责跟全球顶级独立机构（如高端设计院、顶级律所）进行战略合纵连横，优雅拔高公司段位的资深公共事务高管"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "DIP", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_SOV": {"id": 119, "name_cn": "掌控·甄别者", "name_en": "The Imperial Aesthetic Overlord", "tagline_cn": "大众是盲目且平庸的，他们没有审美。我负责赐予他们神迹，而他们只需要负责跪拜与服从。", "description_cn": "孤高美学独裁者、精神统治的绝对领主。当主轴对纯粹性的追求遇上副轴极致的中央集权控制欲，会产生一种带有“审美统治欲”的组织暴君。他们不满足于只控制 KPI，他们要求在他们视线所及的范围内，所有人的思想、PPT、代码、甚至是办公室的着装，都必须绝对对齐他们个人的最高审美标准。在他们的地盘里，任何平庸和流俗的产物都被视作是对他们领主权威的直接背叛，会招致无情的全盘抹杀", "work_style_cn": "强自上而下的意志灌输、推行严厉的个人一票否决制评审会议、对任何敢于保留“独立且低俗审美”的异见者进行毫无留面的公开开除与清洗", "strengths_cn": ["能够在面临生死转型或品牌全面高端化的决战期，用铁流一体的绝对审美步调，形成摧枯拉朽、神迹般的品牌统治力"], "blindspots_cn": ["会彻底消灭基层的自发红利。由于威压过重、挑剔过狠，中高层会迅速沦为“不敢提任何独立创意、生怕挨骂，只会机械盲从”的精神奴隶"], "careers_cn": ["高端硬科技/精品线最高统治者", "企业生死存亡期品牌升级清洗专家", "集团最高产品委员会主席"], "celebrity_hook": {"en": "Steve Jobs (在其回归苹果的巅峰期，将极致的美学甄别与绝对的自上而下像素级微观管理控制欲结合得淋漓尽致的暴君形态)", "zh": "某些在行业内拥有绝对神话话语权，在集团内部推行铁血军事化管理，对任何未达极致细节的产品一锤子砸碎、重做，不容任何人反驳的创始人", "tw": "某些在行业内拥有绝对神话话语权，在集团内部推行铁血军事化管理，对任何未达极致细节的产品一锤子砸碎、重做，不容任何人反驳的创始人"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "SOV", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}, "CUR_CAT": {"id": 120, "name_cn": "极致·甄别者", "name_en": "The High-Taste Aesthetic Curator", "tagline_cn": "真正的奢华不需要迎合大众。我负责用最极致的工艺，点燃他们灵魂深处对完美的终极渴望。", "description_cn": "高冷品味审判官、现象级奢华引爆者。这是一群天生的“现实扭曲场操盘手”。主轴对纯粹性的死磕，在副轴点燃者（CAT）极强群体引爆力的催化下，发生核爆般的化学反应。他们是彻底的完美主义布道者，最擅长将一件冰冷的产品、一个垂直的社群，用近乎艺术展的高冷调性包装出来，然后用这种狂热灼烧全球中产和精英的灵魂，建立起近乎宗教般的品牌信仰", "work_style_cn": "极度克制但极具仪式感的产品发布会、亲自卡死最后一个关于视觉与感官的细节、用充满先知色彩的叙事（Storytelling）将产品上升为改变时代的图腾", "strengths_cn": ["能够给产品注入极高的艺术性、信仰溢价和奢侈品级别的客单价，是企业品牌护城河与声誉的最强定海神针"], "blindspots_cn": ["极其容易由于过度死磕一些对业务大盘流水影响极小的“非核心、纯美学细节”而导致项目无限期延期，急死前线负责野蛮增长和渠道销售的野战团队"], "careers_cn": ["核心产品最终体验裁决官（CXO）", "独立奢侈品/高端线 Product VP", "顶级创意品牌主理人。\n\n第四章：人际兼容系统与动态雷达可视化（Collaboration Module）这是提升产品留存与自传播（Viral Coefficient $K > 1$）的关键模块。位于结果页底部", "引导用户进行滚屏深挖或点击解锁。4.1 UI/UX 深度交互规范分层叠加态雷达图 (The Overlapping Radar)：页面初始化时", "灰色雷达图显示用户自身 12 维的分数分布。高亮金色/霓虹色雷达图层重叠在上方", "默认显示【最强搭档】的星形特征。动态交互： 用户点击下方的“搭档卡片”或“摩擦卡片”时"], "celebrity_hook": {"en": "Jonathan Ive (前 Apple 首席设计官 - 将极致的极简美学、材质工艺包装成让全球果粉为之疯狂、甚至流泪的品味圣徒)", "zh": "华语圈中对字体、界面动画、机身阻尼感有着强迫症般死磕，并能在产品发布会上用极致高冷的美学叙事引爆全网的产品教父", "tw": "华语圈中对字体、界面动画、机身阻尼感有着强迫症般死磕，并能在产品发布会上用极致高冷的美学叙事引爆全网的产品教父"}, "tier": "scarce", "primary_id": "CUR", "secondary_id": "CAT", "inner_opposite_id": "CON", "axis_num": 6, "axis_cn": "视野轴", "axis_en": "Vision Axis", "axis_tension_cn": "开放 vs 筛选", "axis_tension_en": "Connect vs Curate"}};
+const RADAR_PROFILES = {"ARC": {"ARC": 34, "OPR": 14, "CON": 5, "PIO": 9, "GUA": 10, "CAT": 2, "ANL": 12, "DIP": 4, "DIS": 1, "CUR": 5, "SOV": 2, "WEA": 2}, "OPR": {"ARC": 8, "OPR": 35, "CON": 5, "PIO": 10, "GUA": 8, "CAT": 3, "ANL": 8, "DIP": 3, "DIS": 6, "CUR": 4, "SOV": 7, "WEA": 3}, "CON": {"ARC": 4, "OPR": 5, "CON": 32, "PIO": 6, "GUA": 6, "CAT": 12, "ANL": 3, "DIP": 16, "DIS": 2, "CUR": 3, "SOV": 5, "WEA": 6}, "PIO": {"ARC": 6, "OPR": 14, "CON": 5, "PIO": 30, "GUA": 3, "CAT": 8, "ANL": 5, "DIP": 3, "DIS": 10, "CUR": 4, "SOV": 8, "WEA": 4}, "GUA": {"ARC": 10, "OPR": 12, "CON": 7, "PIO": 3, "GUA": 32, "CAT": 2, "ANL": 10, "DIP": 7, "DIS": 1, "CUR": 8, "SOV": 4, "WEA": 4}, "CAT": {"ARC": 3, "OPR": 8, "CON": 14, "PIO": 10, "GUA": 3, "CAT": 28, "ANL": 2, "DIP": 8, "DIS": 5, "CUR": 3, "SOV": 8, "WEA": 6}, "ANL": {"ARC": 10, "OPR": 8, "CON": 3, "PIO": 4, "GUA": 8, "CAT": 2, "ANL": 35, "DIP": 4, "DIS": 2, "CUR": 12, "SOV": 3, "WEA": 9}, "DIP": {"ARC": 4, "OPR": 4, "CON": 14, "PIO": 4, "GUA": 8, "CAT": 8, "ANL": 4, "DIP": 30, "DIS": 2, "CUR": 4, "SOV": 10, "WEA": 8}, "DIS": {"ARC": 4, "OPR": 12, "CON": 3, "PIO": 16, "GUA": 2, "CAT": 6, "ANL": 4, "DIP": 3, "DIS": 30, "CUR": 3, "SOV": 12, "WEA": 5}, "CUR": {"ARC": 10, "OPR": 8, "CON": 4, "PIO": 5, "GUA": 10, "CAT": 3, "ANL": 14, "DIP": 5, "DIS": 2, "CUR": 28, "SOV": 4, "WEA": 7}, "SOV": {"ARC": 5, "OPR": 10, "CON": 8, "PIO": 8, "GUA": 4, "CAT": 10, "ANL": 4, "DIP": 10, "DIS": 8, "CUR": 4, "SOV": 25, "WEA": 4}, "WEA": {"ARC": 7, "OPR": 5, "CON": 12, "PIO": 12, "GUA": 3, "CAT": 8, "ANL": 10, "DIP": 6, "DIS": 5, "CUR": 8, "SOV": 4, "WEA": 20}};
+const FRICTION_DESC = {"ARC": {"source": "你用系统稳定变化，他们用能量破坏稳定——你们都认为对方在走弯路。", "tips": ["先在「要不要做」上对齐，再讨论「怎么做」", "给对方设定破坏边界，给自己设定建设时限"]}, "DIS": {"source": "你要打破规则，他们要维护系统——你们对「进步」的定义是对立的。", "tips": ["明确哪些是「神圣不可侵犯」的，其余的才是颠覆领域", "接受对方的系统可能有你没看到的价值"]}, "GUA": {"source": "你要稳住现有成果，他们要探索未知边界——你们对「风险」的容忍度差距很大。", "tips": ["明确「保护的底线」在哪里，底线以外给对方自由", "尝试把对方的探索当作你的风险预判机会"]}, "PIO": {"source": "你跑得太快，他们要稳住——你觉得对方在拖累你，他们觉得你在拉着他们冒险。", "tips": ["每次探索前说清楚「如果失败的代价是什么」", "允许对方设定一个「不能动的稳定核心」"]}, "OPR": {"source": "你专注执行，他们在多个领域之间跳跃——你觉得他们不专心，他们觉得你视野太窄。", "tips": ["约定「专注周期」，在此期间只做当下这件事", "让对方的跨界输入在固定节点进入，而不是随时打断"]}, "WEA": {"source": "你跨越所有边界，他们只想把一件事做好——在你看来是视野，在他们看来是散漫。", "tips": ["每个跨界连接都要说明「它怎么帮助当前目标」", "承认对方的深度专注在某些任务上比你强"]}, "ANL": {"source": "你要数据支撑再行动，他们要先点燃热情——你觉得对方不严谨，他们觉得你太冷。", "tips": ["给热情设一个「最小数据门槛」", "在行动后一起复盘数据，而不是行动前无限分析"]}, "CAT": {"source": "你要点燃全场，他们要冷静分析——能量方向完全相反。", "tips": ["让对方的数据成为你点燃的弹药，而不是灭火器", "在重大决策前给对方一个「分析窗口」，然后你来行动"]}, "DIP": {"source": "你要让所有人都满意，他们要迅速拍板——你觉得他们不考虑人，他们觉得你太慢。", "tips": ["约定「共识期限」：到点就拍板，不无限等待", "你负责处理决策后的人际影响，让他们先做决定"]}, "SOV": {"source": "你要发号施令，他们要所有人都认同——你觉得他们优柔寡断，他们觉得你强硬独断。", "tips": ["在「时间紧迫」时你先行，「资源重大」时给对方对齐流程", "你的决断力 + 对方的认可度 = 执行阻力最小化"]}, "CON": {"source": "你连接所有人，他们只选择最重要的——你觉得他们封闭，他们觉得你太分散。", "tips": ["让对方帮你筛选「值得深入的关系」", "接受你们的「人脉哲学」不同，但可以互相借用"]}, "CUR": {"source": "你精选有价值的，他们广泛连接——你觉得他们浪费精力，他们觉得你失去了机会。", "tips": ["你的筛选标准要说出来，而不是默默过滤掉对方的建议", "让对方的广度来喂你的精度——先广，再由你筛"]}};
+function lookupCombo(primaryId, secondaryId) {
+  return COMBO_MAP[primaryId + '_' + secondaryId] || null;
+}
+
+
 const AXIS_MAP = {
   ARC:'DIS', DIS:'ARC',   // 变革轴  Build vs Disrupt
   GUA:'PIO', PIO:'GUA',   // 探索轴  Stability vs Explore
@@ -2416,126 +3320,395 @@ function findArch(pId){ return ARCHETYPES.find(a=>a.name.en.replace('The ','')==
 
 function renderResults(pcts){
   const sorted = ARCHETYPES.map(a=>({...a,pct:pcts[a.id]})).sort((a,b)=>b.pct-a.pct);
-  S.sorted=sorted;
-  const primary=sorted[0]; S.primary=primary;
+  S.sorted = sorted;
+  const primary = sorted[0]; S.primary = primary;
+  const lang    = S.lang || 'en';
 
-  // ── Compute dual type ────────────────────────────────────────────────
-  const dual = computeDualType(pcts);
-  S.dual = dual;
+  // ── Compute dual type ──────────────────────────────────────────────
+  const dual      = computeDualType(pcts);
+  S.dual          = dual;
+  const secArch   = ARCHETYPES.find(a => a.id === dual.secondaryId);
+  const innerArch = ARCHETYPES.find(a => a.id === dual.innerOppositeId);
+  const combo     = lookupCombo(dual.primaryId, dual.secondaryId);
 
-  const secArch = ARCHETYPES.find(a=>a.id===dual.secondaryId);
-  const innerArch = ARCHETYPES.find(a=>a.id===dual.innerOppositeId);
-  const lang = S.lang || 'en';
+  // ── i18n helpers ──────────────────────────────────────────────────
+  const isEn = lang === 'en';
+  function setT(id, en, zh){ const el=document.getElementById(id); if(el) el.textContent = isEn?en:zh; }
+  function setH(id, en, zh){ const el=document.getElementById(id); if(el) el.innerHTML  = isEn?en:zh; }
+  function el(id){ return document.getElementById(id); }
 
-  // ── Header ───────────────────────────────────────────────────────────
-  document.getElementById('result-name').textContent = dual.comboName;
-  document.getElementById('result-cn').textContent =
-    lang==='en'
-      ? (ADJ.zh[dual.secondaryId]||'') + '·' + primary.name.zh
-      : dual.comboName;
-  document.getElementById('result-tagline').textContent = '"'+L(primary.tagline)+'"';
+  // ═══════════════════════════════════════════════════════
+  // SECTION 1 — WHO YOU ARE
+  // ═══════════════════════════════════════════════════════
 
-  // ── Rarity badge ─────────────────────────────────────────────────────
-  const rbc=document.getElementById('rarity-badge-container'); rbc.innerHTML='';
+  // Rarity badge
+  const rbc = el('rarity-badge-container'); rbc.innerHTML = '';
   if(primary.tier==='rare'){
-    rbc.innerHTML=`<div class="rarity-badge mono"><span class="rarity-dot"></span>${primary.rarityLabel} · ${T('rare_top')}</div>`;
+    rbc.innerHTML = `<div class="rarity-badge mono"><span class="rarity-dot"></span>${primary.rarityLabel||'◆ Rare'} · ${T('rare_top')}</div>`;
   } else if(primary.tier==='scarce'){
-    rbc.innerHTML=`<div class="rarity-badge mono" style="border-color:var(--gold-dim);color:var(--gold-dim)"><span class="rarity-dot" style="background:var(--gold-dim)"></span>◇ Scarce</div>`;
+    rbc.innerHTML = `<div class="rarity-badge mono" style="border-color:var(--gold-dim);color:var(--gold-dim)"><span class="rarity-dot" style="background:var(--gold-dim)"></span>◇ ${isEn?'Scarce':'稀缺型'}</div>`;
   }
 
-  // ── Dual type card (injected above primary card) ─────────────────────
-  const dualCardHTML = `
-    <div class="dual-type-card">
-      <div class="dual-type-header">
-        <span class="dual-type-eyebrow mono">${lang==='en'?'Your Dual Archetype':'你的双型人格'}</span>
-        <span class="dual-type-axis mono">
-          ${lang==='en' ? (dual.axisInfo.en||'') + ' Axis '+dual.axisInfo.num : '第'+dual.axisInfo.num+'轴 · '+(dual.axisInfo.cn||'')}
-        </span>
-      </div>
-      <div class="dual-type-name serif">${dual.comboName}</div>
-      <div class="dual-type-meta">
-        <span class="dual-meta-item">
-          <span class="mono" style="color:var(--gold-dim)">${lang==='en'?'Primary':'主型'}</span>
-          <span>${L(primary.name)}</span>
-        </span>
-        <span class="dual-meta-sep">×</span>
-        <span class="dual-meta-item">
-          <span class="mono" style="color:var(--sage-pale)">${lang==='en'?'Style modifier':'副轴修饰'}</span>
-          <span>${secArch ? L(secArch.name) : ''}</span>
-        </span>
-      </div>
-      <div class="dual-type-bias-row">
-        <div class="bias-bar-wrap">
-          <div class="bias-bar-fill" style="width:${dual.axisBias}%"></div>
-        </div>
-        <span class="bias-label mono">${dual.axisBias}% ${lang==='en'?'axis lean':'主型倾斜'}</span>
-        ${dual.axisBias>=75
-          ? `<span class="bias-badge extreme">${lang==='en'?'⚡ Extreme Focus':'⚡ 极端纯粹'}</span>`
-          : dual.axisBias<=55
-          ? `<span class="bias-badge balanced">${lang==='en'?'⚖️ Inner Tension':'⚖️ 轴内平衡'}</span>`
-          : ''}
-      </div>
-      <div class="dual-type-inner-opp">
-        <span class="mono" style="color:var(--mist);font-size:10px;letter-spacing:.1em">${lang==='en'?'INNER OPPOSITE':'内在对立面'}</span>
-        <span style="color:var(--mist)"> · ${innerArch ? L(innerArch.name) : ''}</span>
-        <span style="color:rgba(184,202,188,.5);font-size:12px"> — ${lang==='en'?'the tension that defines you':'定义你的那条张力'}</span>
-      </div>
-    </div>`;
+  // Axis pill
+  const axisLabel = isEn
+    ? `${dual.axisInfo.tension_en||''} · Axis ${dual.axisInfo.num}`
+    : `第${dual.axisInfo.num}轴 · ${dual.axisInfo.tension_cn||''}`;
+  setT('rp-axis-pill', axisLabel, axisLabel);
 
-  // ── Primary card ─────────────────────────────────────────────────────
-  const wrap=document.getElementById('primary-card-wrap');
-  wrap.innerHTML= dualCardHTML + `
-    <div class="primary-card">
-      <div class="card-section-label mono">${T('core_id')}</div>
-      <p class="card-body">${L(primary.def)}</p>
-      <div class="card-section-label mono">${T('superpower')}</div>
-      <p class="card-body">${L(primary.power)}</p>
-      <div class="card-grid">
-        <div class="card-cell"><div class="cell-label mono">${T('your_val')}</div><div class="cell-content">${L(primary.value)}</div></div>
-        <div class="card-cell"><div class="cell-label mono">${T('fatal_flaw')}</div><div class="cell-content flaw">${L(primary.flaw)}</div></div>
-      </div>
-      <div class="card-section-label mono">${T('best_part')}</div>
-      <div class="partners-grid" id="result-partners"></div>
-    </div>`;
+  // Name
+  el('result-name').textContent = dual.comboName;
+  el('result-cn').textContent   = isEn
+    ? (combo ? combo.name_cn : '')
+    : dual.comboName;
 
-  const partnersEl=document.getElementById('result-partners');
-  (primary.partners||[]).forEach(pId=>{
-    const found=findArch(pId);
-    const why = PARTNER_WHY[primary.id] && PARTNER_WHY[primary.id][found?found.id:''];
-    if(found) partnersEl.innerHTML+=`<div class="partner-row"><span class="partner-chip-name mono">${L(found.name)}</span>${why?`<span class="partner-why">${L(why)}</span>`:''}</div>`;
-  });
-  (primary.tension||[]).forEach(pId=>{
-    const found=findArch(pId);
-    const why = TENSION_WHY[primary.id] && TENSION_WHY[primary.id][found?found.id:''];
-    if(found) partnersEl.innerHTML+=`<div class="partner-row"><span class="partner-chip-name tension mono">⚠ ${L(found.name)}</span>${why?`<span class="partner-why" style="color:rgba(196,128,128,0.6)">${L(why)}</span>`:''}</div>`;
-  });
+  // Tagline
+  const taglineText = combo && combo.tagline_cn
+    ? combo.tagline_cn
+    : L(primary.tagline);
+  el('result-tagline').textContent = taglineText;
 
-  document.getElementById('result-growth').textContent = L(primary.growth);
-  document.getElementById('result-quote').textContent = L(primary.quote);
+  // Identity cells
+  setT('lbl-power',     '⚡ Your Superpower',     '⚡ 超级能力');
+  setT('lbl-flaw',      '💀 Watch Out For',       '💀 致命盲点');
+  setT('lbl-celeb',     '👤 You Remind Us Of',    '👤 名人参照');
 
-  // ── Viral badges (updated for dual type) ─────────────────────────────
-  const viralRow=document.getElementById('viral-row'); viralRow.innerHTML='';
-  if(dual.axisBias>=75) viralRow.innerHTML+=`<span class="viral-badge">${lang==='en'?'⚡ Axis extremely clear':'⚡ 轴内极度清晰'}</span>`;
-  if(dual.axisBias<=55) viralRow.innerHTML+=`<span class="viral-badge">${lang==='en'?'⚖️ Living the contradiction':'⚖️ 活在矛盾里'}</span>`;
-  if(primary.tier==='rare') viralRow.innerHTML+=`<span class="viral-badge rare-signal">◆ ${L(primary.name).replace('The ','')} · Top ${primary.id==='SOV'?'3':'4'}%</span>`;
-  if(primary.tier==='scarce') viralRow.innerHTML+=`<span class="viral-badge rare-signal" style="border-color:rgba(201,168,76,.4);color:var(--gold2)">◇ ${lang==='en'?'Scarce type':'稀缺人格'}</span>`;
-  const topFour=sorted.slice(0,4).filter(x=>x.pct>=12);
-  if(topFour.length>=4) viralRow.innerHTML+=`<span class="viral-badge multi">${T('viral_multi')}</span>`;
-  // High tension pair badge
-  const isHighTension = AXIS_MAP[dual.primaryId] === sorted[1].id;
-  if(isHighTension) viralRow.innerHTML+=`<span class="viral-badge rare-signal">${lang==='en'?'🔥 High-tension paradox':'🔥 高张力悖论型'}</span>`;
+  // Power: first sentence of primary.power
+  const powerFull = L(primary.power) || '';
+  const powerShort = powerFull.split('—')[0].split('–')[0].trim();
+  el('rp-power-text').textContent = powerShort;
 
-  // ── Star chart ────────────────────────────────────────────────────────
+  // Flaw
+  el('rp-flaw-text').textContent = L(primary.flaw) || '';
+
+  // Celebrity (from combo JSON, language-switched)
+  let celebText = '';
+  if(combo && combo.celebrity_hook){
+    celebText = isEn
+      ? combo.celebrity_hook.en
+      : (lang==='tw' ? combo.celebrity_hook.tw : combo.celebrity_hook.zh);
+    celebText = celebText || combo.celebrity_hook.en || '';
+  }
+  if(celebText){
+    // Bold the name before the dash
+    const parts = celebText.split('——');
+    if(parts.length >= 2){
+      el('rp-celeb-text').innerHTML =
+        `<strong>${parts[0].trim()}</strong> — ${parts.slice(1).join('——').trim()}`;
+    } else {
+      el('rp-celeb-text').textContent = celebText;
+    }
+  } else {
+    el('rp-id-celeb').style.display = 'none';
+  }
+
+  // Tension strip
+  const biasW = dual.axisBias;
+  el('rp-tension-fill').style.width = biasW + '%';
+  el('rp-tension-you-name').textContent  = L(primary.name).replace(/^The\s+/i,'');
+  el('rp-tension-opp-name').textContent  = innerArch ? L(innerArch.name).replace(/^The\s+/i,'') : '';
+  setT('rp-tension-you-label', 'YOU',     '你');
+  setT('rp-tension-opp-label', 'SHADOW',  '内在对立');
+
+  const badge = el('rp-tension-badge');
+  if(biasW >= 75){
+    badge.textContent = isEn ? '⚡ Extreme Focus' : '⚡ 极端纯粹';
+    badge.className   = 'rp-tension-badge rp-tension-badge--extreme';
+  } else if(biasW <= 55){
+    badge.textContent = isEn ? '⚖️ Inner Tension' : '⚖️ 轴内平衡';
+    badge.className   = 'rp-tension-badge rp-tension-badge--balanced';
+  } else {
+    badge.textContent = biasW + '% ' + (isEn ? 'lean' : '倾斜');
+    badge.className   = 'rp-tension-badge rp-tension-badge--normal';
+  }
+
+  // ═══════════════════════════════════════════════════════
+  // SECTION 2 — HOW YOU WORK
+  // ═══════════════════════════════════════════════════════
+
+  setT('rp-section-num-2', '02', '02'); // no-op if doesn't exist
+
+  // Section header labels
+  const secTitle2 = el('lbl-how-title');
+  const secSub2   = el('lbl-how-sub');
+  if(secTitle2) secTitle2.textContent = isEn ? 'How You Work' : '你怎么工作';
+  if(secSub2)   secSub2.textContent   = isEn ? 'Your patterns & blind spots' : '你的行为模式与盲点';
+
+  // Description
+  const descText = combo && combo.description_cn ? combo.description_cn : L(primary.def);
+  el('rp-desc-text').textContent = descText;
+
+  // Work style
+  setT('lbl-ws', 'IN PRACTICE', '工作方式');
+  const wsText = combo && combo.work_style_cn ? combo.work_style_cn : '';
+  if(wsText){
+    el('rp-ws-text').textContent = wsText;
+  } else {
+    const wsCard = el('rp-workstyle-card');
+    if(wsCard) wsCard.style.display = 'none';
+  }
+
+  // Strengths
+  setT('lbl-strengths',  'Strengths', '核心优势');
+  const strengths = combo && combo.strengths_cn && combo.strengths_cn.length
+    ? combo.strengths_cn
+    : [];
+  const strEl = el('rp-strengths-list');
+  strEl.innerHTML = strengths.length
+    ? strengths.map(s=>`<li>${s}</li>`).join('')
+    : (primary.value ? `<li>${L(primary.value)}</li>` : '');
+
+  // Blindspots
+  setT('lbl-blindspots', 'Watch Out', '盲点警告');
+  const blindspots = combo && combo.blindspots_cn && combo.blindspots_cn.length
+    ? combo.blindspots_cn
+    : [];
+  const blindEl = el('rp-blindspots-list');
+  blindEl.innerHTML = blindspots.length
+    ? blindspots.map(b=>`<li>${b}</li>`).join('')
+    : (primary.flaw ? `<li>${L(primary.flaw)}</li>` : '');
+
+  // Careers
+  setT('lbl-careers', 'Where You Thrive', '适合的职业方向');
+  const careers = combo && combo.careers_cn && combo.careers_cn.length
+    ? combo.careers_cn
+    : [];
+  const careersEl = el('rp-careers-chips');
+  careersEl.innerHTML = careers.map(c=>`<span class="rp-career-chip">${c}</span>`).join('');
+  if(!careers.length) el('rp-careers-wrap').style.display = 'none';
+
+  // DNA toggle label
+  setT('lbl-dna-toggle', 'See your 12-dimension DNA chart', '查看12维职场基因图');
+
+  // Build star chart (hidden until expanded)
   buildStarChart('star-svg', pcts, 108);
-  const chipsEl=document.getElementById('star-chips'); chipsEl.innerHTML='';
+  const chipsEl = el('star-chips');
+  chipsEl.innerHTML = '';
   sorted.slice(0,5).forEach((a,rank)=>{
-    const isRare=a.tier==='rare'; const cls=isRare?'rare':rank===0?'p1':rank<=2?'p2':'p3';
-    // Highlight secondary modifier
-    const isSec = a.id === dual.secondaryId;
-    chipsEl.innerHTML+=`<span class="star-chip ${cls} ${isSec?'secondary-chip':''}" title="${isSec?(lang==='en'?'Style modifier':'副轴修饰'):''}">${isRare?'◆ ':''}${a.name.en.replace('The ','')} ${Math.round(a.pct)}%${isSec?'&nbsp;✦':''}</span>`;
+    const isRare = a.tier==='rare';
+    const isSec  = a.id === dual.secondaryId;
+    const cls    = isRare?'rare':rank===0?'p1':rank<=2?'p2':'p3';
+    chipsEl.innerHTML += `<span class="star-chip ${cls}${isSec?' secondary-chip':''}">${isRare?'◆ ':''}${a.name.en.replace('The ','')} ${Math.round(a.pct)}%${isSec?' ✦':''}</span>`;
   });
+
+  // ═══════════════════════════════════════════════════════
+  // SECTION 3 — WHO YOU CLICK WITH
+  // ═══════════════════════════════════════════════════════
+
+  // Section labels
+  const secTitle3 = el('lbl-compat-title');
+  const secSub3   = el('lbl-compat-sub');
+  if(secTitle3) secTitle3.textContent = isEn ? 'Who You Click With' : '你和谁最合';
+  if(secSub3)   secSub3.textContent   = isEn ? 'Click a card to compare radars' : '点击卡片对比雷达图';
+
+  setT('lbl-my-radar',    'You',        '你');
+  setT('lbl-best-matches', isEn?'⚡ Best Matches':'⚡ 最佳搭档',
+                            isEn?'⚡ Best Matches':'⚡ 最佳搭档');
+  setT('lbl-friction',    isEn?'🔥 Most Friction':'🔥 最容易产生摩擦',
+                            isEn?'🔥 Most Friction':'🔥 最容易产生摩擦');
+
+  // Build my radar
+  buildRadarChart('my-radar-svg', pcts, dual.primaryId, 100, false);
+
+  // Compute compat scores
+  const allCombos = Object.values(COMBO_MAP);
+  const scored = allCombos.map(c => {
+    const partnerPct  = RADAR_PROFILES[c.primary_id] || {};
+    const partnerDual = { primaryId: c.primary_id, secondaryId: c.secondary_id };
+    const { score, isHighTension } = computeCompatibility(dual, partnerDual, pcts, partnerPct);
+    return { combo: c, score, isHighTension };
+  });
+  scored.sort((a,b) => b.score - a.score);
+
+  const best3    = scored.slice(0, 3);
+  const friction2= scored.slice(-2).reverse();
+
+  // Best match labels
+  const MATCH_LABELS = {
+    best: isEn ? ['天配', '强搭配', '好搭配'] : ['天配', '强搭配', '好搭配'],
+    en:   ['Perfect match', 'Strong pair', 'Good pair'],
+  };
+
+  // Render best cards
+  const bestEl = el('rp-best-cards');
+  bestEl.innerHTML = '';
+  best3.forEach((item, i) => {
+    const c    = item.combo;
+    const name = isEn ? c.name_en : c.name_cn;
+    const tag  = isEn ? MATCH_LABELS.en[i] : MATCH_LABELS.best[i];
+    const why  = getBestWhy(dual.primaryId, c.primary_id, item.score, isEn);
+    const card = document.createElement('div');
+    card.className = 'rp-match-card' + (i===0?' active':'');
+    card.innerHTML = `
+      <span class="rp-match-label rp-match-label--best">${tag}${item.isHighTension?' 🔥':''}</span>
+      <div class="rp-match-name">${name}</div>
+      <div class="rp-match-why">${why}</div>`;
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.rp-match-card').forEach(el=>el.classList.remove('active'));
+      card.classList.add('active');
+      const pp = RADAR_PROFILES[c.primary_id] || {};
+      buildRadarChart('partner-radar-svg', pp, c.primary_id, 100, true);
+      const lbl = el('lbl-partner-radar');
+      if(lbl) lbl.textContent = name;
+    });
+    if(i===0){
+      const pp = RADAR_PROFILES[c.primary_id] || {};
+      buildRadarChart('partner-radar-svg', pp, c.primary_id, 100, true);
+      const lbl = document.getElementById('lbl-partner-radar');
+      if(lbl) lbl.textContent = name;
+    }
+    bestEl.appendChild(card);
+  });
+
+  // Render friction cards
+  const frictionEl = el('rp-friction-cards');
+  frictionEl.innerHTML = '';
+  friction2.forEach(item => {
+    const c   = item.combo;
+    const name = isEn ? c.name_en : c.name_cn;
+    const fd  = FRICTION_DESC[c.primary_id] || { source:'', tips:[] };
+    const card = document.createElement('div');
+    card.className = 'rp-match-card rp-match-card--friction';
+    card.innerHTML = `
+      <span class="rp-match-label rp-match-label--friction">${isEn?'Needs effort':'需要刻意沟通'}</span>
+      <div class="rp-match-name">${name}</div>
+      <div class="rp-match-why">${isEn?'High natural tension — but high growth potential':'天然张力高，但成长潜力也高'}</div>
+      <div class="rp-friction-detail">
+        <div class="rp-friction-source">${fd.source||''}</div>
+        <div class="rp-friction-tips">
+          ${(fd.tips||[]).map(t=>`<div class="rp-friction-tip">${t}</div>`).join('')}
+        </div>
+      </div>`;
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.rp-match-card').forEach(el=>el.classList.remove('active'));
+      card.classList.add('active');
+      const pp = RADAR_PROFILES[c.primary_id] || {};
+      buildRadarChart('partner-radar-svg', pp, c.primary_id, 100, true);
+      const lbl = document.getElementById('lbl-partner-radar');
+      if(lbl) lbl.textContent = name;
+    });
+    frictionEl.appendChild(card);
+  });
+
+  // ═══════════════════════════════════════════════════════
+  // VIRAL BADGES
+  // ═══════════════════════════════════════════════════════
+  const viralRow = el('viral-row');
+  viralRow.innerHTML = '';
+  if(dual.axisBias>=75) viralRow.innerHTML += `<span class="viral-badge">${isEn?'⚡ Extremely clear':'⚡ 轴内极度清晰'}</span>`;
+  if(dual.axisBias<=55) viralRow.innerHTML += `<span class="viral-badge">${isEn?'⚖️ Living the contradiction':'⚖️ 活在矛盾里'}</span>`;
+  if(primary.tier==='rare') viralRow.innerHTML += `<span class="viral-badge rare-signal">◆ ${L(primary.name).replace('The ','')} · Top ${primary.id==='SOV'?'3':'4'}%</span>`;
+  if(primary.tier==='scarce') viralRow.innerHTML += `<span class="viral-badge rare-signal" style="border-color:rgba(201,168,76,.4);color:var(--gold2)">◇ ${isEn?'Scarce':'稀缺人格'}</span>`;
+  const topFour = sorted.slice(0,4).filter(x=>x.pct>=12);
+  if(topFour.length>=4) viralRow.innerHTML += `<span class="viral-badge multi">${T('viral_multi')}</span>`;
+  if(AXIS_MAP[dual.primaryId]===sorted[1].id) viralRow.innerHTML += `<span class="viral-badge rare-signal">${isEn?'🔥 High-tension paradox':'🔥 高张力悖论型'}</span>`;
+
+  // Growth + Quote
+  el('result-growth').textContent = L(primary.growth);
+  el('result-quote').textContent  = L(primary.quote);
+  const gl = document.querySelector('[data-t="growth_lbl"]');
+  if(gl) gl.textContent = isEn ? '↗ Growth Direction' : '↗ 成长方向';
 
   showScreen('s-result');
+}
+
+function getBestWhy(myId, theirId, score, isEn){
+  const theirArch = ARCHETYPES.find(a=>a.id===theirId);
+  const name = theirArch ? (isEn ? theirArch.name.en : theirArch.name.zh).replace('The ','') : '';
+  if(score >= 85) return isEn
+    ? `${name} fills your blind spots without friction`
+    : `${name}能自然填补你的盲点`;
+  if(score >= 70) return isEn
+    ? `Complementary strengths and enough common ground`
+    : `优势互补，同时有足够的共同语言`;
+  return isEn
+    ? `Different perspectives — a productive challenge`
+    : `视角多元，有建设性的挑战`;
+}
+
+function toggleDNA(){
+  const panel  = document.getElementById('rp-dna-panel');
+  const arrow  = document.getElementById('rp-expand-arrow');
+  const toggle = document.getElementById('rp-dna-toggle');
+  const isOpen = panel.classList.toggle('open');
+  arrow.classList.toggle('open', isOpen);
+  const lang = S.lang||'en';
+  const lbl  = document.getElementById('lbl-dna-toggle');
+  if(lbl) lbl.textContent = isOpen
+    ? (lang==='en'?'Hide DNA chart':'收起基因图')
+    : (lang==='en'?'See your 12-dimension DNA chart':'查看12维职场基因图');
+}
+
+
+// ── MINI RADAR CHART (for compat panel) ──────────────────────────────────────
+function buildRadarChart(svgId, pct, primaryId, R, isPartner){
+  const svg = document.getElementById(svgId);
+  if(!svg) return;
+  svg.innerHTML = '';
+  const arch = ARCHETYPES;
+
+  function polar(deg, r){ const a=(deg-90)*Math.PI/180; return [Math.cos(a)*r, Math.sin(a)*r]; }
+  function ns(tag){ return document.createElementNS('http://www.w3.org/2000/svg', tag); }
+  function sqR(p){ return Math.sqrt(Math.max(0,p)/100)*R; }
+
+  const tierArch = ARCHETYPES.find(a=>a.id===primaryId);
+  const tier = tierArch ? tierArch.tier : 'common';
+  const colors = {
+    common: { stroke:'#4A7C59', fill:'rgba(74,124,89,0.12)' },
+    scarce: { stroke:'#C9A84C', fill:'rgba(201,168,76,0.10)' },
+    rare:   { stroke:'#B08EC8', fill:'rgba(176,142,200,0.12)' },
+  };
+  const col = isPartner
+    ? { stroke:'rgba(184,202,188,0.5)', fill:'rgba(184,202,188,0.06)' }
+    : (colors[tier] || colors.common);
+
+  // Rings
+  [0.33,0.66,1.0].forEach(f=>{
+    const pts = arch.map((_,i)=>{ const[x,y]=polar(i*30,R*f); return `${x.toFixed(1)},${y.toFixed(1)}`; }).join(' ');
+    const p=ns('polygon');
+    p.setAttribute('points',pts); p.setAttribute('fill','none');
+    p.setAttribute('stroke',`rgba(255,255,255,${f===1?0.08:0.04})`);
+    p.setAttribute('stroke-width','0.5');
+    if(f<1) p.setAttribute('stroke-dasharray','2 3');
+    svg.appendChild(p);
+  });
+
+  // Axis lines
+  arch.forEach((_,i)=>{
+    const[x,y]=polar(i*30,R);
+    const l=ns('line');
+    l.setAttribute('x1','0'); l.setAttribute('y1','0');
+    l.setAttribute('x2',x.toFixed(1)); l.setAttribute('y2',y.toFixed(1));
+    l.setAttribute('stroke','rgba(255,255,255,0.05)'); l.setAttribute('stroke-width','0.4');
+    svg.appendChild(l);
+  });
+
+  // Star fill
+  const pts = arch.map((a,i)=>{ const[x,y]=polar(i*30,sqR(pct[a.id]||0)); return `${x.toFixed(2)},${y.toFixed(2)}`; }).join(' ');
+  const fp=ns('polygon'); fp.setAttribute('points',pts); fp.setAttribute('fill',col.fill); svg.appendChild(fp);
+  const op=ns('polygon'); op.setAttribute('points',pts); op.setAttribute('fill','none');
+  op.setAttribute('stroke',col.stroke); op.setAttribute('stroke-width','1.2'); op.setAttribute('opacity','0.75'); svg.appendChild(op);
+
+  // Dots
+  arch.forEach((a,i)=>{
+    const v=pct[a.id]||0; if(v<3) return;
+    const[x,y]=polar(i*30,sqR(v));
+    const c=ns('circle'); c.setAttribute('cx',x.toFixed(2)); c.setAttribute('cy',y.toFixed(2));
+    c.setAttribute('r',v>=15?'3':'2'); c.setAttribute('fill',col.stroke); c.setAttribute('opacity','0.75');
+    svg.appendChild(c);
+  });
+
+  // Labels for top 4
+  arch.slice().sort((a,b)=>(pct[b.id]||0)-(pct[a.id]||0)).slice(0,4).forEach(a=>{
+    const i=arch.findIndex(x=>x.id===a.id);
+    const[lx,ly]=polar(i*30,R+15);
+    const t=ns('text');
+    t.setAttribute('x',lx.toFixed(1)); t.setAttribute('y',ly.toFixed(1));
+    t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','middle');
+    t.setAttribute('font-family',"'DM Mono',monospace");
+    t.setAttribute('font-size','7.5'); t.setAttribute('fill',col.stroke); t.setAttribute('opacity','0.85');
+    t.textContent = a.id;
+    svg.appendChild(t);
+  });
 }
 
 
